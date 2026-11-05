@@ -63,6 +63,8 @@ async function dirStats(dir) {
 async function verifyRequired(staging) {
   const required = [
     "README.md",
+    "使用说明.md",
+    "启动任务服务.bat",
     "LOAD-EXTENSION.txt",
     "extension/manifest.json",
     "extension/index.html",
@@ -87,7 +89,7 @@ try {
     throw new Error("extension is not built: run `npm --prefix apps/extension run build` first");
   }
   await mkdir(staging, { recursive: true });
-  for (const entry of ["README.md", ".gitignore", "apps", "services", "scripts", "docs"]) {
+  for (const entry of ["README.md", "使用说明.md", "启动任务服务.bat", ".gitignore", "apps", "services", "scripts", "docs"]) {
     const source = path.join(root, entry);
     if (!existsSync(source)) continue;
     await cp(source, path.join(staging, entry), { recursive: true, filter: shouldCopy });

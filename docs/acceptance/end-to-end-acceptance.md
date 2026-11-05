@@ -130,7 +130,7 @@
 ## 6. 复现
 
 ```powershell
-cd C:\Users\pc\source\repos\bilibili-transcript-assistant
+cd <项目目录>
 
 # 服务端测试
 cd services/task-api; .\.venv\Scripts\python.exe -m pytest; cd ../..

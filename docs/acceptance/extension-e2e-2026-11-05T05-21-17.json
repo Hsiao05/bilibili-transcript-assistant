@@ -2,7 +2,7 @@
   "startedAt": "2026-11-05T05:21:17.236Z",
   "service": {
     "port": 8882,
-    "dataDir": "C:\\Users\\pc\\AppData\\Local\\Temp\\bta-e2e-service-QVKHKa",
+    "dataDir": "<TEMP>\\bta-e2e-service-QVKHKa",
     "token": "***",
     "logsTail": [],
     "capabilities": {
@@ -151,19 +151,19 @@
   ],
   "consoleErrors": [],
   "screenshots": [
-    "C:\\Users\\pc\\source\\repos\\bilibili-transcript-assistant\\docs\\screenshots\\sidepanel-e2e-transcript.png",
-    "C:\\Users\\pc\\source\\repos\\bilibili-transcript-assistant\\docs\\screenshots\\sidepanel-e2e-summary.png",
-    "C:\\Users\\pc\\source\\repos\\bilibili-transcript-assistant\\docs\\screenshots\\sidepanel-e2e-settings.png"
+    "<PROJECT>\\docs\\screenshots\\sidepanel-e2e-transcript.png",
+    "<PROJECT>\\docs\\screenshots\\sidepanel-e2e-summary.png",
+    "<PROJECT>\\docs\\screenshots\\sidepanel-e2e-settings.png"
   ],
   "downloads": [
     {
-      "path": "C:\\Users\\pc\\AppData\\Local\\Temp\\bta-e2e-download-fX9qXo\\【2026全球总决赛】11月4日 TES vs IG-P02-整理稿.md",
+      "path": "<TEMP>\\bta-e2e-download-fX9qXo\\【2026全球总决赛】11月4日 TES vs IG-P02-整理稿.md",
       "bytes": 3325,
       "filename": "【2026全球总决赛】11月4日 TES vs IG-P02-整理稿.md"
     }
   ],
   "engine": {
-    "path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+    "path": "<EDGE>",
     "version": "Edg/156.0.4314.58"
   },
   "ui": {

@@ -577,7 +577,7 @@
     "jsonMode": true
   },
   "transcript": {
-    "path": "C:\\Users\\pc\\AppData\\Local\\Temp\\bta-llm-transcript.json",
+    "path": "<TEMP>\\bta-llm-transcript.json",
     "video": "【全网最全】DeepSeek Harness超详细教程！50分钟吃透DSH，让SuperAgent给你干活！",
     "segments": 400,
     "chars": 4508

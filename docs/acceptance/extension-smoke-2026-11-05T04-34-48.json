@@ -1,7 +1,7 @@
 {
   "startedAt": "2026-11-05T04:34:48.740Z",
   "engine": {
-    "path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+    "path": "<EDGE>",
     "version": "Edg/156.0.4314.58"
   },
   "samples": {
@@ -129,7 +129,7 @@
           "任务"
         ],
         "theme": "",
-        "screenshot": "C:\\Users\\pc\\source\\repos\\bilibili-transcript-assistant\\docs\\screenshots\\sidepanel-demo.png",
+        "screenshot": "<PROJECT>\\docs\\screenshots\\sidepanel-demo.png",
         "consoleErrors": 0
       }
     },
@@ -343,7 +343,7 @@
   ],
   "consoleErrors": [],
   "screenshots": [
-    "C:\\Users\\pc\\source\\repos\\bilibili-transcript-assistant\\docs\\screenshots\\sidepanel-demo.png"
+    "<PROJECT>\\docs\\screenshots\\sidepanel-demo.png"
   ],
   "chromeLoadExtensionPolicy": null,
   "dnr": {

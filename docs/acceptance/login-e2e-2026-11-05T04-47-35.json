@@ -1,6 +1,6 @@
 {
   "startedAt": "2026-11-05T04:47:35.829Z",
-  "profile": "C:\\Users\\pc\\AppData\\Local\\bta-login-profile",
+  "profile": "<USER_HOME>\\AppData\\Local\\bta-login-profile",
   "video": {
     "bvid": "BV1REx46NEc4",
     "cid": "43235280963",
@@ -21,7 +21,7 @@
       "status": "pass",
       "details": {
         "id": "akodendgnfmjmijnhepplkmojdedlnfn",
-        "profile": "C:\\Users\\pc\\AppData\\Local\\bta-login-profile"
+        "profile": "<USER_HOME>\\AppData\\Local\\bta-login-profile"
       }
     },
     {
@@ -135,9 +135,9 @@
     }
   ],
   "screenshots": [
-    "C:\\Users\\pc\\source\\repos\\bilibili-transcript-assistant\\docs\\screenshots\\login-e2e-tracks.png",
-    "C:\\Users\\pc\\source\\repos\\bilibili-transcript-assistant\\docs\\screenshots\\login-e2e-transcript.png",
-    "C:\\Users\\pc\\source\\repos\\bilibili-transcript-assistant\\docs\\screenshots\\login-e2e-summary.png"
+    "<PROJECT>\\docs\\screenshots\\login-e2e-tracks.png",
+    "<PROJECT>\\docs\\screenshots\\login-e2e-transcript.png",
+    "<PROJECT>\\docs\\screenshots\\login-e2e-summary.png"
   ],
   "downloads": [
     {
@@ -146,7 +146,7 @@
     }
   ],
   "engine": {
-    "path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+    "path": "<EDGE>",
     "version": "Edg/156.0.4314.58"
   },
   "extension": {

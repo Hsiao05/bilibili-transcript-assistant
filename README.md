@@ -2,7 +2,9 @@
 
 在 Chrome / Edge 侧栏里，把当前 B 站视频（含分 P）的字幕或音频变成**可校对、可引用、可导出**的 Markdown 文字稿，并生成带时间点的总结。
 
-产品与技术设计见交接文稿 `E:\Downloads\B站文字稿助手-产品与技术交接文稿.md`；本仓库是它的实现。
+产品与技术设计见交接文稿《B站文字稿助手-产品与技术交接文稿》；本仓库是它的实现。
+
+> **第一次使用、不熟悉电脑操作？** 直接看 [使用说明.md](使用说明.md)：从安装 Python、双击启动服务到加载扩展、填 Token，按步骤点就行。
 
 ## 功能
 
@@ -188,7 +190,7 @@ node scripts/package-release.mjs
 # 输出：release/bili-transcript-assistant-<version>-<日期>.zip 与同名 .sha256
 ```
 
-包内含：`extension/`（**可直接加载的已构建扩展，根目录含 manifest.json**）+ 扩展源码/`dist/`、任务服务源码/测试/`.env.example`、全部脚本、文档与验收记录、`BUILD_INFO.json`、`LOAD-EXTENSION.txt`。不包含：`.env`/密钥、`.venv`、`node_modules`、本地 `data/`、缓存与 source map。
+包内含：`extension/`（**可直接加载的已构建扩展，根目录含 manifest.json**）+ 扩展源码/`dist/`、任务服务源码/测试/`.env.example`、全部脚本、文档与验收记录、`BUILD_INFO.json`、`LOAD-EXTENSION.txt`、`使用说明.md`、`启动任务服务.bat`。不包含：`.env`/密钥、`.venv`、`node_modules`、本地 `data/`、缓存与 source map。
 
 ## 开发
 
