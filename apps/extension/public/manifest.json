@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "B站文字稿助手",
   "short_name": "文字稿助手",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "提取 B 站当前视频/分P的字幕或音频转写，清洗成可读文字稿并生成带时间点的总结。",
   "minimum_chrome_version": "116",
   "permissions": [

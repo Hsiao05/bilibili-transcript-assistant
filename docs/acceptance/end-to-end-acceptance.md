@@ -1,20 +1,20 @@
 # 完整链路验收记录（运行化 + 阶段 B/C/D）
 
 - 日期：2026-11-05
-- 版本：**0.2.0**
-- 范围：任务服务可用性、真实扩展 ↔ 真实服务端到端、本机 ASR、OpenAI 兼容云 ASR、**阿里云百炼 Filetrans 真实云转写**、登录态真实字幕链路、**真实 DeepSeek 清洗/总结质量**、**0.2.0 手动清洗 / 视频内时间戳跳转 / AI 修改建议三选一**
-- 结论：**8 组自动化检查全部通过**（35 + 10 + 18 + 9 + 15 + 13 + 10 + 14 项），本轮共修复 12 个真实缺陷；产品已可按 README 启动并完成"字幕/音频 → 原始稿 → 手动清洗 → 总结 → 修订 → 导出"全流程（含真实登录态字幕、真实百炼云转写与真实 DeepSeek 清洗/总结）。
+- 版本：**0.2.1**（0.2.0 的体验改动 + 多视频术语表主键冲突修复）
+- 范围：任务服务可用性、真实扩展 ↔ 真实服务端到端、本机 ASR、OpenAI 兼容云 ASR、**阿里云百炼 Filetrans 真实云转写**、登录态真实字幕链路、**真实 DeepSeek 清洗/总结质量**、**0.2.0 手动清洗 / 视频内时间戳跳转 / AI 修改建议三选一**、**0.2.1 多视频清洗术语表修复**
+- 结论：**8 组自动化检查全部通过**（37 + 10 + 18 + 9 + 15 + 13 + 10 + 14 项），本轮共修复 13 个真实缺陷；产品已可按 README 启动并完成"字幕/音频 → 原始稿 → 手动清洗 → 总结 → 修订 → 导出"全流程（含真实登录态字幕、真实百炼云转写与真实 DeepSeek 清洗/总结）。
 
 ## 1. 验收结果总览
 
 | 层级 | 命令 | 结果 | 证据 |
 |---|---|---|---|
-| 服务端单元/集成 | `cd services/task-api; .\.venv\Scripts\python.exe -m pytest` | **35 passed** | pytest 输出 |
+| 服务端单元/集成 | `cd services/task-api; .\.venv\Scripts\python.exe -m pytest` | **37 passed** | pytest 输出 |
 | B站适配器（Node） | `node scripts/bilibili-adapter-check.mjs` | **10/10**（含真实字幕正文） | [adapter-check.json](./adapter-check.json) |
 | 服务级 E2E | `node scripts/taskapi-e2e.mjs` | **18/18**（11.4s，含手动修改） | [taskapi-e2e.log](./taskapi-e2e.log) |
 | 音频/ASR 链路 | `node scripts/asr-check.mjs` | **9/9**（14.6s；含真实百炼） | [asr-check-2026-11-05T05-19-57.json](./asr-check-2026-11-05T05-19-57.json) |
 | 真实扩展冒烟 | `node scripts/extension-smoke.mjs` | **15/15**（13.6s；含真实字幕正文） | [extension-smoke-2026-11-05T11-29-58.json](./extension-smoke-2026-11-05T11-29-58.json) |
-| 浏览器端到端 | `node scripts/extension-e2e.mjs` | **13/13**（含时间戳跳转） | [extension-e2e-2026-11-05T11-23-49.json](./extension-e2e-2026-11-05T11-23-49.json) |
+| 浏览器端到端 | `node scripts/extension-e2e.mjs` | **13/13**（含时间戳跳转） | [extension-e2e-2026-11-05T12-10-04.json](./extension-e2e-2026-11-05T12-10-04.json) |
 | 登录态端到端 | `node scripts/extension-login-acceptance.mjs` | **10/10**（含手动清洗） | [login-e2e-2026-11-05T11-11-41.json](./login-e2e-2026-11-05T11-11-41.json) |
 | **真实 LLM 清洗/总结质量** | `node scripts/llm-quality-check.mjs` | **14/14**（AI 建议 + 标点/分段） | [llm-quality-2026-11-05T11-20-47.json](./llm-quality-2026-11-05T11-20-47.json) |
 
@@ -121,6 +121,7 @@
 | 10 | 时间戳是外链，点击会打开新标签页并跳到 B 站分享链接 | 阅读/校对时频繁切页，打断当前视频 | 新增内容脚本 `player:seek` 消息；文字稿/总结/修订统一用 `TimeLink` 按钮，设置当前页 `<video>.currentTime`；E2E 断言跳转成功 |
 | 11 | 一致性/术语待核对项常只有"仅标记待核对"，`replacement=null` | 用户只能自己找错、自己改，无法一键处理 | 提示词要求每条 issue 给非空 suggestion；新增 `_fill_missing_suggestions` 二次请求；两次仍无法生成建议的条目跳过并记录 note，UI 保证每条都有"接受 AI 建议/手动修改" |
 | 12 | 模型输出标点不稳定：`，，`、`。。`、`，。`、半角标点、段落以逗号结尾 | 整理稿可读性差，导出不专业 | 新增 `normalize_punctuation()`：统一全角标点、折叠重复标点、尾逗号改句号、保证每段句末标点；清洗提示词同步要求；质量脚本新增标点/分段断言 |
+| 13 | `terms` 表主键只有 `id`，而术语 id 是 `term_g001` 这类文档内序号；清洗第二个视频时插入相同 id | 两个视频都报 **`UNIQUE constraint failed: terms.id`**，清洗失败 | 改为复合主键 `(id, document_id)`；`init_db` 自动迁移旧库（保留数据）；新增 `tests/test_store.py` 覆盖"两个文档同 id"与旧库迁移 |
 
 ## 4. 运行化交付
 

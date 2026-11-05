@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 import sqlite3
+from collections.abc import Iterator
 from contextlib import contextmanager
 from pathlib import Path
-from typing import Iterator
 
 SCHEMA = """
 PRAGMA journal_mode=WAL;
@@ -55,10 +55,11 @@ CREATE TABLE IF NOT EXISTS revisions (
 CREATE INDEX IF NOT EXISTS idx_revisions_document ON revisions(document_id, created_at);
 
 CREATE TABLE IF NOT EXISTS terms (
-  id TEXT PRIMARY KEY,
+  id TEXT NOT NULL,
   document_id TEXT NOT NULL,
   term_json TEXT NOT NULL,
-  created_at TEXT NOT NULL
+  created_at TEXT NOT NULL,
+  PRIMARY KEY (id, document_id)
 );
 CREATE INDEX IF NOT EXISTS idx_terms_document ON terms(document_id);
 
@@ -124,8 +125,40 @@ def connect(path: Path) -> Iterator[sqlite3.Connection]:
         conn.close()
 
 
+def _migrate_terms_primary_key(conn: sqlite3.Connection) -> None:
+    """Allow the same pipeline term id (term_g001, ...) to exist in different documents.
+
+    Older databases used ``id TEXT PRIMARY KEY``, so cleaning a second video failed with
+    ``UNIQUE constraint failed: terms.id``. Rebuild the small terms table with a composite key.
+    """
+    row = conn.execute("SELECT sql FROM sqlite_master WHERE type='table' AND name='terms'").fetchone()
+    if not row or not row["sql"]:
+        return
+    normalized = " ".join(row["sql"].lower().split())
+    if "primary key (id, document_id)" in normalized or "primary key (document_id, id)" in normalized:
+        return
+    conn.executescript(
+        """
+        DROP INDEX IF EXISTS idx_terms_document;
+        ALTER TABLE terms RENAME TO terms_old;
+        CREATE TABLE terms (
+          id TEXT NOT NULL,
+          document_id TEXT NOT NULL,
+          term_json TEXT NOT NULL,
+          created_at TEXT NOT NULL,
+          PRIMARY KEY (id, document_id)
+        );
+        INSERT OR REPLACE INTO terms (id, document_id, term_json, created_at)
+          SELECT id, document_id, term_json, created_at FROM terms_old;
+        DROP TABLE terms_old;
+        CREATE INDEX IF NOT EXISTS idx_terms_document ON terms(document_id);
+        """
+    )
+
+
 def init_db(path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with connect(path) as conn:
         conn.executescript(SCHEMA)
+        _migrate_terms_primary_key(conn)
         conn.commit()
