@@ -20,7 +20,7 @@ const releaseDir = path.join(root, "release");
 const packageName = "bili-transcript-assistant";
 
 const extensionPackage = JSON.parse(await readFile(path.join(root, "apps", "extension", "package.json"), "utf8"));
-const version = extensionPackage.version || "0.1.0";
+const version = extensionPackage.version || "0.2.0";
 const stamp = new Date();
 const dateTag = `${stamp.getFullYear()}${String(stamp.getMonth() + 1).padStart(2, "0")}${String(stamp.getDate()).padStart(2, "0")}`;
 const zipName = `${packageName}-${version}-${dateTag}.zip`;

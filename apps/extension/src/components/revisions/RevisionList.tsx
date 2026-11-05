@@ -25,12 +25,18 @@ export function RevisionList({
   video,
   busy,
   onResolve,
+  onSeek,
 }: {
   revision: Revision | null;
   document: DocumentBundle | null;
   video: VideoRef | null;
   busy?: boolean;
-  onResolve: (acceptedIds: string[], keptIds: string[]) => Promise<void>;
+  onResolve: (
+    acceptedIds: string[],
+    keptIds: string[],
+    manualEdits?: { correctionId: string; replacement: string }[],
+  ) => Promise<void>;
+  onSeek: (ms: number) => void;
 }) {
   const pending = useMemo(
     () => (revision ? revision.corrections.filter((item) => item.status === "pending") : []),
@@ -137,10 +143,10 @@ export function RevisionList({
             <CorrectionItem
               key={correction.id}
               correction={correction}
-              video={video}
               startMs={blockTimes.get(correction.blockId) ?? 0}
               selected={selected.has(correction.id)}
               busy={busy}
+              onSeek={onSeek}
               onSelect={(checked) => {
                 setSelected((prev) => {
                   const next = new Set(prev);
@@ -151,6 +157,7 @@ export function RevisionList({
               }}
               onAccept={() => void onResolve([correction.id], [])}
               onKeep={() => void onResolve([], [correction.id])}
+              onManual={(replacement) => void onResolve([], [], [{ correctionId: correction.id, replacement }])}
             />
           ))}
         </div>
@@ -191,7 +198,7 @@ export function RevisionList({
                     .map((item) => (
                       <li key={item.id}>
                         {formatTime(blockTimes.get(item.blockId) ?? 0)} · {item.original}
-                        {item.replacement ? ` → ${item.replacement}` : "（仅标记）"}
+                        {item.replacement ? ` → ${item.replacement}` : ""}
                       </li>
                     ))}
                 </ul>

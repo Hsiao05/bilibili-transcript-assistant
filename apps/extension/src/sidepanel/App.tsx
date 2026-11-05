@@ -8,6 +8,7 @@ import {
   Settings2,
   Sparkles,
   UploadCloud,
+  Wand2,
   X,
 } from "lucide-react";
 import { useEffect, useMemo, useRef } from "react";
@@ -88,6 +89,7 @@ export function App() {
   const hasTranscript = Boolean(
     state.document?.revisions.some((revision) => revision.kind === "cleaned" || revision.kind === "edited"),
   );
+  const canClean = Boolean(state.document || (state.localSource && state.capabilities));
   const pendingCount = state.revision?.corrections.filter((item) => item.status === "pending").length ?? 0;
   const pendingBlockIds = useMemo(
     () =>
@@ -210,6 +212,18 @@ export function App() {
                 总结视频
               </Button>
             </div>
+
+            {canClean && (
+              <Button
+                variant={hasTranscript ? "outline" : "default"}
+                className="w-full"
+                onClick={() => void actions.startClean()}
+                disabled={state.busy.clean || state.busy.extract || state.booting}
+              >
+                {state.busy.clean ? <Loader2 className="h-4 w-4 animate-spin" /> : <Wand2 className="h-4 w-4" />}
+                {hasTranscript ? "重新清洗文字稿" : "清洗文字稿"}
+              </Button>
+            )}
 
             {!state.document && state.tracks.length > 0 && (
               <div className="flex items-center gap-1.5">
@@ -385,9 +399,9 @@ export function App() {
                   />
                   <div className="pt-3">
                     <TranscriptProse
-                      video={state.video!}
                       revision={state.revision}
                       showTimestamps={state.settings.showTimestamps}
+                      onSeek={(ms) => void actions.seekTo(ms)}
                       pendingBlockIds={pendingBlockIds}
                     />
                   </div>
@@ -411,9 +425,9 @@ export function App() {
                   </div>
                   <div className="pt-3">
                     <TranscriptProse
-                      video={state.video!}
                       revision={localRevision}
                       showTimestamps={state.settings.showTimestamps}
+                      onSeek={(ms) => void actions.seekTo(ms)}
                     />
                   </div>
                 </>
@@ -434,7 +448,7 @@ export function App() {
                   title={state.tracks.length ? "可以开始提取" : "还没有文字稿"}
                   description={
                     state.tracks.length
-                      ? `已找到 ${state.tracks.length} 条字幕轨。提取后会先保存原始稿，再按当前清洗强度生成整理稿。`
+                      ? `已找到 ${state.tracks.length} 条字幕轨。提取后先保存原始稿；确认标点和分段后，手动点击「清洗文字稿」生成整理稿。`
                       : "字幕不可用时可以改用音频转写；登录后也可能取得字幕，可先重新识别。"
                   }
                   className="pt-12"
@@ -452,12 +466,12 @@ export function App() {
             <TabsContent value="summary" className="pt-3">
               {state.summary && state.video ? (
                 <SummaryView
-                  video={state.video}
                   summary={state.summary}
                   revision={state.revision}
                   activeRevisionId={state.activeRevisionId}
                   generating={state.busy.summary || Boolean(summaryJob)}
                   onRegenerate={() => void actions.startSummary(true)}
+                  onSeek={(ms) => void actions.seekTo(ms)}
                 />
               ) : summaryJob ? (
                 <div className="space-y-3 pt-3">
@@ -488,8 +502,9 @@ export function App() {
                 revision={state.revision}
                 document={state.document}
                 video={state.video}
-                busy={state.busy.extract}
+                busy={state.busy.extract || state.busy.clean}
                 onResolve={actions.resolveCorrections}
+                onSeek={(ms) => void actions.seekTo(ms)}
               />
             </TabsContent>
 

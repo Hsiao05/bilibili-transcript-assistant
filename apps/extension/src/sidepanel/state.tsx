@@ -41,8 +41,7 @@ import {
   saveSettings as persistSettings,
   type ExtensionSettings,
 } from "@/lib/settings";
-import { videoUrl } from "@/lib/utils";
-
+import { formatTime, videoUrl } from "@/lib/utils";
 export type MainTab = "transcript" | "summary" | "revisions" | "jobs";
 
 export interface AppState {
@@ -66,7 +65,7 @@ export interface AppState {
   localSource: LocalTranscript | null;
   jobs: Job[];
   uploadCheckpoint: UploadCheckpoint | null;
-  busy: { extract: boolean; summary: boolean; refresh: boolean; audio: boolean };
+  busy: { extract: boolean; summary: boolean; refresh: boolean; audio: boolean; clean: boolean };
   actionError: string | null;
   notice: string | null;
   audioConfirm: { audio: NormalizedAudio; size: number } | null;
@@ -83,6 +82,7 @@ export interface AppActions {
   selectTrack: (id: string) => void;
   switchTab: (tab: MainTab) => void;
   startExtract: () => Promise<DocumentBundle | null>;
+  startClean: () => Promise<void>;
   startSummary: (force?: boolean) => Promise<void>;
   prepareAudio: () => Promise<void>;
   confirmAudio: () => Promise<void>;
@@ -91,7 +91,12 @@ export interface AppActions {
   dismissAudioConfirm: () => void;
   cancelJob: (id: string) => Promise<void>;
   selectRevision: (id: string) => Promise<void>;
-  resolveCorrections: (acceptedIds: string[], keptIds: string[]) => Promise<void>;
+  resolveCorrections: (
+    acceptedIds: string[],
+    keptIds: string[],
+    manualEdits?: { correctionId: string; replacement: string }[],
+  ) => Promise<void>;
+  seekTo: (ms: number) => Promise<void>;
   copyTranscript: () => Promise<void>;
   exportCurrent: (which: "current" | "original" | "local") => Promise<void>;
   saveSettings: (next: ExtensionSettings) => Promise<{ ok: boolean; message: string }>;
@@ -130,7 +135,7 @@ const initialState: AppState = {
   localSource: null,
   jobs: [],
   uploadCheckpoint: null,
-  busy: { extract: false, summary: false, refresh: false, audio: false },
+  busy: { extract: false, summary: false, refresh: false, audio: false, clean: false },
   actionError: null,
   notice: null,
   audioConfirm: null,
@@ -549,8 +554,28 @@ export function useAppController(): AppContextValue {
     [apiFor, patch],
   );
 
+  const seekTo = useCallback(async (ms: number) => {
+    const current = stateRef.current;
+    if (current.demo) {
+      toast.info(`演示模式：真实环境会跳到视频 ${formatTime(ms)} 处`);
+      return;
+    }
+    try {
+      const tabs = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
+      const tab = tabs[0];
+      if (!tab?.id) throw new Error("no active tab");
+      const response = await chrome.tabs.sendMessage(tab.id, {
+        type: "player:seek",
+        seconds: Math.max(0, ms) / 1000,
+      });
+      if (!response?.ok) throw new Error(response?.error || "seek failed");
+    } catch {
+      toast.error("无法在当前页面跳转，请切回 B站视频页后重试");
+    }
+  }, []);
+
   const createCleanJob = useCallback(
-    async (bundle: DocumentBundle) => {
+    async (bundle: DocumentBundle, force = false) => {
       const current = stateRef.current;
       if (!current.video) return;
       const api = apiFor(current.settings);
@@ -564,7 +589,9 @@ export function useAppController(): AppContextValue {
           strength: current.settings.strength,
           language: current.settings.language,
         },
-        idempotencyKey: `clean:${bundle.document.id}:${base}:${current.settings.strength}`,
+        idempotencyKey: force
+          ? `clean:${bundle.document.id}:${base}:${current.settings.strength}:retry:${Date.now()}`
+          : `clean:${bundle.document.id}:${base}:${current.settings.strength}`,
       });
       setState((prev) => ({
         ...prev,
@@ -579,12 +606,13 @@ export function useAppController(): AppContextValue {
     const current = stateRef.current;
     if (!current.video || current.busy.extract) return null;
     if (current.demo) {
-      toast.info("演示模式：真实环境会在这里获取字幕并创建任务");
+      toast.info("演示模式：真实环境会在这里获取字幕并保存原始稿");
       patch({ tab: "transcript" });
       return null;
     }
     patch({ busy: { ...current.busy, extract: true }, actionError: null, tab: "transcript" });
     try {
+      const api = apiFor(current.settings);
       if (!current.document) {
         const track = current.tracks.find((item) => item.id === current.selectedTrackId) ?? current.tracks[0];
         if (!track) {
@@ -603,9 +631,8 @@ export function useAppController(): AppContextValue {
         await saveLocalTranscript(source);
         patch({ localSource: source });
 
-        const api = apiFor(current.settings);
         if (!api.configured) {
-          toast.info("原始字幕已保存在本地。连接任务服务后可生成整理稿与总结。");
+          toast.info("原始字幕已保存在本地。连接任务服务后可清洗并生成总结。");
           return null;
         }
         const bundle = await api.createDocument(current.video, {
@@ -614,9 +641,16 @@ export function useAppController(): AppContextValue {
           language: source.language,
           segments: body.segments,
         });
-        patch({ document: bundle, revision: null, activeRevisionId: null, summary: null, jobs: [] });
-        await createCleanJob(bundle);
-        toast.info("已开始清洗，可切换到其他页签");
+        const originalId = bundle.document.originalRevisionId;
+        const original = originalId ? await api.getRevision(bundle.document.id, originalId) : null;
+        patch({
+          document: bundle,
+          revision: original,
+          activeRevisionId: original?.id ?? null,
+          summary: null,
+          jobs: [],
+        });
+        toast.info("原始稿已保存。确认标点和分段后，点击「清洗文字稿」生成整理稿。");
         return bundle;
       }
       const cleaned = current.document.revisions.filter(
@@ -627,12 +661,11 @@ export function useAppController(): AppContextValue {
         toast.info("已有整理稿");
         return current.document;
       }
-      const api = apiFor(current.settings);
-      if (!api.configured) {
-        throw new Error("任务服务未连接，只能查看本地原始字幕");
+      const originalId = current.document.document.originalRevisionId;
+      if (originalId && current.activeRevisionId !== originalId) {
+        await selectRevision(originalId);
       }
-      await createCleanJob(current.document);
-      toast.info("已加入清洗队列");
+      toast.info("已有原始稿，可点击「清洗文字稿」");
       return current.document;
     } catch (error) {
       const message = errorText(error);
@@ -642,7 +675,48 @@ export function useAppController(): AppContextValue {
     } finally {
       patch({ busy: { ...stateRef.current.busy, extract: false } });
     }
-  }, [apiFor, createCleanJob, patch, selectRevision]);
+  }, [apiFor, patch, selectRevision]);
+
+  const startClean = useCallback(async () => {
+    const current = stateRef.current;
+    if (!current.video || current.busy.clean) return;
+    if (current.demo) {
+      toast.info("演示模式：真实环境会在这里清洗文稿");
+      return;
+    }
+    const api = apiFor(current.settings);
+    if (!api.configured) {
+      patch({ actionError: "请先在设置中连接任务服务" });
+      toast.error("请先在设置中连接任务服务");
+      return;
+    }
+    patch({ busy: { ...current.busy, clean: true }, actionError: null });
+    try {
+      let bundle = current.document;
+      if (!bundle) {
+        const source = current.localSource;
+        if (!source) throw new Error("请先提取文字稿或转写音频");
+        bundle = await api.createDocument(current.video, {
+          type: source.sourceType,
+          trackId: source.trackId,
+          language: source.language,
+          segments: source.segments,
+        });
+        patch({ document: bundle, summary: null, jobs: [] });
+      }
+      const hasCleanRevision = bundle.revisions.some(
+        (item) => item.kind === "cleaned" || item.kind === "edited",
+      );
+      await createCleanJob(bundle, hasCleanRevision);
+      toast.info(hasCleanRevision ? "已开始重新清洗" : "已开始清洗，可切换到其他页签");
+    } catch (error) {
+      const message = errorText(error);
+      patch({ actionError: message });
+      toast.error(message);
+    } finally {
+      patch({ busy: { ...stateRef.current.busy, clean: false } });
+    }
+  }, [apiFor, createCleanJob, patch]);
 
   const createSummaryJob = useCallback(
     async (documentId: string, revisionId: string, force: boolean) => {
@@ -696,8 +770,11 @@ export function useAppController(): AppContextValue {
         if (ready.length) {
           pendingSummary.current = false;
           await createSummaryJob(bundle.document.id, ready[ready.length - 1].id, force);
+        } else {
+          pendingSummary.current = false;
+          patch({ tab: "transcript" });
+          toast.info("已提取原始稿，请先点击「清洗文字稿」，再生成总结");
         }
-        patch({ tab: "summary" });
         return;
       }
       if (current.summary && !force) {
@@ -709,17 +786,11 @@ export function useAppController(): AppContextValue {
         (item) => item.kind === "cleaned" || item.kind === "edited",
       );
       if (!cleaned.length) {
-        pendingSummary.current = true;
-        patch({ busy: { ...current.busy, summary: true }, tab: "summary" });
-        try {
-          await createCleanJob(current.document);
-          toast.info("先清洗文稿，完成后会自动生成总结");
-        } catch (error) {
-          pendingSummary.current = false;
-          patch({ actionError: errorText(error) });
-        } finally {
-          patch({ busy: { ...stateRef.current.busy, summary: false } });
-        }
+        patch({
+          actionError: "当前只有原始稿，请先在文字稿页点击「清洗文字稿」，再生成总结",
+          tab: "transcript",
+        });
+        toast.info("请先清洗文字稿");
         return;
       }
       const revisionId = cleaned[cleaned.length - 1].id;
@@ -733,7 +804,7 @@ export function useAppController(): AppContextValue {
         patch({ busy: { ...stateRef.current.busy, summary: false } });
       }
     },
-    [apiFor, createCleanJob, createSummaryJob, patch, startExtract],
+    [apiFor, createSummaryJob, patch, startExtract],
   );
 
   const startAudioUpload = useCallback(
@@ -780,7 +851,7 @@ export function useAppController(): AppContextValue {
           video: current.video,
           uploadId: result.uploadId,
           options: {
-            autoClean: true,
+            autoClean: false,
             strength: current.settings.strength,
             language: current.settings.language,
             asrProvider: current.settings.asrProvider,
@@ -906,20 +977,27 @@ export function useAppController(): AppContextValue {
   );
 
   const resolveCorrections = useCallback(
-    async (acceptedIds: string[], keptIds: string[]) => {
+    async (
+      acceptedIds: string[],
+      keptIds: string[],
+      manualEdits: { correctionId: string; replacement: string }[] = [],
+    ) => {
       const current = stateRef.current;
       if (!current.document || !current.revision) return;
+      const manual = new Map(manualEdits.map((item) => [item.correctionId, item.replacement]));
       if (current.demo) {
         const revision = demosRef.current[current.revision.id];
         if (!revision) return;
         const blocks = revision.blocks.map((block) => ({ ...block }));
         const accepted = revision.corrections.filter((item) => acceptedIds.includes(item.id));
-        for (const correction of accepted) {
+        const manualCorrections = revision.corrections.filter((item) => manual.has(item.id));
+        for (const correction of [...accepted, ...manualCorrections]) {
           const block = blocks.find((item) => item.id === correction.blockId);
-          if (!block || !correction.replacement) continue;
+          const replacement = manual.get(correction.id) ?? correction.replacement;
+          if (!block || !replacement) continue;
           block.text =
             block.text.slice(0, correction.startOffset) +
-            correction.replacement +
+            replacement +
             block.text.slice(correction.endOffset);
         }
         const edited: Revision = {
@@ -964,6 +1042,7 @@ export function useAppController(): AppContextValue {
           current.revision.id,
           acceptedIds,
           keptIds,
+          manualEdits,
         );
         patch({
           revision,
@@ -1126,6 +1205,7 @@ export function useAppController(): AppContextValue {
     selectTrack,
     switchTab,
     startExtract,
+    startClean,
     startSummary,
     prepareAudio,
     confirmAudio,
@@ -1135,6 +1215,7 @@ export function useAppController(): AppContextValue {
     cancelJob,
     selectRevision,
     resolveCorrections,
+    seekTo,
     copyTranscript,
     exportCurrent,
     saveSettings,

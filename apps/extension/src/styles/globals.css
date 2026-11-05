@@ -166,6 +166,14 @@ select {
   text-decoration: underline;
 }
 
+button.timestamp {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-family: inherit;
+  cursor: pointer;
+}
+
 .transcript-block {
   position: relative;
   padding-left: 0;

@@ -151,10 +151,11 @@ export class ApiClient {
     revisionId: string,
     acceptedIds: string[],
     keptIds: string[],
+    manualEdits: { correctionId: string; replacement: string }[] = [],
   ): Promise<Revision> {
     return this.request<Revision>(`/v1/documents/${documentId}/corrections/apply`, {
       method: "POST",
-      body: JSON.stringify({ revisionId, acceptedIds, keptIds }),
+      body: JSON.stringify({ revisionId, acceptedIds, keptIds, manualEdits }),
     });
   }
 

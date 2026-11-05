@@ -1,0 +1,747 @@
+{
+  "startedAt": "2026-11-05T11:20:47.448Z",
+  "checks": [
+    {
+      "name": "real LLM configured",
+      "status": "pass",
+      "details": {
+        "provider": "openai-compatible",
+        "model": "deepseek-chat"
+      }
+    },
+    {
+      "name": "document created from transcript",
+      "status": "pass",
+      "details": {
+        "documentId": "doc_16af7f2a72a2478c",
+        "segments": 400,
+        "chars": 4508
+      }
+    },
+    {
+      "name": "real LLM clean job succeeded",
+      "status": "pass",
+      "details": {
+        "jobId": "job_5b6f4d087c3f4f50",
+        "status": "SUCCEEDED",
+        "elapsedMs": 39103,
+        "stats": {
+          "segments": 400,
+          "blocks": 25,
+          "charsIn": 4542,
+          "charsOut": 5936,
+          "appliedEdits": 241,
+          "pendingCorrections": 93,
+          "terms": 11,
+          "llm": "deepseek-chat",
+          "llmUsage": {
+            "calls": 4,
+            "prompt_tokens": 28090,
+            "completion_tokens": 9612,
+            "reasoning_tokens": 0
+          },
+          "notes": [
+            "保留 seg_00002：模型返回空文本",
+            "保留 seg_00004：模型返回空文本",
+            "保留 seg_00005：模型返回空文本",
+            "保留 seg_00006：模型扩写过多",
+            "保留 seg_00007：模型返回空文本",
+            "保留 seg_00008：模型扩写过多",
+            "保留 seg_00009：模型返回空文本",
+            "保留 seg_00010：模型返回空文本",
+            "保留 seg_00012：模型返回空文本",
+            "保留 seg_00013：模型返回空文本",
+            "保留 seg_00015：模型返回空文本",
+            "保留 seg_00016：模型返回空文本",
+            "保留 seg_00018：模型返回空文本",
+            "保留 seg_00019：模型返回空文本",
+            "保留 seg_00020：模型扩写过多",
+            "保留 seg_00021：模型返回空文本",
+            "保留 seg_00022：模型返回空文本",
+            "保留 seg_00023：模型返回空文本",
+            "保留 seg_00024：模型扩写过多",
+            "保留 seg_00025：模型返回空文本",
+            "保留 seg_00026：模型返回空文本",
+            "保留 seg_00027：模型返回空文本",
+            "保留 seg_00028：模型扩写过多",
+            "保留 seg_00029：模型返回空文本",
+            "保留 seg_00030：模型返回空文本",
+            "保留 seg_00031：模型返回空文本",
+            "保留 seg_00032：模型返回空文本",
+            "保留 seg_00033：模型扩写过多",
+            "保留 seg_00034：模型返回空文本",
+            "保留 seg_00035：模型返回空文本",
+            "保留 seg_00036：模型返回空文本",
+            "保留 seg_00037：模型返回空文本",
+            "保留 seg_00038：模型返回空文本",
+            "保留 seg_00040：模型返回空文本",
+            "保留 seg_00041：模型返回空文本",
+            "保留 seg_00042：模型返回空文本",
+            "保留 seg_00044：模型返回空文本",
+            "保留 seg_00045：模型扩写过多",
+            "保留 seg_00046：模型返回空文本",
+            "保留 seg_00047：模型返回空文本",
+            "保留 seg_00048：模型返回空文本",
+            "保留 seg_00049：模型返回空文本",
+            "保留 seg_00050：模型返回空文本",
+            "保留 seg_00051：模型扩写过多",
+            "保留 seg_00052：模型返回空文本",
+            "保留 seg_00053：模型返回空文本",
+            "保留 seg_00054：模型扩写过多",
+            "保留 seg_00055：模型返回空文本",
+            "保留 seg_00056：模型返回空文本",
+            "保留 seg_00057：模型返回空文本"
+          ]
+        },
+        "blocks": 25,
+        "corrections": 93,
+        "pendingCorrections": 93,
+        "appliedEdits": 241,
+        "terms": 11,
+        "pipelineVersion": "clean-v1:standard",
+        "createdBy": "model"
+      }
+    },
+    {
+      "name": "every source segment covered by cleaned blocks",
+      "status": "pass",
+      "details": {
+        "sourceSegments": 400,
+        "coveredSegments": 400,
+        "missingSegments": 0,
+        "missingSample": []
+      }
+    },
+    {
+      "name": "cleaned blocks: non-empty + monotonic timestamps",
+      "status": "pass",
+      "details": {
+        "blocks": 25
+      }
+    },
+    {
+      "name": "applied edits still match parent revision text",
+      "status": "pass",
+      "details": {
+        "edits": 241,
+        "invalid": 0
+      }
+    },
+    {
+      "name": "every pending correction carries an AI suggestion",
+      "status": "pass",
+      "details": {
+        "pending": 93,
+        "withAiSuggestion": 93,
+        "withoutSuggestion": 0
+      }
+    },
+    {
+      "name": "cleaned paragraphs end with sentence punctuation",
+      "status": "pass",
+      "details": {
+        "blocks": 25,
+        "terminal": 25,
+        "doubled": 0,
+        "doubledSamples": []
+      }
+    },
+    {
+      "name": "no doubled Chinese punctuation",
+      "status": "pass",
+      "details": {
+        "doubled": 0
+      }
+    },
+    {
+      "name": "numbers preserved (heuristic)",
+      "status": "pass",
+      "details": {
+        "source": 1,
+        "cleaned": 1,
+        "lost": []
+      }
+    },
+    {
+      "name": "negation markers preserved (heuristic)",
+      "status": "pass",
+      "details": {
+        "source": 40,
+        "cleaned": 58,
+        "ratio": 1.45
+      }
+    },
+    {
+      "name": "real LLM summarize job succeeded",
+      "status": "pass",
+      "details": {
+        "jobId": "job_f5e6723d85d54662",
+        "status": "SUCCEEDED",
+        "elapsedMs": 18574,
+        "model": "deepseek-chat",
+        "overviewChars": 145,
+        "chapters": 6,
+        "viewpoints": 8,
+        "keyNumbers": 3,
+        "conclusion": true,
+        "markdownBytes": 35511
+      }
+    },
+    {
+      "name": "summary citations all reference real segments",
+      "status": "pass",
+      "details": {
+        "cited": 112,
+        "invalid": 0,
+        "invalidSample": []
+      }
+    },
+    {
+      "name": "summary has overview, chapters and timestamp links",
+      "status": "pass",
+      "details": {
+        "overview": 145,
+        "chapters": 6
+      }
+    }
+  ],
+  "samples": {
+    "edits": [
+      {
+        "type": "model_clean",
+        "original": "PC",
+        "replacement": "eepSeek",
+        "reason": "模型按standard档清洗",
+        "evidenceType": "model"
+      },
+      {
+        "type": "model_clean",
+        "original": "ho",
+        "replacement": "Har",
+        "reason": "模型按standard档清洗",
+        "evidenceType": "model"
+      },
+      {
+        "type": "model_clean",
+        "original": "y",
+        "replacement": "",
+        "reason": "模型按standard档清洗",
+        "evidenceType": "model"
+      },
+      {
+        "type": "model_clean",
+        "original": "",
+        "replacement": "s零基础完整版教程。",
+        "reason": "模型按standard档清洗",
+        "evidenceType": "model"
+      },
+      {
+        "type": "model_clean",
+        "original": "",
+        "replacement": "，可真的自己上手的时候，却总觉得用的不如别人。",
+        "reason": "模型按standard档清洗",
+        "evidenceType": "model"
+      },
+      {
+        "type": "model_clean",
+        "original": "",
+        "replacement": "，这期视频制作真的非常不易，希望各位观众老爷可以给个三连支持一下。",
+        "reason": "模型按standard档清洗",
+        "evidenceType": "model"
+      },
+      {
+        "type": "model_clean",
+        "original": "",
+        "replacement": "，我们废话不多说，三连发车。",
+        "reason": "模型按standard档清洗",
+        "evidenceType": "model"
+      },
+      {
+        "type": "model_clean",
+        "original": "d",
+        "replacement": "D",
+        "reason": "模型按standard档清洗",
+        "evidenceType": "model"
+      },
+      {
+        "type": "model_clean",
+        "original": "",
+        "replacement": "Seek",
+        "reason": "模型按standard档清洗",
+        "evidenceType": "model"
+      },
+      {
+        "type": "model_clean",
+        "original": "",
+        "replacement": "Harne",
+        "reason": "模型按standard档清洗",
+        "evidenceType": "model"
+      },
+      {
+        "type": "model_clean",
+        "original": "ic hyy",
+        "replacement": "s",
+        "reason": "模型按standard档清洗",
+        "evidenceType": "model"
+      },
+      {
+        "type": "model_clean",
+        "original": "",
+        "replacement": "，这个名字看着是很长的，我们先把它拆开看。",
+        "reason": "模型按standard档清洗",
+        "evidenceType": "model"
+      }
+    ],
+    "corrections": [
+      {
+        "type": "term",
+        "original": "deep sick哈尼斯",
+        "replacement": "DeepSeek Harness",
+        "reason": "疑似与「DeepSeek Harness」为同一对象；依据：context_only",
+        "status": "pending",
+        "autoApplicable": false
+      },
+      {
+        "type": "term",
+        "original": "哈尼斯",
+        "replacement": "DeepSeek Harness",
+        "reason": "疑似与「DeepSeek Harness」为同一对象；依据：context_only",
+        "status": "pending",
+        "autoApplicable": false
+      },
+      {
+        "type": "term",
+        "original": "deep sick",
+        "replacement": "DeepSeek Harness",
+        "reason": "疑似与「DeepSeek Harness」为同一对象；依据：context_only",
+        "status": "pending",
+        "autoApplicable": false
+      },
+      {
+        "type": "term",
+        "original": "deep sic",
+        "replacement": "DeepSeek Harness",
+        "reason": "疑似与「DeepSeek Harness」为同一对象；依据：context_only",
+        "status": "pending",
+        "autoApplicable": false
+      },
+      {
+        "type": "term",
+        "original": "H义词",
+        "replacement": "DeepSeek Harness",
+        "reason": "疑似与「DeepSeek Harness」为同一对象；依据：context_only",
+        "status": "pending",
+        "autoApplicable": false
+      },
+      {
+        "type": "term",
+        "original": "deep sic",
+        "replacement": "DeepSeek Harness",
+        "reason": "疑似与「DeepSeek Harness」为同一对象；依据：context_only",
+        "status": "pending",
+        "autoApplicable": false
+      },
+      {
+        "type": "term",
+        "original": "honeys",
+        "replacement": "DeepSeek Harness",
+        "reason": "疑似与「DeepSeek Harness」为同一对象；依据：context_only",
+        "status": "pending",
+        "autoApplicable": false
+      },
+      {
+        "type": "term",
+        "original": "honey",
+        "replacement": "DeepSeek Harness",
+        "reason": "疑似与「DeepSeek Harness」为同一对象；依据：context_only",
+        "status": "pending",
+        "autoApplicable": false
+      },
+      {
+        "type": "term",
+        "original": "哈里斯",
+        "replacement": "DeepSeek Harness",
+        "reason": "疑似与「DeepSeek Harness」为同一对象；依据：context_only",
+        "status": "pending",
+        "autoApplicable": false
+      },
+      {
+        "type": "term",
+        "original": "DEPSC",
+        "replacement": "DeepSeek Harness",
+        "reason": "疑似与「DeepSeek Harness」为同一对象；依据：context_only",
+        "status": "pending",
+        "autoApplicable": false
+      },
+      {
+        "type": "term",
+        "original": "哈尼斯",
+        "replacement": "DeepSeek Harness",
+        "reason": "疑似与「DeepSeek Harness」为同一对象；依据：context_only",
+        "status": "pending",
+        "autoApplicable": false
+      },
+      {
+        "type": "term",
+        "original": "DEPSICK",
+        "replacement": "DeepSeek Harness",
+        "reason": "疑似与「DeepSeek Harness」为同一对象；依据：context_only",
+        "status": "pending",
+        "autoApplicable": false
+      }
+    ],
+    "terms": [
+      {
+        "canonical": "DeepSeek Harness",
+        "variants": [
+          "DPC honeys",
+          "deep sick哈尼斯",
+          "deep sic hyy",
+          "哈尼斯",
+          "H义词",
+          "哈里斯",
+          "DEPSC",
+          "DEPSICK",
+          "deep sick haeys",
+          "DEVC和honeys",
+          "DEPC和HANS",
+          "deep sick honeys",
+          "H尼斯",
+          "hex",
+          "deep sick hans",
+          "DEMSK哈尼斯",
+          "deep sk hans",
+          "DEPCH尼斯",
+          "STYOHHONEYS",
+          "depc hits",
+          "DEPSICK哈尼斯",
+          "DPCHANS",
+          "deep sick honey",
+          "deep six hans",
+          "DEPSCH",
+          "deep stick哈尼斯",
+          "deep stick h尼斯",
+          "DEVCK",
+          "deep sick账号",
+          "deep sick",
+          "DEPSC哈尼斯",
+          "deep sic",
+          "DEVC",
+          "DEPC",
+          "DEMSK",
+          "deep sk",
+          "DEPCH",
+          "deep six",
+          "deep stick",
+          "honeys",
+          "hyy",
+          "hans",
+          "honey"
+        ],
+        "status": "suggested",
+        "evidenceType": "context_only"
+      },
+      {
+        "canonical": "深度求索",
+        "variants": [],
+        "status": "suggested",
+        "evidenceType": "context_only"
+      },
+      {
+        "canonical": "API",
+        "variants": [],
+        "status": "suggested",
+        "evidenceType": "context_only"
+      },
+      {
+        "canonical": "Windows",
+        "variants": [
+          "windows"
+        ],
+        "status": "suggested",
+        "evidenceType": "context_only"
+      },
+      {
+        "canonical": "macOS",
+        "variants": [
+          "Mac os",
+          "Mac",
+          "麦克"
+        ],
+        "status": "suggested",
+        "evidenceType": "context_only"
+      },
+      {
+        "canonical": "Finder",
+        "variants": [
+          "finder",
+          "访达"
+        ],
+        "status": "suggested",
+        "evidenceType": "context_only"
+      },
+      {
+        "canonical": "Applications",
+        "variants": [
+          "applications"
+        ],
+        "status": "suggested",
+        "evidenceType": "context_only"
+      },
+      {
+        "canonical": "token",
+        "variants": [],
+        "status": "suggested",
+        "evidenceType": "context_only"
+      },
+      {
+        "canonical": "鸡哥",
+        "variants": [],
+        "status": "suggested",
+        "evidenceType": "context_only"
+      },
+      {
+        "canonical": "微信",
+        "variants": [],
+        "status": "suggested",
+        "evidenceType": "context_only"
+      }
+    ],
+    "doubledBlocks": [],
+    "summary": {
+      "overview": "本片介绍 DeepSeek Harness 的概念、安装与界面。先区分模型与 Harness 的分工，用三个例子说明 Harness 能做什么，并强调选对模式、给对权限、下对指令比换更贵的模型更管用。随后演示官网下载安装、登录充值、API 配置，以及工作界面三个部分和右侧停靠面板三个页面。",
+      "chapters": [
+        {
+          "title": "概念：模型与 Harness 的分工",
+          "startMs": 78810,
+          "points": [
+            "DeepSeek 是模型提供方，负责理解要求、分析问题并决定下一步；Harness 是围绕模型搭建的工作环境，决定模型读哪个文件、能调用哪些工具、做完后如何继续",
+            "网页版像聊天窗口，DeepSeek Harness 像干活的现场，例如直接打开并修改文件、自行翻本地文件夹和上网搜资料、批量修改文件"
+          ]
+        },
+        {
+          "title": "使用观念与插件理念",
+          "startMs": 214430,
+          "points": [
+            "模型越强不代表 Harness 能力越强，选对模式、给对权限、下对指令往往比换更贵的模型更管用",
+            "DeepSeek Harness 一切皆插件，从核心循环到界面都可做成可拓展插件；但新手不宜把插件商店整个搬空，应先有需求再补能力"
+          ]
+        },
+        {
+          "title": "下载与安装",
+          "startMs": 319940,
+          "points": [
+            "安装时在官网点标题下方下载按钮，桌面端支持 macOS 和 Windows；Windows 双击安装包一路下一步，建议装到 D 盘而非 C 盘；Mac 双击后把图标拖进 applications 文件夹"
+          ]
+        },
+        {
+          "title": "登录与充值",
+          "startMs": 460790,
+          "points": [
+            "登录不能跳过，因为配置、绘画和已装插件都跟着账号走，未登录则找不回；换机器登录这些内容也都在",
+            "首次进入需按提示充值额度用于调用 API，充值成功后可前往账单开具发票；若已购买 DeepSeek 官方或其他模型的 API 则无需充值，点击继续即可"
+          ]
+        },
+        {
+          "title": "API 配置",
+          "startMs": 527219,
+          "points": [
+            "API 配置在左下角账户→设置→第三栏“模型”，在 DeepSeek 一栏点编辑粘贴密钥，出现绿色圆点即配置成功；其他模型可点添加模型供应商选择第三方提供商并粘贴密钥保存"
+          ]
+        }
+      ],
+      "conclusion": "DeepSeek Harness 是围绕模型搭建的工作环境，安装后需登录、按需充值并配置 API 密钥，再通过三栏界面和插件体系按需扩展能力。",
+      "coverage": {
+        "sources": [
+          "B站字幕"
+        ],
+        "gaps": [
+          "图表与画面内容未覆盖",
+          "安装包下载页面、设置界面和插件面板的具体画面操作未覆盖",
+          "字幕未说明各插件具体功能与使用效果"
+        ],
+        "uncertainties": [
+          "字幕中产品名存在多种音译/识别变体（如“deep sick哈尼斯”“DEPSC和HANS”“hex”等），实际名称应为 DeepSeek Harness，但原文表述不统一",
+          "“H义词翻译成中文呢叫做马具”一句中“H义词”疑为字幕识别错误，原文所指应为 Harness 一词",
+          "“像100个文件，如果要改同一个地方”为举例说明，并非实际演示数量",
+          "“只要旁边出现这个绿色的圆点，就说明配置成功了”为作者说法，随后才实测验证，配置成功与否以实测为准"
+        ]
+      }
+    },
+    "blocks": [
+      {
+        "source": "本期视频是一期超级详细的DPC honeys零基础完整版教程我相信很多人都知道AI非常厉害可真的自己上手的时候却总觉得用的不如别人所以本期视频呢我们就从零开始一步一步带大家把deep sick哈尼斯用起来从下载安装到完成第一个任务再到后面的各种功能和插件我都会结合实际操作带着大家一起做当然了这期视频制作真的非常不易希望各位观众老爷可以给个三连支持一下",
+        "cleaned": "本期视频是一期超级详细的DeepSeek Harness零基础完整版教程。零基础完整版教程，我相信很多人都知道AI非常厉害，可真的自己上手的时候，却总觉得用的不如别人。可真的自己上手的时候，却总觉得用的不如别人，所以本期视频呢我们就从零开始，一步一步带大家把deep sick哈尼斯用起来，从下载安装到完成第一个任务，再到后面的各种功能和插件，我都会结合实际操"
+      },
+      {
+        "source": "好了我们废话不多说三连发车",
+        "cleaned": "好了，我们废话不多说，三连发车。我们废话不多说，三连发车。"
+      },
+      {
+        "source": "deep sic hyy啊这个名字看着是很长的我们先把它拆开看deep sic呢大家都很熟唉中文名呢是深度求索是我们国家的一个人工智能公司以及开发大员模型系列的名称那honeys是什么呢这个词啊其实好多人不认识我第一次看的时候也愣了一下H义词翻译成中文呢叫做马具就是套在马身上的那一整套东西像什么缰绳啊绝子呀套包啊这些等等等等但是注意啊它既不是马本身也不是马后",
+        "cleaned": "DeepSeek Harness啊，这个名字看着是很长的，我们先把它拆开看。这个名字看着是很长的，我们先把它拆开看 deep sic呢大家都很熟，唉中文名呢是深度求索，是我们国家的一个人工智能公司，以及开发大员模型系列的名称，那honeys是什么呢，这个词啊，其实好多人不认识，我第一次看的时候也愣了一下 H义词翻译成中文呢叫做马具，就是套在马身上的那一整套东"
+      },
+      {
+        "source": "让马能听懂我们指挥往哪走的一套装置也就是说deep sick是这套工具背后模型的提供方模型负责理解我们的要求分析问题再决定下一步做什么就像一匹强健的马驹而哈尼斯呢则是围绕着模型搭建起来的一套工作环境模型要读哪个文件能调用哪些工具做完之后下一步该怎么样继续都需要这个哈里斯这套环境配合就像一间设施齐全的车马间那这个时候大家有可能会冒出一个问题就是我们已经有了DE",
+        "cleaned": "让马能听懂我们指挥往哪走的一套装置，也就是说，DeepSeek是这套工具背后模型的提供方，模型负责理解我们的要求，分析问题再决定下一步做什么，就像一匹强健的马驹。模型负责理解我们的要求，分析问题再决定下一步做什么，就像一匹强健的马驹，而Harness呢，则是围绕着模型搭建起来的一套工作环境。一套工作环境，模型要读哪个文件，能调用哪些工具，做完之后，下一步该怎"
+      },
+      {
+        "source": "为什么还要装一个DEPSICK哈尼斯那一句话呀可以回答大家就是网页版其实我们可以把它当成一个聊天窗口而deep sick haeys呢是一个干活的现场那我举三个例子你一定遇见过了那第一个呢就是我们改文件网页版里我们只能把文件上传给他或者需要把修改的内容复制给他改完之后呢我们再粘回去那DEVC和honeys里他就可以直接帮我们打开那个文件去修改第二个呢是查资料",
+        "cleaned": "为什么还要装一个DEPSICK 哈尼斯那一句话呀，可以回答大家，就是网页版，其实我们可以把它当成一个聊天窗口，而deep sick haeys呢是一个干活的现场，那我举三个例子，你一定遇见过了。你一定遇见过了，那第一个呢就是我们改文件，网页版里我们只能把文件上传给他，或者需要把修改的内容复制给他，改完之后呢，我们再粘回去，那DeepSeek Harness里"
+      }
+    ],
+    "cleanedHead": "本期视频是一期超级详细的DeepSeek Harness零基础完整版教程。零基础完整版教程，我相信很多人都知道AI非常厉害，可真的自己上手的时候，却总觉得用的不如别人。可真的自己上手的时候，却总觉得用的不如别人，所以本期视频呢我们就从零开始，一步一步带大家把deep sick哈尼斯用起来，从下载安装到完成第一个任务，再到后面的各种功能和插件，我都会结合实际操作带着大家一起做，当然了，这期视频制作真的非常不易，希望各位观众老爷可以给个三连支持一下。这期视频制作真的非常不易，希望各位观众老爷可以给个三连支持一下。\n好了，我们废话不多说，三连发车。我们废话不多说，三连发车。\nDeepSeek Harness啊，这个名字看着是很长的，我们先把它拆开看。这个名字看着是很长的，我们先把它拆开看 deep sic呢大家都很熟，唉中文名呢是深度求索，是我们国家的一个人工智能公司，以及开发大员模型系列的名称，那honeys是什么呢，这个词啊，其实好多人不认识，我第一次看的时候也愣了一下 H义词翻译成中文呢叫做马具，就是套在马身上的那一整套东西，像什么缰绳啊，绝子呀，套包啊这些等等等等，但是注意啊，它既不是马本身，也不是马后面拉的车，本身，它只是把马和车连起来。\n让马能听懂我们指挥往哪走的一套装置，也就是说，DeepSeek是这套工具背后模型的提供方，模型负责理解我们的要求，分析问题再决定下一步做什么，就像一匹强健的马驹。模型负责理解我们的要求，分析问题再决定下一步做什么，就像一匹强健的马驹，而Harness呢，则是围绕着模型搭建起来的一套工作环境。一套工作环境，模型要读哪个文件，能调用哪些工具，做完之后，下一步该怎么样继续，都需要这个哈里斯这套环境配合，就像一间设施齐全的车马间，那这个时候大家有可能会冒出一个问题，就是我们已经有了DEPSC的网页版。\n为什么还要装一个DEPSICK 哈尼斯那一句话呀，可以回答大家，就是网页版，其实我们可以把它当成一个聊天窗口，而deep sick haeys呢是一个干活的现场，那我举三个例子，你一定遇见过了。你一定遇见过了，那第一个呢就是我们改文件，网页版里我们只能把文件上传给他，或者需要把修改的内容复制给他，改完之后呢，我们再粘回去，那DeepSeek Harness里，他就可以直接帮我们打开那个文件去修改。他就可以直接帮我们打开那个文件去修改，第二个呢是查资料。像网页版里啊，我们一定得把资料一段一段的粘给他。\n像网页版里啊，我们一定得把资料一段一段的粘给他，那DEPC和HANS里面呢，它可以自己去翻我们本地的文件夹，然后自己去上网搜，那第三个呢就是批量，像100个文件，如果要改同一个地方，那网页版我们只能一点一点的去粘过去 DeepSeek Harness里面呢，就可以自己写一个小本，然后他一次性改了。然后他一次性改了，那给它做一个定义呢，就是DEPSICK 哈尼斯是一套把大模型套上工具的装置，它让我们的模型不只是回答问题，也能在我们的电脑上读文件，写文件，跑命令，装插件，定时干活啊。\n我知道这句话还是有点抽象，那我们上个比喻。那我们上个比喻，如果说模型是马，那Harness就是能让这匹马安全有效干活的整套系统。那H尼斯就是能让这匹马安全有效，干活的整套系统，那具体来说呢 hex中的模式就可以决定这匹马怎么干活，是让他一步一步慢慢的拉车，还是让他一步跑完再回来报告，那指令呢就是车夫嘴里的那个口令是驾还是吁，具体呢是让它往左还是往右快一点还是慢一点，都可以用指令来回答他，那工作区和权限呢，就是划定这匹马的跑的范围，还有能干的事儿",
+    "termOccurrences": {
+      "sourceDeepSeek": 0,
+      "cleanedDeepSeek": 15,
+      "sourceHarness": 0,
+      "cleanedHarness": 14
+    }
+  },
+  "metrics": {
+    "clean": {
+      "jobId": "job_5b6f4d087c3f4f50",
+      "status": "SUCCEEDED",
+      "elapsedMs": 39103,
+      "stats": {
+        "segments": 400,
+        "blocks": 25,
+        "charsIn": 4542,
+        "charsOut": 5936,
+        "appliedEdits": 241,
+        "pendingCorrections": 93,
+        "terms": 11,
+        "llm": "deepseek-chat",
+        "llmUsage": {
+          "calls": 4,
+          "prompt_tokens": 28090,
+          "completion_tokens": 9612,
+          "reasoning_tokens": 0
+        },
+        "notes": [
+          "保留 seg_00002：模型返回空文本",
+          "保留 seg_00004：模型返回空文本",
+          "保留 seg_00005：模型返回空文本",
+          "保留 seg_00006：模型扩写过多",
+          "保留 seg_00007：模型返回空文本",
+          "保留 seg_00008：模型扩写过多",
+          "保留 seg_00009：模型返回空文本",
+          "保留 seg_00010：模型返回空文本",
+          "保留 seg_00012：模型返回空文本",
+          "保留 seg_00013：模型返回空文本",
+          "保留 seg_00015：模型返回空文本",
+          "保留 seg_00016：模型返回空文本",
+          "保留 seg_00018：模型返回空文本",
+          "保留 seg_00019：模型返回空文本",
+          "保留 seg_00020：模型扩写过多",
+          "保留 seg_00021：模型返回空文本",
+          "保留 seg_00022：模型返回空文本",
+          "保留 seg_00023：模型返回空文本",
+          "保留 seg_00024：模型扩写过多",
+          "保留 seg_00025：模型返回空文本",
+          "保留 seg_00026：模型返回空文本",
+          "保留 seg_00027：模型返回空文本",
+          "保留 seg_00028：模型扩写过多",
+          "保留 seg_00029：模型返回空文本",
+          "保留 seg_00030：模型返回空文本",
+          "保留 seg_00031：模型返回空文本",
+          "保留 seg_00032：模型返回空文本",
+          "保留 seg_00033：模型扩写过多",
+          "保留 seg_00034：模型返回空文本",
+          "保留 seg_00035：模型返回空文本",
+          "保留 seg_00036：模型返回空文本",
+          "保留 seg_00037：模型返回空文本",
+          "保留 seg_00038：模型返回空文本",
+          "保留 seg_00040：模型返回空文本",
+          "保留 seg_00041：模型返回空文本",
+          "保留 seg_00042：模型返回空文本",
+          "保留 seg_00044：模型返回空文本",
+          "保留 seg_00045：模型扩写过多",
+          "保留 seg_00046：模型返回空文本",
+          "保留 seg_00047：模型返回空文本",
+          "保留 seg_00048：模型返回空文本",
+          "保留 seg_00049：模型返回空文本",
+          "保留 seg_00050：模型返回空文本",
+          "保留 seg_00051：模型扩写过多",
+          "保留 seg_00052：模型返回空文本",
+          "保留 seg_00053：模型返回空文本",
+          "保留 seg_00054：模型扩写过多",
+          "保留 seg_00055：模型返回空文本",
+          "保留 seg_00056：模型返回空文本",
+          "保留 seg_00057：模型返回空文本"
+        ]
+      },
+      "blocks": 25,
+      "corrections": 93,
+      "pendingCorrections": 93,
+      "appliedEdits": 241,
+      "terms": 11,
+      "pipelineVersion": "clean-v1:standard",
+      "createdBy": "model"
+    },
+    "coverage": {
+      "sourceSegments": 400,
+      "coveredSegments": 400,
+      "missingSegments": 0,
+      "missingSample": []
+    },
+    "suggestions": {
+      "pending": 93,
+      "withAiSuggestion": 93,
+      "withoutSuggestion": 0
+    },
+    "punctuation": {
+      "blocks": 25,
+      "terminal": 25,
+      "doubled": 0,
+      "doubledSamples": []
+    },
+    "text": {
+      "sourceChars": 4508,
+      "cleanedChars": 5867,
+      "charRatio": 1.301,
+      "numbers": {
+        "source": 1,
+        "cleaned": 1,
+        "lost": []
+      },
+      "negations": {
+        "source": 40,
+        "cleaned": 58,
+        "ratio": 1.45
+      }
+    },
+    "summary": {
+      "jobId": "job_f5e6723d85d54662",
+      "status": "SUCCEEDED",
+      "elapsedMs": 18574,
+      "model": "deepseek-chat",
+      "overviewChars": 145,
+      "chapters": 6,
+      "viewpoints": 8,
+      "keyNumbers": 3,
+      "conclusion": true,
+      "markdownBytes": 35511
+    },
+    "citations": {
+      "cited": 112,
+      "invalid": 0,
+      "invalidSample": []
+    }
+  },
+  "llm": {
+    "configured": true,
+    "provider": "openai-compatible",
+    "model": "deepseek-chat",
+    "jsonMode": true
+  },
+  "transcript": {
+    "path": "C:\\Users\\pc\\AppData\\Local\\Temp\\bta-llm-transcript.json",
+    "video": "【全网最全】DeepSeek Harness超详细教程！50分钟吃透DSH，让SuperAgent给你干活！",
+    "segments": 400,
+    "chars": 4508
+  },
+  "finishedAt": "2026-11-05T11:21:45.739Z",
+  "durationMs": 57740,
+  "ok": true
+}

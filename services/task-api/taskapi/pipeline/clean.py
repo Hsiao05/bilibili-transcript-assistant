@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import difflib
+import json
 from collections.abc import Callable
 from dataclasses import dataclass, field
 from typing import Any
@@ -11,6 +12,7 @@ from ..prompts import (
     CLEAN_SYSTEM,
     CONSISTENCY_SYSTEM,
     PROMPT_VERSION,
+    SUGGEST_SYSTEM,
     TERM_DISCOVERY_SYSTEM,
     clean_user,
     consistency_user,
@@ -315,6 +317,53 @@ def _add_term_corrections(
     return corrections
 
 
+def _fill_missing_suggestions(
+    llm: LLMProvider,
+    corrections: list[Correction],
+    notes: list[str],
+    progress: ProgressFn | None,
+) -> None:
+    """Every pending correction must carry an actionable AI suggestion, not just a warning."""
+    missing = [correction for correction in corrections if not correction.replacement]
+    if not missing or llm.is_heuristic:
+        return
+    if progress:
+        progress(0.92, "生成修改建议")
+    unresolved = list(missing)
+    suggestions: dict[tuple[str, str], str] = {}
+    for _attempt in range(2):
+        payload = [
+            {"blockId": correction.block_id, "quote": correction.original, "reason": correction.reason}
+            for correction in unresolved[:40]
+        ]
+        if not payload:
+            break
+        try:
+            data = llm.chat_json(SUGGEST_SYSTEM, json.dumps(payload, ensure_ascii=False))
+        except LLMError as exc:
+            notes.append(f"生成 AI 修改建议失败：{exc.message}")
+            break
+        for item in data.get("suggestions") or []:
+            if not isinstance(item, dict):
+                continue
+            block_id = str(item.get("blockId") or "")
+            quote = str(item.get("quote") or "")
+            suggestion = str(item.get("suggestion") or "").strip()
+            if block_id and quote and suggestion:
+                suggestions[(block_id, quote)] = suggestion
+        for correction in unresolved:
+            suggestion = suggestions.get((correction.block_id, correction.original))
+            if suggestion and suggestion != correction.original:
+                correction.replacement = suggestion
+        unresolved = [correction for correction in unresolved if not correction.replacement]
+    if unresolved:
+        # Never show a bare "待核对" item without an actionable suggestion. If the model cannot
+        # produce one after two attempts, drop it from the pending list and record why.
+        notes.append(f"{len(unresolved)} 条待核对项无法生成可执行 AI 建议，已跳过（可手动校对原文）")
+        skip_ids = {correction.id for correction in unresolved}
+        corrections[:] = [correction for correction in corrections if correction.id not in skip_ids]
+
+
 def _consistency_check(
     llm: LLMProvider,
     blocks: list[Block],
@@ -515,6 +564,7 @@ def clean_document(
 
     pending = _add_term_corrections(terms, blocks)
     pending.extend(_consistency_check(llm, blocks, notes, progress))
+    _fill_missing_suggestions(llm, pending, notes, progress)
     if progress:
         progress(0.94, "整稿检查")
 

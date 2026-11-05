@@ -1,7 +1,7 @@
 {
-  "startedAt": "2026-11-05T04:34:48.740Z",
+  "startedAt": "2026-11-05T11:29:58.746Z",
   "engine": {
-    "path": "<EDGE>",
+    "path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
     "version": "Edg/156.0.4314.58"
   },
   "samples": {
@@ -17,7 +17,7 @@
     "workerUrl": "chrome-extension://akodendgnfmjmijnhepplkmojdedlnfn/background.js",
     "manifest": {
       "name": "B站文字稿助手",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "manifestVersion": 3,
       "permissions": [
         "sidePanel",
@@ -55,7 +55,7 @@
       "status": "pass",
       "details": {
         "name": "B站文字稿助手",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "manifestVersion": 3,
         "permissions": [
           "sidePanel",
@@ -121,7 +121,7 @@
       "status": "pass",
       "details": {
         "title": "文字稿助手",
-        "text": "文字稿助手\n服务已连接\n设置\n如何用 DeepSeek 整理一场两小时的访谈\n演示\n文字实验室\n·\n第 2 P\n·\n第二章 · 术语与修订\n·\n2 分钟\n原视频\n提取文字稿\n总结视频\n文字稿\n总结\n修订\n2\n任务\nB站人工字幕\n· 12 段\n· 00:00–01:38\n2 处待核对\n整理稿 · 2 待核对\n更多\n\n00:00这期我们聊聊怎么用模型整理长访谈。\n\n00:06先说获取材料，字幕和音频是两条独立的路径。如果视频有字幕，优先用人",
+        "text": "文字稿助手\n服务已连接\n设置\n如何用 DeepSeek 整理一场两小时的访谈\n演示\n文字实验室\n·\n第 2 P\n·\n第二章 · 术语与修订\n·\n2 分钟\n原视频\n提取文字稿\n总结视频\n重新清洗文字稿\n文字稿\n总结\n修订\n2\n任务\nB站人工字幕\n· 12 段\n· 00:00–01:38\n2 处待核对\n整理稿 · 2 待核对\n更多\n\n00:00这期我们聊聊怎么用模型整理长访谈。\n\n00:06先说获取材料，字幕和音频是两条独立的路径。如果视频",
         "tabs": [
           "文字稿",
           "总结",
@@ -129,7 +129,7 @@
           "任务"
         ],
         "theme": "",
-        "screenshot": "<PROJECT>\\docs\\screenshots\\sidepanel-demo.png",
+        "screenshot": "C:\\Users\\pc\\source\\repos\\bilibili-transcript-assistant\\docs\\screenshots\\sidepanel-demo.png",
         "consoleErrors": 0
       }
     },
@@ -142,7 +142,7 @@
         "url": "https://www.bilibili.com/video/BV1XwxU6xEnL/",
         "title": "【2026全球总决赛】11月4日 TES vs IG_游戏热门视频",
         "supported": true,
-        "tabId": 1433707753
+        "tabId": 507641565
       }
     },
     {
@@ -172,12 +172,12 @@
       "name": "B站 page playback requests unaffected by DNR",
       "status": "pass",
       "details": {
-        "requests": 150,
+        "requests": 132,
         "byType": {
           "Stylesheet": 8,
           "Script": 44,
-          "Image": 51,
-          "XHR": 17,
+          "Image": 34,
+          "XHR": 16,
           "Document": 2,
           "Fetch": 26,
           "Font": 2
@@ -196,10 +196,10 @@
             "url": "https://s1.hdslb.com/bfs/static/jinkela/long/font/medium.css"
           },
           {
-            "type": "Script",
+            "type": "Stylesheet",
             "status": 200,
-            "mimeType": "application/javascript",
-            "url": "https://s1.hdslb.com/bfs/static/player/main/core.1782590f.js"
+            "mimeType": "text/css",
+            "url": "https://s1.hdslb.com/bfs/seed/jinkela/short/bili-theme/map.css"
           }
         ]
       }
@@ -343,7 +343,7 @@
   ],
   "consoleErrors": [],
   "screenshots": [
-    "<PROJECT>\\docs\\screenshots\\sidepanel-demo.png"
+    "C:\\Users\\pc\\source\\repos\\bilibili-transcript-assistant\\docs\\screenshots\\sidepanel-demo.png"
   ],
   "chromeLoadExtensionPolicy": null,
   "dnr": {
@@ -393,7 +393,7 @@
     },
     "note": "The audio CDN answers 403 without a Referer and 206 with one (see scripts/bilibili-adapter-check.mjs), so a 206 here proves the DNR rule applied to both extension contexts."
   },
-  "finishedAt": "2026-11-05T04:35:02.360Z",
-  "durationMs": 13620,
+  "finishedAt": "2026-11-05T11:30:11.881Z",
+  "durationMs": 13135,
   "ok": true
 }

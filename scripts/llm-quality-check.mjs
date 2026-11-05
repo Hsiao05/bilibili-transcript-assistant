@@ -269,6 +269,41 @@ try {
     evidenceType: term.evidenceType,
   }));
 
+  const pendingCorrections = cleanedRevision.corrections.filter((item) => item.status === "pending");
+  const withoutSuggestion = pendingCorrections.filter((item) => !item.replacement);
+  report.metrics.suggestions = {
+    pending: pendingCorrections.length,
+    withAiSuggestion: pendingCorrections.length - withoutSuggestion.length,
+    withoutSuggestion: withoutSuggestion.length,
+  };
+  check(
+    "every pending correction carries an AI suggestion",
+    withoutSuggestion.length === 0 ? "pass" : "fail",
+    report.metrics.suggestions,
+  );
+
+  const cleanedTextForPunctuation = cleanedRevision.blocks.map((block) => block.text).join("\n");
+  const punctuation = {
+    blocks: cleanedRevision.blocks.length,
+    terminal: cleanedRevision.blocks.filter((block) => /[。！？…]$/.test(block.text.trim())).length,
+    doubled: (cleanedTextForPunctuation.match(/[，。！？；：]{2,}/g) || []).length,
+    doubledSamples: [...cleanedTextForPunctuation.matchAll(/[，。！？；：]{2,}/g)]
+      .slice(0, 5)
+      .map((match) =>
+        cleanedTextForPunctuation.slice(Math.max(0, (match.index ?? 0) - 15), (match.index ?? 0) + match[0].length + 15),
+      ),
+  };
+  report.metrics.punctuation = punctuation;
+  report.samples.doubledBlocks = cleanedRevision.blocks
+    .filter((block) => /[，。！？；：]{2,}/.test(block.text))
+    .map((block) => JSON.stringify(block.text));
+  check(
+    "cleaned paragraphs end with sentence punctuation",
+    punctuation.terminal === punctuation.blocks ? "pass" : "fail",
+    punctuation,
+  );
+  check("no doubled Chinese punctuation", punctuation.doubled === 0 ? "pass" : "fail", { doubled: punctuation.doubled });
+
   const cleanedText = cleanedRevision.blocks.map((block) => block.text).join("\n");
   const sourceNumbers = numbersOf(sourceText);
   const cleanedNumbers = numbersOf(cleanedText);

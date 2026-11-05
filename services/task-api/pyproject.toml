@@ -1,6 +1,6 @@
 [project]
 name = "bili-transcript-task-api"
-version = "0.1.0"
+version = "0.2.0"
 description = "Local/remote task service for the Bilibili transcript assistant"
 requires-python = ">=3.11"
 dependencies = [

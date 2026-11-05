@@ -1,10 +1,10 @@
 import { AlertTriangle, Loader2, RefreshCw } from "lucide-react";
 import { useMemo } from "react";
 
-import type { Citation, Revision, Summary, VideoRef } from "@/contracts";
+import type { Citation, Revision, Summary } from "@/contracts";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
-import { formatTime, timeUrl } from "@/lib/utils";
+import { TimeLink } from "@/components/transcript/TimeLink";
 
 function SegmentTimeMap(revision: Revision | null): Map<string, number> {
   const map = new Map<string, number>();
@@ -19,47 +19,38 @@ function SegmentTimeMap(revision: Revision | null): Map<string, number> {
 
 function CitationLine({
   item,
-  video,
   times,
+  onSeek,
   showTime = true,
 }: {
   item: Citation;
-  video: VideoRef;
   times: Map<string, number>;
+  onSeek: (ms: number) => void;
   showTime?: boolean;
 }) {
   const ms = item.segmentIds.map((id) => times.get(id)).find((value) => value !== undefined);
   return (
     <li className="leading-[26px]">
-      {showTime && ms !== undefined && (
-        <a
-          className="timestamp mr-1.5 align-[0.1em]"
-          href={timeUrl(video, ms)}
-          target="_blank"
-          rel="noreferrer"
-        >
-          {formatTime(ms)}
-        </a>
-      )}
+      {showTime && ms !== undefined && <TimeLink ms={ms} onSeek={onSeek} className="timestamp mr-1.5 align-[0.1em]" />}
       {item.text}
     </li>
   );
 }
 
 export function SummaryView({
-  video,
   summary,
   revision,
   activeRevisionId,
   generating,
   onRegenerate,
+  onSeek,
 }: {
-  video: VideoRef;
   summary: Summary;
   revision: Revision | null;
   activeRevisionId: string | null;
   generating?: boolean;
   onRegenerate: () => void;
+  onSeek: (ms: number) => void;
 }) {
   const times = useMemo(() => SegmentTimeMap(revision), [revision]);
   const stale = Boolean(activeRevisionId && summary.revisionId !== activeRevisionId);
@@ -94,7 +85,7 @@ export function SummaryView({
           <h2 className="mb-1.5 text-base font-semibold">核心观点</h2>
           <ul className="transcript-body list-disc pl-5">
             {summary.viewpoints.map((item, index) => (
-              <CitationLine key={index} item={item} video={video} times={times} />
+              <CitationLine key={index} item={item} times={times} onSeek={onSeek} />
             ))}
           </ul>
         </section>
@@ -106,14 +97,7 @@ export function SummaryView({
             {summary.chapters.map((chapter, index) => (
               <div key={index}>
                 <h3 className="flex flex-wrap items-baseline gap-1.5 text-sm font-semibold leading-6">
-                  <a
-                    className="timestamp"
-                    href={timeUrl(video, chapter.startMs)}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {formatTime(chapter.startMs)}
-                  </a>
+                  <TimeLink ms={chapter.startMs} onSeek={onSeek} />
                   <span>{chapter.title}</span>
                   {chapter.editorialTitle && (
                     <span className="text-xs font-normal text-muted">编辑性标题</span>
@@ -121,7 +105,7 @@ export function SummaryView({
                 </h3>
                 <ul className="transcript-body mt-1 list-disc pl-5">
                   {chapter.points.map((point, pointIndex) => (
-                    <CitationLine key={pointIndex} item={point} video={video} times={times} showTime={false} />
+                    <CitationLine key={pointIndex} item={point} times={times} onSeek={onSeek} showTime={false} />
                   ))}
                 </ul>
               </div>
@@ -140,7 +124,7 @@ export function SummaryView({
           <h2 className="mb-1.5 text-base font-semibold">重要数字</h2>
           <ul className="transcript-body list-disc pl-5">
             {summary.keyNumbers.map((item, index) => (
-              <CitationLine key={index} item={item} video={video} times={times} />
+              <CitationLine key={index} item={item} times={times} onSeek={onSeek} />
             ))}
           </ul>
         </section>

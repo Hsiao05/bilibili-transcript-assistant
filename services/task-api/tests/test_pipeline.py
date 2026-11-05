@@ -38,6 +38,18 @@ class FakeLLM(LLMProvider):
                     }
                 ]
             }
+        if "校对编辑" in system:
+            payload = json.loads(user)
+            return {
+                "suggestions": [
+                    {
+                        "blockId": item["blockId"],
+                        "quote": item["quote"],
+                        "suggestion": "支持四个模式",
+                    }
+                    for item in payload
+                ]
+            }
         if "文字稿的编辑" in system:
             payload = json.loads(user)
             return {"segments": [{"id": item["id"], "text": item["text"]} for item in payload["segments"]]}
@@ -59,7 +71,9 @@ def test_clean_pipeline_with_fake_llm():
     assert any("支持三个模式" in c.original for c in outcome.corrections)
     consistency = next(c for c in outcome.corrections if "支持三个模式" in c.original)
     assert consistency.change_type == "consistency"
-    assert consistency.replacement is None
+    assert consistency.replacement == "支持四个模式"
+    assert all(block.text.endswith(("。", "！", "？", "…")) for block in outcome.blocks)
+    assert "，，" not in "".join(block.text for block in outcome.blocks)
     assert outcome.terms
     assert outcome.stats["segments"] == 3
     assert all(block.source_segment_ids for block in outcome.blocks)

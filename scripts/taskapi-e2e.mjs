@@ -358,6 +358,7 @@ function classifyPrompt(system) {
   if (system.includes("术语审校助手")) return "term_discovery";
   if (system.includes("文字稿的编辑")) return "clean";
   if (system.includes("一致性审校员")) return "consistency";
+  if (system.includes("校对编辑")) return "suggest";
   if (system.includes("摘要编辑")) return "summary_chunk";
   if (system.includes("汇总编辑")) return "summary_aggregate";
   return "unknown";
@@ -400,6 +401,16 @@ function mockResponse(kind, user) {
           evidenceSegmentIds: (target.segmentIds || []).slice(0, 2),
         },
       ],
+    };
+  }
+  if (kind === "suggest") {
+    const issues = payload.items || payload;
+    return {
+      suggestions: (Array.isArray(issues) ? issues : []).map((item) => ({
+        blockId: item.blockId,
+        quote: item.quote,
+        suggestion: String(item.quote || "").replace("三个模式", "四个模式"),
+      })),
     };
   }
   if (kind === "summary_chunk") {
@@ -1186,8 +1197,12 @@ async function phaseLLM(mock) {
       (correction) => correction.changeType === "consistency" && correction.original.includes("三个模式"),
     );
     assert(consistencyCorrection, "missing consistency correction for 三个模式");
-    assertEqual(consistencyCorrection.replacement, null, "consistency correction replacement");
+    assertEqual(consistencyCorrection.replacement, "四个模式", "consistency correction AI suggestion");
     assert(consistencyCorrection.evidenceSegmentIds.length > 0, "consistency correction evidence");
+    assert(
+      revision.corrections.every((correction) => Boolean(correction.replacement)),
+      "every pending correction must carry an AI suggestion",
+    );
 
     assertEqual(job.result.stats.pendingCorrections, revision.corrections.length, "stats.pendingCorrections");
     assert(job.result.stats.terms >= 1, "term discovery should produce at least one term");
@@ -1231,6 +1246,34 @@ async function phaseLLM(mock) {
     assertEqual(document.data.document.latestRevisionId, revision.id, "latest revision after corrections/apply");
     state.editedRevisionId = revision.id;
     return { editedRevisionId: revision.id, appliedEdits: revision.appliedEdits.length };
+  });
+
+  await runCheck("manual correction edit: custom replacement becomes an edited revision", async () => {
+    const replacement = "四个模式（手动确认）";
+    const response = await request(
+      stack,
+      "POST",
+      `/v1/documents/${state.documentId}/corrections/apply`,
+      {
+        json: {
+          revisionId: state.cleanedRevisionId,
+          manualEdits: [{ correctionId: state.consistencyCorrection.id, replacement }],
+        },
+      },
+    );
+    assertStatus(response, 201, "POST corrections/apply (manual)");
+    const revision = response.data;
+    assertEqual(revision.kind, "edited", "manual correction revision kind");
+    assertEqual(revision.parentRevisionId, state.cleanedRevisionId, "manual correction parent");
+    const block = revision.blocks.find((item) => item.id === state.consistencyCorrection.blockId);
+    assert(block, "manual correction target block missing");
+    assertIncludes(block.text, replacement, "manual replacement text");
+    assert(!block.text.includes("三个模式"), "manual replacement original text still present");
+    const manual = revision.appliedEdits.find((edit) => edit.reason.startsWith("用户手动修改："));
+    assert(manual, "manual applied edit missing");
+    assertEqual(manual.replacement, replacement, "manual applied edit replacement");
+    state.editedRevisionId = revision.id;
+    return { revisionId: revision.id, replacement };
   });
 
   await runCheck("LLM summarize job: sections/citations from mock, markdown rendered", async () => {

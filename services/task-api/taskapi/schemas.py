@@ -302,10 +302,16 @@ class RevisionCreate(CamelModel):
     created_by: str = "user"
 
 
+class ManualCorrection(CamelModel):
+    correction_id: str
+    replacement: str
+
+
 class CorrectionsApply(CamelModel):
     revision_id: str
     accepted_ids: list[str] = Field(default_factory=list)
     kept_ids: list[str] = Field(default_factory=list)
+    manual_edits: list[ManualCorrection] = Field(default_factory=list)
 
 
 class GlossaryEntry(CamelModel):

@@ -19,6 +19,8 @@ _TOKEN_RE = re.compile("(\\d+)")
 
 _CLAUSE = "，。！？；：、,.!?;: \t\n"
 _SENTENCE_END = "。！？!?…；;：:"
+_TERMINAL = "。！？!?…"
+_CLOSING = "”’」』）】》"
 _OPENERS = "（【《「『“‘("
 _CLOSERS = "，。！？；：、）】》」』”’,.!?;:"
 
@@ -84,7 +86,7 @@ def format_clean(text: str) -> str:
     masked, tokens = _protect(text)
     value = masked.replace("\r\n", "\n").replace("\r", "\n")
     value = value.replace(" ", " ").replace("　", " ")
-    value = re.sub(r"[​‌‍﻿]", "", value)
+    value = re.sub("[\u200b\u200c\u200d\ufeff]", "", value)
     value = re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f]", "", value)
     value = re.sub(r"[ \t]+", " ", value)
     value = re.sub(r"[ \t]+(?=[，。！？；：、）】》」』”’…])", "", value)
@@ -136,6 +138,61 @@ def remove_fillers(text: str, strength: str) -> str:
 
 def clean_text(text: str, strength: str = "standard") -> str:
     return remove_fillers(format_clean(text), strength)
+
+
+def normalize_punctuation(text: str) -> str:
+    """Make Chinese punctuation consistent and end every paragraph with a sentence stop.
+
+    Correction models are good at restoring punctuation but not perfectly consistent, so this
+    deterministic pass guarantees the invariants the reader/export rely on: no doubled stops,
+    full-width stops next to Chinese text, no dangling spaces, and a terminal stop per block.
+    """
+    if not text:
+        return ""
+    value = format_clean(text)
+    # Very long runs of ASCII punctuation next to Chinese text are almost always ASR/model noise.
+    value = re.sub(r"(?<=[一-鿿])[ \t]*,[ \t]*", "，", value)
+    value = re.sub(r"(?<=[一-鿿])[ \t]*;[ \t]*", "；", value)
+    value = re.sub(r"(?<=[一-鿿])[ \t]*:[ \t]*", "：", value)
+    value = re.sub(r"(?<=[一-鿿])[ \t]*\?[ \t]*", "？", value)
+    value = re.sub(r"(?<=[一-鿿])[ \t]*![ \t]*", "！", value)
+    value = re.sub(r"(?<=[一-鿿])\.(?=[一-鿿]|$)", "。", value)
+    value = re.sub(r"[ \t]+([，。！？；：、）】》」』”’…])", r"\1", value)
+    value = re.sub(r"([，。！？；：、])\1+", r"\1", value)
+    value = re.sub(r"。[，,]", "。", value)
+    value = re.sub(r"[，,]。", "。", value)
+    value = re.sub(r"[；;]，", "；", value)
+    value = re.sub(r"([，。！？；：、])\s+([，。！？；：、])", r"\1\2", value)
+
+    def _collapse(match: re.Match) -> str:
+        run = match.group(0)
+        for mark in "。！？":
+            if mark in run:
+                return mark
+        if "；" in run or ";" in run:
+            return "；"
+        if "：" in run or ":" in run:
+            return "："
+        return "，"
+
+    value = re.sub(r"[，。！？；：、,;:!?]{2,}", _collapse, value)
+    value = re.sub(r"^[，、；：,;:]+", "", value)
+    value = value.strip()
+    if not value:
+        return ""
+    if value[-1] in "，、；：,;:":
+        # A paragraph must not end on a clause mark: replace it with a sentence stop instead
+        # of appending another mark (which would create "，。").
+        value = value[:-1].rstrip() + "。"
+    if value[-1] in _TERMINAL:
+        return value
+    if value[-1] in _CLOSING and len(value) > 1 and value[-2] in _TERMINAL:
+        return value
+    return value + "。"
+
+
+def _is_cjk(ch: str) -> bool:
+    return bool(ch) and "一" <= ch <= "鿿"
 
 
 def diff_edits(
@@ -195,16 +252,21 @@ def replace_outside_quotes(text: str, variants: list[str], canonical: str) -> tu
     return result, edits
 
 
-def _is_cjk(ch: str) -> bool:
-    return bool(ch) and "一" <= ch <= "鿿"
-
-
 def join_texts(previous: str, following: str, gap_ms: int) -> str:
     if not previous:
         return following
     if not following:
         return previous
+    following = following.lstrip("，。！？；：、,.!?;: ")
+    if not following:
+        return previous
     if previous[-1] in _SENTENCE_END:
+        return previous + following
+    if previous[-1] in "，、；：,;:":
+        # Never stack a second separator after an existing clause mark. A long pause lets the
+        # trailing comma become the paragraph's sentence stop.
+        if gap_ms >= 1800 and previous[-1] in "，,":
+            previous = previous[:-1] + "。"
         return previous + following
     if following[0] in _CLOSERS:
         return previous + following
@@ -261,7 +323,7 @@ def build_blocks(
     if current is not None:
         blocks.append(current)
     for block in blocks:
-        block["text"] = block["text"].strip()
+        block["text"] = normalize_punctuation(block["text"].strip())
     return blocks
 
 

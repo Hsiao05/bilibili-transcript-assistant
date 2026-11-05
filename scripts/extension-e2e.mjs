@@ -285,6 +285,7 @@ try {
   check("extension settings persisted", "pass", { serviceUrl: stored.serviceUrl });
 
   const biliPage = await openTab(port, `https://www.bilibili.com/video/${MULTI_VIDEO}/?p=${MULTI_PAGE}`);
+  const biliCdp = await attachPage(biliPage);
   await sleep(4000);
   await activateTab(port, biliPage.id);
 
@@ -310,6 +311,30 @@ try {
     text: loaded.slice(0, 260),
     hasTranscript: loaded.includes("端到端验收样本"),
     hasCleanedLabel: loaded.includes("整理稿"),
+  });
+
+  // Clicking an in-app timestamp must seek the B站 <video> instead of opening a new tab.
+  const seekTarget = await evaluate(realCdp, `(() => {
+    const candidates = [...document.querySelectorAll("button.timestamp[data-time-ms]")];
+    const button = candidates.find((node) => Number(node.dataset.timeMs) > 1000);
+    if (!button) return null;
+    const ms = Number(button.dataset.timeMs);
+    button.click();
+    return ms;
+  })()`, 15000);
+  assert(seekTarget, "no in-app timestamp button found");
+  const seeked = await waitFor(async () => {
+    const value = await evaluate(biliCdp, `(() => {
+      const video = document.querySelector("video");
+      return video ? { currentTime: video.currentTime, duration: video.duration, readyState: video.readyState } : null;
+    })()`);
+    return value && value.currentTime > 0 ? value : null;
+  }, 15000, 300);
+  assert(seeked, "B站 video did not seek after timestamp click");
+  assert(Math.abs(seeked.currentTime - seekTarget / 1000) < 2.5, `seek mismatch: ${seeked.currentTime} vs ${seekTarget / 1000}`);
+  check("timestamp click seeks the current B站 video", "pass", {
+    targetMs: seekTarget,
+    videoCurrentTime: Math.round(seeked.currentTime * 1000),
   });
 
   const transcriptShot = await realCdp.send("Page.captureScreenshot", { format: "png" });

@@ -1,8 +1,8 @@
 {
-  "startedAt": "2026-11-05T05:21:17.236Z",
+  "startedAt": "2026-11-05T11:23:49.696Z",
   "service": {
-    "port": 8882,
-    "dataDir": "<TEMP>\\bta-e2e-service-QVKHKa",
+    "port": 8757,
+    "dataDir": "C:\\Users\\pc\\AppData\\Local\\Temp\\bta-e2e-service-YYJo6B",
     "token": "***",
     "logsTail": [],
     "capabilities": {
@@ -63,8 +63,8 @@
       "name": "document created from subtitle segments",
       "status": "pass",
       "details": {
-        "documentId": "doc_107a80b473a74e2d",
-        "originalRevisionId": "rev_744cbbafafda4a52",
+        "documentId": "doc_27b2d9ed5fba4d8d",
+        "originalRevisionId": "rev_681fade5def7428b",
         "segments": 15
       }
     },
@@ -72,9 +72,9 @@
       "name": "clean job (heuristic pipeline)",
       "status": "pass",
       "details": {
-        "jobId": "job_de2b3345a6fe4c1c",
+        "jobId": "job_12422e02d3484b81",
         "status": "SUCCEEDED",
-        "revisionId": "rev_5d564df6f64046bb",
+        "revisionId": "rev_1b15fbd86fb04e10",
         "pending": 0
       }
     },
@@ -89,23 +89,31 @@
       "name": "extension settings persisted",
       "status": "pass",
       "details": {
-        "serviceUrl": "http://127.0.0.1:8882"
+        "serviceUrl": "http://127.0.0.1:8757"
       }
     },
     {
       "name": "side panel loads seeded document from task-api",
       "status": "pass",
       "details": {
-        "text": "文字稿助手\n服务已连接\n设置\n【2026全球总决赛】11月4日 TES vs IG\n哔哩哔哩英雄联盟赛事\n·\n第 2 P\n·\n第二局\n·\n1 小时 4 分\n原视频\n提取文字稿\n总结视频\n文字稿\n总结\n修订\n任务\nB站AI字幕\n· 15 段\n· 00:00–03:06\n整理稿\n更多\n\n00:00大家好，这一期我们做一个端到端验收样本，用来测试文字稿助手的完整流程。先说结论，这个工具的核心价值是把字幕或者音频变成可以校对、可以引用的文字稿。第一步是拿到原始材料，有字幕就优先用字幕，没有字幕才走音频转写。这里要特别强调，",
+        "text": "文字稿助手\n服务已连接\n设置\n【2026全球总决赛】11月4日 TES vs IG\n哔哩哔哩英雄联盟赛事\n·\n第 2 P\n·\n第二局\n·\n1 小时 4 分\n原视频\n提取文字稿\n总结视频\n重新清洗文字稿\n文字稿\n总结\n修订\n任务\nB站AI字幕\n· 15 段\n· 00:00–03:06\n整理稿\n更多\n\n00:00大家好，这一期我们做一个端到端验收样本，用来测试文字稿助手的完整流程。先说结论，这个工具的核心价值是把字幕或者音频变成可以校对、可以引用的文字稿。第一步是拿到原始材料，有字幕就优先用字幕，没有字幕才走音频转写。",
         "hasTranscript": true,
         "hasCleanedLabel": true
+      }
+    },
+    {
+      "name": "timestamp click seeks the current B站 video",
+      "status": "pass",
+      "details": {
+        "targetMs": 99200,
+        "videoCurrentTime": 99200
       }
     },
     {
       "name": "UI 总结视频 -> summarize job -> rendered summary",
       "status": "pass",
       "details": {
-        "summaryId": "sum_b928c0157a184425",
+        "summaryId": "sum_5ae688e1b0304211",
         "chapters": 1,
         "overview": "大家好，这一期我们做一个端到端验收样本，用来测试文字稿助手的完整流程。 先说结论，这个工具的核心价值是把字幕或者音频变成可以校对、可以引用的文字稿。",
         "model": "extractive-v1"
@@ -151,25 +159,25 @@
   ],
   "consoleErrors": [],
   "screenshots": [
-    "<PROJECT>\\docs\\screenshots\\sidepanel-e2e-transcript.png",
-    "<PROJECT>\\docs\\screenshots\\sidepanel-e2e-summary.png",
-    "<PROJECT>\\docs\\screenshots\\sidepanel-e2e-settings.png"
+    "C:\\Users\\pc\\source\\repos\\bilibili-transcript-assistant\\docs\\screenshots\\sidepanel-e2e-transcript.png",
+    "C:\\Users\\pc\\source\\repos\\bilibili-transcript-assistant\\docs\\screenshots\\sidepanel-e2e-summary.png",
+    "C:\\Users\\pc\\source\\repos\\bilibili-transcript-assistant\\docs\\screenshots\\sidepanel-e2e-settings.png"
   ],
   "downloads": [
     {
-      "path": "<TEMP>\\bta-e2e-download-fX9qXo\\【2026全球总决赛】11月4日 TES vs IG-P02-整理稿.md",
+      "path": "C:\\Users\\pc\\AppData\\Local\\Temp\\bta-e2e-download-Y2TXpi\\【2026全球总决赛】11月4日 TES vs IG-P02-整理稿.md",
       "bytes": 3325,
       "filename": "【2026全球总决赛】11月4日 TES vs IG-P02-整理稿.md"
     }
   ],
   "engine": {
-    "path": "<EDGE>",
+    "path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
     "version": "Edg/156.0.4314.58"
   },
   "ui": {
-    "bootText": "文字稿助手\n服务已连接\n设置\n【2026全球总决赛】11月4日 TES vs IG\n哔哩哔哩英雄联盟赛事\n·\n第 2 P\n·\n第二局\n·\n1 小时 4 分\n原视频\n提取文字稿\n总结视频\n文字稿\n总结\n修订\n任务\nB站AI字幕\n· 15 段\n· 00:00–03:06\n整理稿\n更多\n\n00:00大家好，这一期我们做一个端到端验收样本，用来测试文字稿助手的完整流程。先说结论，这个工具的核心价值是把字幕或者音频变成可以校对、可以引用的文字稿。第一步是拿到原始材料，有字幕就优先用字幕，没有字幕才走音频转写。这里要特别强调，模型整理的时候不能随便改数字和否定词。我们之前说过支持三个档位，哦不对，是四个档位：轻度、标准、精简和自定义。滴普西克这类音近词，需要结合上下文判断，不能只按发音替换。接着看清洗流程，先做确定性规则清理，再让模型做语义整理。如果模型发现前后矛盾，会把它标成待核对，而不是直接按多数"
+    "bootText": "文字稿助手\n服务已连接\n设置\n【2026全球总决赛】11月4日 TES vs IG\n哔哩哔哩英雄联盟赛事\n·\n第 2 P\n·\n第二局\n·\n1 小时 4 分\n原视频\n提取文字稿\n总结视频\n重新清洗文字稿\n文字稿\n总结\n修订\n任务\nB站AI字幕\n· 15 段\n· 00:00–03:06\n整理稿\n更多\n\n00:00大家好，这一期我们做一个端到端验收样本，用来测试文字稿助手的完整流程。先说结论，这个工具的核心价值是把字幕或者音频变成可以校对、可以引用的文字稿。第一步是拿到原始材料，有字幕就优先用字幕，没有字幕才走音频转写。这里要特别强调，模型整理的时候不能随便改数字和否定词。我们之前说过支持三个档位，哦不对，是四个档位：轻度、标准、精简和自定义。滴普西克这类音近词，需要结合上下文判断，不能只按发音替换。接着看清洗流程，先做确定性规则清理，再让模型做语义整理。如果模型发现前后矛盾，会把它标成待核对，"
   },
-  "finishedAt": "2026-11-05T05:21:35.277Z",
-  "durationMs": 18041,
+  "finishedAt": "2026-11-05T11:24:14.097Z",
+  "durationMs": 24401,
   "ok": true
 }

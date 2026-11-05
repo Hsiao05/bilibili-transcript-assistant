@@ -13,14 +13,12 @@ from pydantic import ValidationError
 
 from . import API_VERSION, __version__
 from .config import Settings, load_settings
-from .pipeline.markdown import export_filename, render_document_markdown, source_label
-from .pipeline.normalize import find_quote
-from .providers.asr import build_asr_capabilities, default_asr_id, select_asr
+from .pipeline.markdown import export_filename, render_document_markdown
+from .providers.asr import build_asr_capabilities, default_asr_id
 from .providers.llm import build_llm
 from .schemas import (
     AppliedEdit,
     AsrCapability,
-    Block,
     Capabilities,
     CorrectionsApply,
     DocumentBundle,
@@ -276,11 +274,18 @@ def create_app(settings: Settings | None = None, store: Store | None = None) -> 
             raise NotFoundError("revision not found")
         accepted = set(payload.accepted_ids)
         kept = set(payload.kept_ids)
-        if not accepted and not kept:
+        manual = {
+            edit.correction_id: edit.replacement.strip() for edit in payload.manual_edits
+        }
+        for correction_id, replacement in manual.items():
+            if not replacement:
+                raise ValueError(f"manual replacement for {correction_id} is empty")
+        if not accepted and not kept and not manual:
             raise ValueError("no corrections selected")
         pending = {correction.id: correction for correction in revision.corrections if correction.status == "pending"}
-        selected = [pending[cid] for cid in accepted if cid in pending]
-        for cid in accepted | kept:
+        selected_ids = (accepted - set(manual)) | set(manual)
+        selected = [pending[cid] for cid in selected_ids if cid in pending]
+        for cid in accepted | kept | set(manual):
             if cid not in pending:
                 raise ConflictError(f"correction {cid} is not pending on this revision")
         blocks = {block.id: block for block in revision.blocks}
@@ -299,13 +304,11 @@ def create_app(settings: Settings | None = None, store: Store | None = None) -> 
                 seen.add(key)
                 if text[correction.start_offset : correction.end_offset] != correction.original:
                     raise ConflictError(f"correction {correction.id} no longer matches the text")
-                if correction.replacement is None:
+                replacement = manual.get(correction.id) or correction.replacement
+                if replacement is None:
                     continue
-                text = text[: correction.start_offset] + correction.replacement + text[correction.end_offset :]
+                text = text[: correction.start_offset] + replacement + text[correction.end_offset :]
             blocks[block_id].text = text
-        if not selected:
-            # "keep all" still creates a reviewed revision without edits.
-            pass
         return st(request).create_revision(
             document_id=document_id,
             parent_id=revision.id,
@@ -320,9 +323,9 @@ def create_app(settings: Settings | None = None, store: Store | None = None) -> 
                     start_offset=c.start_offset,
                     end_offset=c.end_offset,
                     original=c.original,
-                    replacement=c.replacement or c.original,
+                    replacement=manual.get(c.id) or c.replacement or c.original,
                     change_type=c.change_type,
-                    reason="用户确认：" + c.reason,
+                    reason=("用户手动修改：" if c.id in manual else "用户确认：") + c.reason,
                     evidence_type=c.evidence_type,
                 )
                 for c in selected

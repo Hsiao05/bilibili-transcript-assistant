@@ -1,6 +1,6 @@
 {
-  "startedAt": "2026-11-05T04:47:35.829Z",
-  "profile": "<USER_HOME>\\AppData\\Local\\bta-login-profile",
+  "startedAt": "2026-11-05T11:11:41.470Z",
+  "profile": "C:\\Users\\pc\\AppData\\Local\\bta-login-profile",
   "video": {
     "bvid": "BV1REx46NEc4",
     "cid": "43235280963",
@@ -13,7 +13,7 @@
       "name": "task-api starts for logged-in acceptance",
       "status": "pass",
       "details": {
-        "port": 8431
+        "port": 8453
       }
     },
     {
@@ -21,7 +21,7 @@
       "status": "pass",
       "details": {
         "id": "akodendgnfmjmijnhepplkmojdedlnfn",
-        "profile": "<USER_HOME>\\AppData\\Local\\bta-login-profile"
+        "profile": "C:\\Users\\pc\\AppData\\Local\\bta-login-profile"
       }
     },
     {
@@ -84,16 +84,21 @@
       "name": "document created from live subtitle body",
       "status": "pass",
       "details": {
-        "documentId": "doc_c3c6cf0202f34fd3",
+        "documentId": "doc_6686ed5491244231",
         "sourceType": "bilibili_ai_subtitle",
         "segments": 1503
       }
     },
     {
+      "name": "manual clean click starts the real clean job",
+      "status": "pass",
+      "details": {}
+    },
+    {
       "name": "cleaned transcript rendered in side panel",
       "status": "pass",
       "details": {
-        "revisionId": "rev_dd2f89fbbe934bb1",
+        "revisionId": "rev_08ef358bfc114031",
         "blocks": 78,
         "sourceType": "bilibili_ai_subtitle",
         "segments": 1503
@@ -103,7 +108,7 @@
       "name": "summary rendered from real transcript",
       "status": "pass",
       "details": {
-        "summaryId": "sum_05cc796575ba41d6",
+        "summaryId": "sum_8e0917d13a374aee",
         "chapters": 9,
         "overview": "本期视频是一期超级详细的DPC honeys 零基础完整版教程，我相信很多人都知道AI非常厉害，可真的自己上手的时候，却总觉得用的不如别人，所以本期视频呢我们就",
         "model": "extractive-v1"
@@ -114,7 +119,7 @@
       "status": "pass",
       "details": {
         "filename": "【全网最全】DeepSeek Harness超详细教程！50分钟吃透DSH，让SuperAgent给你干活！-P01-整理稿.md",
-        "bytes": 75487
+        "bytes": 75724
       }
     },
     {
@@ -129,30 +134,30 @@
   "consoleErrors": [
     {
       "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
-      "url": "http://127.0.0.1:8431/v1/documents?bvid=BV1REx46NEc4&cid=43235280963&page=1",
+      "url": "http://127.0.0.1:8453/v1/documents?bvid=BV1REx46NEc4&cid=43235280963&page=1",
       "source": "network",
       "level": "error"
     }
   ],
   "screenshots": [
-    "<PROJECT>\\docs\\screenshots\\login-e2e-tracks.png",
-    "<PROJECT>\\docs\\screenshots\\login-e2e-transcript.png",
-    "<PROJECT>\\docs\\screenshots\\login-e2e-summary.png"
+    "C:\\Users\\pc\\source\\repos\\bilibili-transcript-assistant\\docs\\screenshots\\login-e2e-tracks.png",
+    "C:\\Users\\pc\\source\\repos\\bilibili-transcript-assistant\\docs\\screenshots\\login-e2e-transcript.png",
+    "C:\\Users\\pc\\source\\repos\\bilibili-transcript-assistant\\docs\\screenshots\\login-e2e-summary.png"
   ],
   "downloads": [
     {
       "filename": "【全网最全】DeepSeek Harness超详细教程！50分钟吃透DSH，让SuperAgent给你干活！-P01-整理稿.md",
-      "bytes": 75487
+      "bytes": 75724
     }
   ],
   "engine": {
-    "path": "<EDGE>",
+    "path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
     "version": "Edg/156.0.4314.58"
   },
   "extension": {
     "id": "akodendgnfmjmijnhepplkmojdedlnfn"
   },
-  "finishedAt": "2026-11-05T04:48:02.181Z",
-  "durationMs": 26352,
+  "finishedAt": "2026-11-05T11:12:09.496Z",
+  "durationMs": 28026,
   "ok": true
 }

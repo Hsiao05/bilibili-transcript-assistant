@@ -1,16 +1,16 @@
 import { Badge } from "@/components/ui/badge";
-import type { Revision, VideoRef } from "@/contracts";
-import { formatTime, timeUrl } from "@/lib/utils";
+import type { Revision } from "@/contracts";
+import { TimeLink } from "@/components/transcript/TimeLink";
 
 export function TranscriptProse({
-  video,
   revision,
   showTimestamps,
+  onSeek,
   pendingBlockIds = new Set<string>(),
 }: {
-  video: VideoRef;
   revision: Revision;
   showTimestamps: boolean;
+  onSeek: (ms: number) => void;
   pendingBlockIds?: Set<string>;
 }) {
   if (!revision.blocks.length) {
@@ -20,17 +20,7 @@ export function TranscriptProse({
     <div className="transcript-body">
       {revision.blocks.map((block) => (
         <p key={block.id} className="transcript-block" data-block-id={block.id}>
-          {showTimestamps && (
-            <a
-              className="timestamp"
-              href={timeUrl(video, block.startMs)}
-              target="_blank"
-              rel="noreferrer"
-              title={`跳到 ${formatTime(block.startMs)}`}
-            >
-              {formatTime(block.startMs)}
-            </a>
-          )}
+          {showTimestamps && <TimeLink ms={block.startMs} onSeek={onSeek} />}
           <span>{block.text}</span>
           {pendingBlockIds.has(block.id) && (
             <Badge variant="warning" className="ml-1.5 align-[0.15em]">

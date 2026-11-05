@@ -297,11 +297,26 @@ try {
     return response.json();
   }, 180000, 2000);
   assert(document, "document was not created from the real subtitle track");
+  assert(
+    !(document.revisions || []).some((item) => item.kind === "cleaned"),
+    "clean job should not start automatically after extraction",
+  );
   check("document created from live subtitle body", "pass", {
     documentId: document.document.id,
     sourceType: document.source?.type,
     segments: document.source?.segmentCount,
   });
+
+  const clickedClean = await waitFor(async () => {
+    return evaluate(realCdp, `(() => {
+      const button = [...document.querySelectorAll("button")].find((node) => node.offsetParent !== null && /清洗文字稿|重新清洗文字稿/.test(node.textContent));
+      if (!button) return false;
+      button.click();
+      return true;
+    })()`, 15000);
+  }, 30000, 500);
+  assert(clickedClean, "清洗文字稿 button not found");
+  check("manual clean click starts the real clean job", "pass", {});
 
   const cleaned = await waitFor(async () => {
     const bundle = await service.request(`/v1/documents/${document.document.id}`);
