@@ -1,0 +1,113 @@
+{
+  "$comment": "Captured from https://api.bilibili.com/x/player/wbi/v2 while logged in to bilibili.com (2026-11-04), sanitized: auth_key query values replaced with REDACTED. Used to replay the login-only subtitle-track payload through the extension's own normalization code. Subtitle URLs intentionally keep the protocol-relative form to exercise normalizeSubtitleUrl().",
+  "code": 0,
+  "message": "OK",
+  "ttl": 1,
+  "data": {
+    "bvid": "BV1REx46NEc4",
+    "cid": 43235280963,
+    "need_login_subtitle": false,
+    "subtitle": {
+      "allow_submit": false,
+      "lan": "",
+      "lan_doc": "",
+      "subtitles": [
+        {
+          "id": 2142267835404456448,
+          "lan": "ai-zh",
+          "lan_doc": "中文",
+          "is_lock": false,
+          "subtitle_url": "//aisubtitle.hdslb.com/bfs/ai_subtitle/prod/11754067198269943235280963182d4b2f1d32d89f015512f4a643e2aa?auth_key=REDACTED",
+          "type": 1,
+          "id_str": "2142267835404456448",
+          "ai_type": 0,
+          "ai_status": 2
+        },
+        {
+          "id": 2143189358428390144,
+          "lan": "ai-en",
+          "lan_doc": "English",
+          "is_lock": false,
+          "subtitle_url": "//aisubtitle.hdslb.com/bfs/ai_subtitle/prod/c3d8b6d1c8a96819d8161fbd4864286b?auth_key=REDACTED",
+          "type": 1,
+          "id_str": "2143189358428390144",
+          "ai_type": 1,
+          "ai_status": 2
+        },
+        {
+          "id": 2143354935474320128,
+          "lan": "ai-ja",
+          "lan_doc": "日本語",
+          "is_lock": false,
+          "subtitle_url": "//aisubtitle.hdslb.com/bfs/ai_subtitle/prod/d2d3432a3794aeff68bc76439193e597?auth_key=REDACTED",
+          "type": 1,
+          "id_str": "2143354935474320128",
+          "ai_type": 1,
+          "ai_status": 2
+        },
+        {
+          "id": 2143412426882987520,
+          "lan": "ai-es",
+          "lan_doc": "Español",
+          "is_lock": false,
+          "subtitle_url": "//aisubtitle.hdslb.com/bfs/ai_subtitle/prod/a6cb08bbabb905857cf5a72b01cf2ac2?auth_key=REDACTED",
+          "type": 1,
+          "id_str": "2143412426882987520",
+          "ai_type": 1,
+          "ai_status": 2
+        },
+        {
+          "id": 2143412534106311936,
+          "lan": "ai-ar",
+          "lan_doc": "العربية",
+          "is_lock": false,
+          "subtitle_url": "//aisubtitle.hdslb.com/bfs/ai_subtitle/prod/6e20268ca055875bdd6d088e592e2cfa?auth_key=REDACTED",
+          "type": 1,
+          "id_str": "2143412534106311936",
+          "ai_type": 1,
+          "ai_status": 2
+        },
+        {
+          "id": 2143412563273450496,
+          "lan": "ai-pt",
+          "lan_doc": "Português",
+          "is_lock": false,
+          "subtitle_url": "//aisubtitle.hdslb.com/bfs/ai_subtitle/prod/9b36fce000abef656d5e71411caca152?auth_key=REDACTED",
+          "type": 1,
+          "id_str": "2143412563273450496",
+          "ai_type": 1,
+          "ai_status": 2
+        },
+        {
+          "id": 2143412423846258176,
+          "lan": "ai-th",
+          "lan_doc": "ภาษาไทย",
+          "is_lock": false,
+          "subtitle_url": "//aisubtitle.hdslb.com/bfs/ai_subtitle/prod/cfc6d0691c72bf50d477ffb29e3086ff?auth_key=REDACTED",
+          "type": 1,
+          "id_str": "2143412423846258176",
+          "ai_type": 1,
+          "ai_status": 2
+        },
+        {
+          "id": 2143415351177055488,
+          "lan": "ai-id",
+          "lan_doc": "Bahasa Indonesia",
+          "is_lock": false,
+          "subtitle_url": "//aisubtitle.hdslb.com/bfs/ai_subtitle/prod/71658a70f6dc71dfa3ebdf42ab766daf?auth_key=REDACTED",
+          "type": 1,
+          "id_str": "2143415351177055488",
+          "ai_type": 1,
+          "ai_status": 2
+        }
+      ],
+      "subtitle_position": {
+        "x_min": 0.19609375,
+        "y_min": 0.8472222222222222,
+        "x_max": 0.8046875,
+        "y_max": 0.9430555555555555
+      },
+      "font_size_type": 0
+    }
+  }
+}

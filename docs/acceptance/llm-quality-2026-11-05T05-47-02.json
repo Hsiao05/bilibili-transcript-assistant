@@ -1,0 +1,588 @@
+{
+  "startedAt": "2026-11-05T05:47:02.596Z",
+  "checks": [
+    {
+      "name": "real LLM configured",
+      "status": "pass",
+      "details": {
+        "provider": "openai-compatible",
+        "model": "deepseek-v4.1-flash"
+      }
+    },
+    {
+      "name": "document created from transcript",
+      "status": "pass",
+      "details": {
+        "documentId": "doc_95dcc9b5c1574ab5",
+        "segments": 400,
+        "chars": 4508
+      }
+    },
+    {
+      "name": "real LLM clean job succeeded",
+      "status": "pass",
+      "details": {
+        "jobId": "job_ca5fa1e657284dd7",
+        "status": "SUCCEEDED",
+        "elapsedMs": 55549,
+        "stats": {
+          "segments": 400,
+          "blocks": 21,
+          "charsIn": 4542,
+          "charsOut": 5068,
+          "appliedEdits": 187,
+          "pendingCorrections": 18,
+          "terms": 11,
+          "llm": "deepseek-v4.1-flash",
+          "llmUsage": {
+            "calls": 4,
+            "prompt_tokens": 27136,
+            "completion_tokens": 9478,
+            "reasoning_tokens": 0
+          },
+          "notes": []
+        },
+        "blocks": 21,
+        "corrections": 18,
+        "pendingCorrections": 18,
+        "appliedEdits": 187,
+        "terms": 11,
+        "pipelineVersion": "clean-v1:standard",
+        "createdBy": "model"
+      }
+    },
+    {
+      "name": "every source segment covered by cleaned blocks",
+      "status": "pass",
+      "details": {
+        "sourceSegments": 400,
+        "coveredSegments": 400,
+        "missingSegments": 0,
+        "missingSample": []
+      }
+    },
+    {
+      "name": "cleaned blocks: non-empty + monotonic timestamps",
+      "status": "pass",
+      "details": {
+        "blocks": 21
+      }
+    },
+    {
+      "name": "applied edits still match parent revision text",
+      "status": "pass",
+      "details": {
+        "edits": 187,
+        "invalid": 0
+      }
+    },
+    {
+      "name": "numbers preserved (heuristic)",
+      "status": "pass",
+      "details": {
+        "source": 1,
+        "cleaned": 1,
+        "lost": []
+      }
+    },
+    {
+      "name": "negation markers preserved (heuristic)",
+      "status": "pass",
+      "details": {
+        "source": 40,
+        "cleaned": 39,
+        "ratio": 0.975
+      }
+    },
+    {
+      "name": "real LLM summarize job succeeded",
+      "status": "pass",
+      "details": {
+        "jobId": "job_743e29c0f12f47bc",
+        "status": "SUCCEEDED",
+        "elapsedMs": 25800,
+        "model": "deepseek-v4.1-flash",
+        "overviewChars": 145,
+        "chapters": 3,
+        "viewpoints": 8,
+        "keyNumbers": 4,
+        "conclusion": true,
+        "markdownBytes": 25680
+      }
+    },
+    {
+      "name": "summary citations all reference real segments",
+      "status": "pass",
+      "details": {
+        "cited": 98,
+        "invalid": 0,
+        "invalidSample": []
+      }
+    },
+    {
+      "name": "summary has overview, chapters and timestamp links",
+      "status": "pass",
+      "details": {
+        "overview": 145,
+        "chapters": 3
+      }
+    }
+  ],
+  "samples": {
+    "edits": [
+      {
+        "type": "model_clean",
+        "original": "PC",
+        "replacement": "eepSeek",
+        "reason": "模型按standard档清洗",
+        "evidenceType": "model"
+      },
+      {
+        "type": "model_clean",
+        "original": "ho",
+        "replacement": "Har",
+        "reason": "模型按standard档清洗",
+        "evidenceType": "model"
+      },
+      {
+        "type": "model_clean",
+        "original": "y",
+        "replacement": "",
+        "reason": "模型按standard档清洗",
+        "evidenceType": "model"
+      },
+      {
+        "type": "model_clean",
+        "original": "",
+        "replacement": "s",
+        "reason": "模型按standard档清洗",
+        "evidenceType": "model"
+      },
+      {
+        "type": "model_clean",
+        "original": "d",
+        "replacement": "D",
+        "reason": "模型按standard档清洗",
+        "evidenceType": "model"
+      },
+      {
+        "type": "model_clean",
+        "original": "",
+        "replacement": "Seek",
+        "reason": "模型按standard档清洗",
+        "evidenceType": "model"
+      },
+      {
+        "type": "model_clean",
+        "original": "",
+        "replacement": "Harne",
+        "reason": "模型按standard档清洗",
+        "evidenceType": "model"
+      },
+      {
+        "type": "model_clean",
+        "original": "ick哈尼斯",
+        "replacement": "s",
+        "reason": "模型按standard档清洗",
+        "evidenceType": "model"
+      },
+      {
+        "type": "model_clean",
+        "original": "d",
+        "replacement": "D",
+        "reason": "模型按standard档清洗",
+        "evidenceType": "model"
+      },
+      {
+        "type": "model_clean",
+        "original": "",
+        "replacement": "Seek",
+        "reason": "模型按standard档清洗",
+        "evidenceType": "model"
+      },
+      {
+        "type": "model_clean",
+        "original": "",
+        "replacement": "Harne",
+        "reason": "模型按standard档清洗",
+        "evidenceType": "model"
+      },
+      {
+        "type": "model_clean",
+        "original": "ic hyy",
+        "replacement": "s",
+        "reason": "模型按standard档清洗",
+        "evidenceType": "model"
+      }
+    ],
+    "corrections": [
+      {
+        "type": "term",
+        "original": "Mac",
+        "replacement": "macOS",
+        "reason": "疑似与「macOS」为同一对象；依据：context_only",
+        "status": "pending",
+        "autoApplicable": false
+      },
+      {
+        "type": "term",
+        "original": "Mac",
+        "replacement": "macOS",
+        "reason": "疑似与「macOS」为同一对象；依据：context_only",
+        "status": "pending",
+        "autoApplicable": false
+      },
+      {
+        "type": "term",
+        "original": "Mac",
+        "replacement": "macOS",
+        "reason": "疑似与「macOS」为同一对象；依据：context_only",
+        "status": "pending",
+        "autoApplicable": false
+      },
+      {
+        "type": "term",
+        "original": "Mac",
+        "replacement": "macOS",
+        "reason": "疑似与「macOS」为同一对象；依据：context_only",
+        "status": "pending",
+        "autoApplicable": false
+      },
+      {
+        "type": "term",
+        "original": "Mac",
+        "replacement": "macOS",
+        "reason": "疑似与「macOS」为同一对象；依据：context_only",
+        "status": "pending",
+        "autoApplicable": false
+      },
+      {
+        "type": "term",
+        "original": "访达",
+        "replacement": "Finder",
+        "reason": "疑似与「Finder」为同一对象；依据：context_only",
+        "status": "pending",
+        "autoApplicable": false
+      },
+      {
+        "type": "consistency",
+        "original": "DeepSeek Harness",
+        "replacement": null,
+        "reason": "同一产品名在全文均写作“DeepSeek Harness”，但 block_0002 将其拆解为“DeepSeek”与“Harness”两个词，并解释 Harness 为“马具”；名称本身一致，但需注意 block_0002 中“DeepSeek Harness啊”与后文“DeepSeek呢大家都很熟”之间缺少连接，属表述问题，非名称冲突。",
+        "status": "pending",
+        "autoApplicable": false
+      },
+      {
+        "type": "consistency",
+        "original": "自己写一个小本",
+        "replacement": null,
+        "reason": "前文 block_0004 说“批量，像100个文件，如果要改同一个地方”，此处说“自己写一个小本”，结合上下文应为“写一个小脚本”，但原文为“小本”，与“批量修改文件”的语义不符，疑似语音转写错误，无法确定改法。",
+        "status": "pending",
+        "autoApplicable": false
+      },
+      {
+        "type": "consistency",
+        "original": "框梨",
+        "replacement": null,
+        "reason": "“框梨”应为“框里”或“马具部件”的误写，与“马的铁蹄”并列，属明显错字，但无法确定原意，故 suggestion 为 null。",
+        "status": "pending",
+        "autoApplicable": false
+      },
+      {
+        "type": "consistency",
+        "original": "一切皆插件",
+        "replacement": null,
+        "reason": "block_0007 称“一切皆插件”，而 block_0008 称“万物皆可插件”，同一概念出现两种写法，属同一专名/口号的不同表述，建议统一。",
+        "status": "pending",
+        "autoApplicable": false
+      },
+      {
+        "type": "consistency",
+        "original": "Windows和Mac的桌面端都是一模一样的",
+        "replacement": null,
+        "reason": "block_0010 称“分为Windows和macOS两个系统，我们挨个演示”，block_0013 又称“Windows和Mac的桌面端都是一模一样的”，前后对系统差异的描述存在张力，但可理解为界面一致，非硬性矛盾。",
+        "status": "pending",
+        "autoApplicable": false
+      },
+      {
+        "type": "consistency",
+        "original": "DeepSeek账号和DeepSeek 两个选项",
+        "replacement": null,
+        "reason": "“DeepSeek账号”与“DeepSeek”两个选项名称过于接近，指代不清，读者难以区分二者区别，属指代不清问题。",
+        "status": "pending",
+        "autoApplicable": false
+      }
+    ],
+    "terms": [
+      {
+        "canonical": "DeepSeek Harness",
+        "variants": [
+          "DPC honeys",
+          "deep sick哈尼斯",
+          "deep sic hyy",
+          "deep sick haeys",
+          "DEVC和honeys",
+          "DEPC和HANS",
+          "DEPSICK",
+          "哈尼斯",
+          "哈里斯",
+          "H尼斯",
+          "hex",
+          "deep sick hans",
+          "DEMSK哈尼斯",
+          "deep sk hans",
+          "DEPCH尼斯",
+          "STYOHHONEYS",
+          "depc hits",
+          "DEPSICK哈尼斯",
+          "DPCHANS",
+          "DEVCK",
+          "deep sick honey",
+          "deep six hans",
+          "DEPSCH",
+          "deep stick哈尼斯",
+          "deep stick h尼斯",
+          "deep sick账号",
+          "deep sick",
+          "deep sic",
+          "DEPSC",
+          "DEVC",
+          "DEPC",
+          "deep six",
+          "deep sk",
+          "deep stick",
+          "honeys",
+          "H义词"
+        ],
+        "status": "suggested",
+        "evidenceType": "context_only"
+      },
+      {
+        "canonical": "深度求索",
+        "variants": [],
+        "status": "suggested",
+        "evidenceType": "material_spelling"
+      },
+      {
+        "canonical": "API",
+        "variants": [],
+        "status": "suggested",
+        "evidenceType": "context_only"
+      },
+      {
+        "canonical": "Windows",
+        "variants": [
+          "windows"
+        ],
+        "status": "suggested",
+        "evidenceType": "context_only"
+      },
+      {
+        "canonical": "macOS",
+        "variants": [
+          "Mac os",
+          "Mac",
+          "麦克"
+        ],
+        "status": "suggested",
+        "evidenceType": "context_only"
+      },
+      {
+        "canonical": "Finder",
+        "variants": [
+          "finder",
+          "访达"
+        ],
+        "status": "suggested",
+        "evidenceType": "context_only"
+      },
+      {
+        "canonical": "Applications",
+        "variants": [
+          "applications"
+        ],
+        "status": "suggested",
+        "evidenceType": "context_only"
+      },
+      {
+        "canonical": "token",
+        "variants": [],
+        "status": "suggested",
+        "evidenceType": "context_only"
+      },
+      {
+        "canonical": "鸡哥",
+        "variants": [],
+        "status": "suggested",
+        "evidenceType": "context_only"
+      },
+      {
+        "canonical": "微信",
+        "variants": [],
+        "status": "suggested",
+        "evidenceType": "context_only"
+      }
+    ],
+    "summary": {
+      "overview": "本片是 DeepSeek Harness 的零基础完整教程，从概念、安装讲到界面与第一个任务，并结合实际操作演示。作者用“马具”比喻解释 Harness 是把大模型套上工具的装置，让模型能读文件、写文件、跑命令、装插件、定时干活，并强调选对模式、给对权限、下对指令往往比换更贵的模型更管用。",
+      "chapters": [
+        {
+          "title": "课程定位与 Harness 概念",
+          "startMs": 0,
+          "points": [
+            "视频定位为 DeepSeek Harness 零基础完整版教程，从下载安装讲到完成第一个任务，再到各种功能和插件，并结合实际操作演示。",
+            "DeepSeek 是中国的 AI 公司“深度求索”，也是其开发的大语言模型系列的名称；Harness 原意是马具，是把马和车连起来、让马能听懂指挥的一套装置。"
+          ]
+        },
+        {
+          "title": "常见误区与插件化特征",
+          "startMs": 225040,
+          "points": [
+            "作者指出一个常见误区：以为模型越强 Harness 能力就越强，其实不完全对；选对模式、给对权限、下对指令往往比换更贵的模型更管用。",
+            "DeepSeek Harness 的特征是“一切皆插件”：从核心循环到界面，界面、工具乃至内部工作组织方式都可做成可扩展插件；但作者不建议入门者把插件商店整个搬空，插件太多不等于任务完成得好，应先有需求再补能力。"
+          ]
+        },
+        {
+          "title": "下载与安装",
+          "startMs": 301520,
+          "points": [
+            "安装流程：在浏览器搜索 DeepSeek Harness 进入官网，点击标题下方的下载按钮，桌面端目前支持 macOS 和 Windows。",
+            "Windows 双击安装包一路下一步，建议装到 D 盘而非 C 盘，遇到“是否允许此应用对你的设备进行更改”点“是”。"
+          ]
+        }
+      ],
+      "conclusion": "DeepSeek Harness 是把大模型套上工具的装置，让模型能在电脑上读文件、写文件、跑命令、装插件、定时干活；入门应先理解模式、指令、工作区与权限、插件四套机制，按需补插件，而不是一味追求更强的模型或堆满插件。",
+      "coverage": {
+        "sources": [
+          "B站字幕"
+        ],
+        "gaps": [
+          "图表与画面内容未覆盖",
+          "界面操作演示的具体步骤未在字幕中完整呈现",
+          "插件安装与使用的实际操作细节未覆盖"
+        ],
+        "uncertainties": [
+          "字幕中“DeepSeek Harness”为语音识别转写结果，该产品名称及官网是否真实存在、拼写是否准确，无法从字幕本身核实。",
+          "字幕中“自己写一个小本”疑为“写一个小脚本”的转写误差，原意不确定。",
+          "字幕中“框梨”疑为“马掌/蹄铁”类词的转写误差，具体所指不确定。",
+          "字幕中“可芬兰的停靠面板”“左右芬兰”疑为“可分栏”的转写误差，原意不确定。",
+          "字幕中“新绘画”“历史绘画”疑为“新会话/新对话”“历史会话”的转写误差，原意不确定。",
+          "字幕中“鸡哥的自我介绍的方式和语气”中的“鸡哥”具体指代对象未在字幕中说明。"
+        ]
+      }
+    },
+    "blocks": [
+      {
+        "source": "本期视频是一期超级详细的DPC honeys零基础完整版教程我相信很多人都知道AI非常厉害可真的自己上手的时候却总觉得用的不如别人所以本期视频呢我们就从零开始一步一步带大家把deep sick哈尼斯用起来从下载安装到完成第一个任务再到后面的各种功能和插件我都会结合实际操作带着大家一起做当然了这期视频制作真的非常不易希望各位观众老爷可以给个三连支持一下好了我们",
+        "cleaned": "本期视频是一期超级详细的DeepSeek Harness 零基础完整版教程，我相信很多人都知道AI非常厉害，可真的自己上手的时候，却总觉得用的不如别人，所以本期视频呢我们就从零开始，一步一步带大家把DeepSeek Harness用起来，从下载安装到完成第一个任务，再到后面的各种功能和插件，我都会结合实际操作带着大家一起做，当然了，这期视频制作真的非常不易，"
+      },
+      {
+        "source": "deep sic hyy啊这个名字看着是很长的我们先把它拆开看deep sic呢大家都很熟唉中文名呢是深度求索是我们国家的一个人工智能公司以及开发大员模型系列的名称那honeys是什么呢这个词啊其实好多人不认识我第一次看的时候也愣了一下H义词翻译成中文呢叫做马具就是套在马身上的那一整套东西像什么缰绳啊绝子呀套包啊这些等等等等但是注意啊它既不是马本身也不是马后",
+        "cleaned": "DeepSeek Harness啊，这个名字看着是很长的，我们先把它拆开看 DeepSeek呢大家都很熟，中文名呢是深度求索，是我们国家的一个AI公司，以及开发大语言模型系列的名称，那Harness是什么呢，这个词啊，其实好多人不认识，我第一次看的时候也愣了一下 Harness翻译成中文呢叫做马具，就是套在马身上的那一整套东西，像什么缰绳啊，嚼子呀，套包啊这"
+      },
+      {
+        "source": "也就是说deep sick是这套工具背后模型的提供方模型负责理解我们的要求分析问题再决定下一步做什么就像一匹强健的马驹而哈尼斯呢则是围绕着模型搭建起来的一套工作环境模型要读哪个文件能调用哪些工具做完之后下一步该怎么样继续都需要这个哈里斯这套环境配合就像一间设施齐全的车马间那这个时候大家有可能会冒出一个问题就是我们已经有了DEPSC的网页版为什么还要装一个DE",
+        "cleaned": "也就是说DeepSeek是这套工具背后模型的提供方，模型负责理解我们的要求，分析问题再决定下一步做什么，就像一匹强健的马驹，而Harness呢则是围绕着模型搭建起来的，一套工作环境，模型要读哪个文件，能调用哪些工具，做完之后，下一步该怎么样继续，都需要Harness这套环境配合，就像一间设施齐全的车马间，那这个时候大家有可能会冒出一个问题，就是我们已经有了D"
+      },
+      {
+        "source": "而deep sick haeys呢是一个干活的现场那我举三个例子你一定遇见过了那第一个呢就是我们改文件网页版里我们只能把文件上传给他或者需要把修改的内容复制给他改完之后呢我们再粘回去那DEVC和honeys里他就可以直接帮我们打开那个文件去修改第二个呢是查资料像网页版里啊我们一定得把资料一段一段的粘给他那DEPC和HANS里面呢它可以自己去翻我们本地的文件夹",
+        "cleaned": "而DeepSeek Harness呢是一个干活的现场，那我举三个例子，你一定遇见过了，那第一个呢就是我们改文件，网页版里我们只能把文件上传给他，或者需要把修改的内容复制给他，改完之后呢，我们再粘回去，那DeepSeek Harness里，他就可以直接帮我们打开那个文件去修改，第二个呢是查资料，像网页版里啊，我们一定得把资料一段一段的粘给他，那DeepSeek"
+      },
+      {
+        "source": "那网页版我们只能一点一点的去粘过去改deep sick honeys里面呢就可以自己写一个小本然后他一次性改了那给它做一个定义呢就是DEPSICK哈尼斯是一套把大模型套上工具的装置它让我们的模型不只是回答问题也能在我们的电脑上读文件写文件跑命令装插件定时干活啊我知道这句话还是有点抽象那我们上个比喻如果说模型是马的那H尼斯就是能让这匹马安全有效干活的整套系统那",
+        "cleaned": "那网页版我们只能一点一点的去粘过去 DeepSeek Harness里面呢就可以自己写一个小本，然后他一次性改了，那给它做一个定义呢，就是DeepSeek Harness是一套把大模型套上工具的装置，它让我们的模型不只是回答问题，也能在我们的电脑上读文件，写文件，跑命令，装插件，定时干活啊，我知道这句话还是有点抽象，那我们上个比喻，如果说模型是马的，那Har"
+      }
+    ],
+    "cleanedHead": "本期视频是一期超级详细的DeepSeek Harness 零基础完整版教程，我相信很多人都知道AI非常厉害，可真的自己上手的时候，却总觉得用的不如别人，所以本期视频呢我们就从零开始，一步一步带大家把DeepSeek Harness用起来，从下载安装到完成第一个任务，再到后面的各种功能和插件，我都会结合实际操作带着大家一起做，当然了，这期视频制作真的非常不易，希望各位观众老爷可以给个三连支持一下，好了，我们废话不多说，三连发车\nDeepSeek Harness啊，这个名字看着是很长的，我们先把它拆开看 DeepSeek呢大家都很熟，中文名呢是深度求索，是我们国家的一个AI公司，以及开发大语言模型系列的名称，那Harness是什么呢，这个词啊，其实好多人不认识，我第一次看的时候也愣了一下 Harness翻译成中文呢叫做马具，就是套在马身上的那一整套东西，像什么缰绳啊，嚼子呀，套包啊这些等等等等，但是注意啊，它既不是马本身，也不是马后面拉的车，本身，它只是把马和车连起来，让马能听懂我们指挥往哪走的一套装置\n也就是说DeepSeek是这套工具背后模型的提供方，模型负责理解我们的要求，分析问题再决定下一步做什么，就像一匹强健的马驹，而Harness呢则是围绕着模型搭建起来的，一套工作环境，模型要读哪个文件，能调用哪些工具，做完之后，下一步该怎么样继续，都需要Harness这套环境配合，就像一间设施齐全的车马间，那这个时候大家有可能会冒出一个问题，就是我们已经有了DeepSeek的网页版，为什么还要装一个DeepSeek Harness？那一句话呀，可以回答大家，就是网页版，其实我们可以把它当成一个聊天窗口\n而DeepSeek Harness呢是一个干活的现场，那我举三个例子，你一定遇见过了，那第一个呢就是我们改文件，网页版里我们只能把文件上传给他，或者需要把修改的内容复制给他，改完之后呢，我们再粘回去，那DeepSeek Harness里，他就可以直接帮我们打开那个文件去修改，第二个呢是查资料，像网页版里啊，我们一定得把资料一段一段的粘给他，那DeepSeek Harness里面呢，它可以自己去翻我们本地的文件夹，然后自己去上网搜，那第三个呢就是批量，像100个文件，如果要改同一个地方\n那网页版我们只能一点一点的去粘过去 DeepSeek Harness里面呢就可以自己写一个小本，然后他一次性改了，那给它做一个定义呢，就是DeepSeek Harness是一套把大模型套上工具的装置，它让我们的模型不只是回答问题，也能在我们的电脑上读文件，写文件，跑命令，装插件，定时干活啊，我知道这句话还是有点抽象，那我们上个比喻，如果说模型是马的，那Harness就是能让这匹马安全有效，干活的整套系统，那具体来说呢 Harness中的模式就可以决定这匹马怎么干活，是让他一步一步慢慢的拉车\n还是让他一步跑完再回来报告，那指令呢就是车夫嘴里的那个口令是驾还是吁，具体呢是让它往左还是往右快一点还是慢一点，都可以用指令来回答他，那工作区和权限呢就是划定这匹马的跑的范围，还有能干的事儿，客厅是不是可以进，卧室是不能进的，出门得先问我，插件呢，就是给马加装的一套装备，马的铁蹄、框梨缺什么就加什么，那这四样呢我们这节课都会讲到，而且每一个也会演示给大家啊，顺便说个很多人都踩过的坑，有人以为模型越强 DeepSeek Harness的能力就越强，其实不完全对，那马具再好，这个马具不对的话\n一样是拉不动的，选对模式，给对权限，下对指令往往要比换一个更贵的模型更管用 DeepSeek Har",
+    "termOccurrences": {
+      "sourceDeepSeek": 0,
+      "cleanedDeepSeek": 37,
+      "sourceHarness": 0,
+      "cleanedHarness": 33
+    }
+  },
+  "metrics": {
+    "clean": {
+      "jobId": "job_ca5fa1e657284dd7",
+      "status": "SUCCEEDED",
+      "elapsedMs": 55549,
+      "stats": {
+        "segments": 400,
+        "blocks": 21,
+        "charsIn": 4542,
+        "charsOut": 5068,
+        "appliedEdits": 187,
+        "pendingCorrections": 18,
+        "terms": 11,
+        "llm": "deepseek-v4.1-flash",
+        "llmUsage": {
+          "calls": 4,
+          "prompt_tokens": 27136,
+          "completion_tokens": 9478,
+          "reasoning_tokens": 0
+        },
+        "notes": []
+      },
+      "blocks": 21,
+      "corrections": 18,
+      "pendingCorrections": 18,
+      "appliedEdits": 187,
+      "terms": 11,
+      "pipelineVersion": "clean-v1:standard",
+      "createdBy": "model"
+    },
+    "coverage": {
+      "sourceSegments": 400,
+      "coveredSegments": 400,
+      "missingSegments": 0,
+      "missingSample": []
+    },
+    "text": {
+      "sourceChars": 4508,
+      "cleanedChars": 5015,
+      "charRatio": 1.112,
+      "numbers": {
+        "source": 1,
+        "cleaned": 1,
+        "lost": []
+      },
+      "negations": {
+        "source": 40,
+        "cleaned": 39,
+        "ratio": 0.975
+      }
+    },
+    "summary": {
+      "jobId": "job_743e29c0f12f47bc",
+      "status": "SUCCEEDED",
+      "elapsedMs": 25800,
+      "model": "deepseek-v4.1-flash",
+      "overviewChars": 145,
+      "chapters": 3,
+      "viewpoints": 8,
+      "keyNumbers": 4,
+      "conclusion": true,
+      "markdownBytes": 25680
+    },
+    "citations": {
+      "cited": 98,
+      "invalid": 0,
+      "invalidSample": []
+    }
+  },
+  "llm": {
+    "configured": true,
+    "provider": "openai-compatible",
+    "model": "deepseek-v4.1-flash",
+    "jsonMode": true
+  },
+  "transcript": {
+    "path": "C:\\Users\\pc\\AppData\\Local\\Temp\\bta-llm-transcript.json",
+    "video": "【全网最全】DeepSeek Harness超详细教程！50分钟吃透DSH，让SuperAgent给你干活！",
+    "segments": 400,
+    "chars": 4508
+  },
+  "finishedAt": "2026-11-05T05:48:24.579Z",
+  "durationMs": 81435,
+  "ok": true
+}

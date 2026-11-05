@@ -1,0 +1,158 @@
+{
+  "startedAt": "2026-11-05T04:47:35.829Z",
+  "profile": "C:\\Users\\pc\\AppData\\Local\\bta-login-profile",
+  "video": {
+    "bvid": "BV1REx46NEc4",
+    "cid": "43235280963",
+    "page": 1,
+    "title": "登录态验收视频",
+    "author": ""
+  },
+  "checks": [
+    {
+      "name": "task-api starts for logged-in acceptance",
+      "status": "pass",
+      "details": {
+        "port": 8431
+      }
+    },
+    {
+      "name": "extension loads with persistent profile",
+      "status": "pass",
+      "details": {
+        "id": "akodendgnfmjmijnhepplkmojdedlnfn",
+        "profile": "C:\\Users\\pc\\AppData\\Local\\bta-login-profile"
+      }
+    },
+    {
+      "name": "Bilibili login detected",
+      "status": "pass",
+      "details": {
+        "isLogin": true
+      }
+    },
+    {
+      "name": "logged-in subtitle track discovery (through extension)",
+      "status": "pass",
+      "details": {
+        "count": 8,
+        "tracks": [
+          {
+            "lan": "ai-zh",
+            "lanDoc": "中文",
+            "type": "ai"
+          },
+          {
+            "lan": "ai-ja",
+            "lanDoc": "日本語",
+            "type": "ai"
+          },
+          {
+            "lan": "ai-id",
+            "lanDoc": "Bahasa Indonesia",
+            "type": "ai"
+          },
+          {
+            "lan": "ai-en",
+            "lanDoc": "English",
+            "type": "ai"
+          },
+          {
+            "lan": "ai-es",
+            "lanDoc": "Español",
+            "type": "ai"
+          },
+          {
+            "lan": "ai-pt",
+            "lanDoc": "Português",
+            "type": "ai"
+          },
+          {
+            "lan": "ai-ar",
+            "lanDoc": "العربية",
+            "type": "ai"
+          },
+          {
+            "lan": "ai-th",
+            "lanDoc": "ภาษาไทย",
+            "type": "ai"
+          }
+        ]
+      }
+    },
+    {
+      "name": "document created from live subtitle body",
+      "status": "pass",
+      "details": {
+        "documentId": "doc_c3c6cf0202f34fd3",
+        "sourceType": "bilibili_ai_subtitle",
+        "segments": 1503
+      }
+    },
+    {
+      "name": "cleaned transcript rendered in side panel",
+      "status": "pass",
+      "details": {
+        "revisionId": "rev_dd2f89fbbe934bb1",
+        "blocks": 78,
+        "sourceType": "bilibili_ai_subtitle",
+        "segments": 1503
+      }
+    },
+    {
+      "name": "summary rendered from real transcript",
+      "status": "pass",
+      "details": {
+        "summaryId": "sum_05cc796575ba41d6",
+        "chapters": 9,
+        "overview": "本期视频是一期超级详细的DPC honeys 零基础完整版教程，我相信很多人都知道AI非常厉害，可真的自己上手的时候，却总觉得用的不如别人，所以本期视频呢我们就",
+        "model": "extractive-v1"
+      }
+    },
+    {
+      "name": "export live transcript as Markdown",
+      "status": "pass",
+      "details": {
+        "filename": "【全网最全】DeepSeek Harness超详细教程！50分钟吃透DSH，让SuperAgent给你干活！-P01-整理稿.md",
+        "bytes": 75487
+      }
+    },
+    {
+      "name": "no unexpected console errors in logged-in side panel",
+      "status": "pass",
+      "details": {
+        "errors": 1,
+        "expected404": 1
+      }
+    }
+  ],
+  "consoleErrors": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://127.0.0.1:8431/v1/documents?bvid=BV1REx46NEc4&cid=43235280963&page=1",
+      "source": "network",
+      "level": "error"
+    }
+  ],
+  "screenshots": [
+    "C:\\Users\\pc\\source\\repos\\bilibili-transcript-assistant\\docs\\screenshots\\login-e2e-tracks.png",
+    "C:\\Users\\pc\\source\\repos\\bilibili-transcript-assistant\\docs\\screenshots\\login-e2e-transcript.png",
+    "C:\\Users\\pc\\source\\repos\\bilibili-transcript-assistant\\docs\\screenshots\\login-e2e-summary.png"
+  ],
+  "downloads": [
+    {
+      "filename": "【全网最全】DeepSeek Harness超详细教程！50分钟吃透DSH，让SuperAgent给你干活！-P01-整理稿.md",
+      "bytes": 75487
+    }
+  ],
+  "engine": {
+    "path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+    "version": "Edg/156.0.4314.58"
+  },
+  "extension": {
+    "id": "akodendgnfmjmijnhepplkmojdedlnfn"
+  },
+  "finishedAt": "2026-11-05T04:48:02.181Z",
+  "durationMs": 26352,
+  "ok": true
+}

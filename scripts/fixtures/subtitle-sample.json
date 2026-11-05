@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "description": "services/task-api 服务级 E2E 使用的合成脱敏字幕样本（约 30 段）。不是真实用户数据；内容与时间戳为合理构造，用于覆盖清洗、术语、矛盾检测、总结与导出契约。",
+    "language": "zh-CN",
+    "sourceType": "bilibili_ai_subtitle",
+    "segmentCount": 30,
+    "durationMs": 141800
+  },
+  "video": {
+    "bvid": "BV1E2eT4sKp",
+    "cid": "900000002",
+    "page": 2,
+    "title": "端到端验收样片：任务服务全链路",
+    "partTitle": "P2 · 任务服务全链路验收",
+    "author": "E2E 测试UP主",
+    "durationMs": 141800,
+    "sourceUrl": "https://www.bilibili.com/video/BV1E2eT4sKp/?p=2"
+  },
+  "source": {
+    "type": "bilibili_ai_subtitle",
+    "trackId": "ai-zh",
+    "language": "zh-CN",
+    "segments": [
+      { "id": "seg_00001", "startMs": 0, "endMs": 4200, "text": "呃，大家好，我们我们开始这一期视频。", "recognizerConfidence": 0.92 },
+      { "id": "seg_00002", "startMs": 4200, "endMs": 8600, "text": "今天聊聊我们给B站文字稿助手做的本地任务服务。", "recognizerConfidence": 0.94 },
+      { "id": "seg_00003", "startMs": 8600, "endMs": 13200, "text": "嗯，这个服务跑在本机，默认只监听127.0.0.1。", "recognizerConfidence": 0.9 },
+      { "id": "seg_00004", "startMs": 13200, "endMs": 17800, "text": "它负责字幕清洗、术语整理和章节总结，不负责抓取字幕。", "recognizerConfidence": 0.95 },
+      { "id": "seg_00005", "startMs": 17800, "endMs": 22400, "text": "那个，我们先看整体结构，然后再说接口协议。", "recognizerConfidence": 0.91 },
+      { "id": "seg_00006", "startMs": 22400, "endMs": 27000, "text": "接口一共分三块：文稿、任务和上传会话。", "recognizerConfidence": 0.93 },
+      { "id": "seg_00007", "startMs": 27000, "endMs": 31800, "text": "文稿接口保存原始稿和每一次修订版本。", "recognizerConfidence": 0.95 },
+      { "id": "seg_00008", "startMs": 31800, "endMs": 36400, "text": "每次清洗都会生成新的版本，原始稿不会丢。", "recognizerConfidence": 0.94 },
+      { "id": "seg_00009", "startMs": 36400, "endMs": 41000, "text": "任务队列支持转写、清洗和总结三种类型。", "recognizerConfidence": 0.93 },
+      { "id": "seg_00010", "startMs": 41000, "endMs": 45800, "text": "工人进程会租用任务，并且定期续租，防止重复执行。", "recognizerConfidence": 0.92 },
+      { "id": "seg_00011", "startMs": 45800, "endMs": 50600, "text": "比如滴普西克这个模型，很多人一开始都会读错。", "recognizerConfidence": 0.88 },
+      { "id": "seg_00012", "startMs": 50600, "endMs": 55400, "text": "我们这里用规则清洗兜底，没配置密钥也能跑。", "recognizerConfidence": 0.94 },
+      { "id": "seg_00013", "startMs": 55400, "endMs": 60200, "text": "配置了文本模型之后，会多出术语发现和一致性检查。", "recognizerConfidence": 0.95 },
+      { "id": "seg_00014", "startMs": 60200, "endMs": 65000, "text": "之前文档里说支持三个模式。", "recognizerConfidence": 0.93 },
+      { "id": "seg_00015", "startMs": 65000, "endMs": 69800, "text": "后来又改成支持四个模式，之前的说法有误。", "recognizerConfidence": 0.91 },
+      { "id": "seg_00016", "startMs": 69800, "endMs": 74600, "text": "这里就属于典型的前后不一致，需要人工确认。", "recognizerConfidence": 0.94 },
+      { "id": "seg_00017", "startMs": 74600, "endMs": 79400, "text": "接着是术语表，用户确认的词会直接替换。", "recognizerConfidence": 0.95 },
+      { "id": "seg_00018", "startMs": 79400, "endMs": 84200, "text": "没有确认的词只给建议，不会偷偷改原文。", "recognizerConfidence": 0.94 },
+      { "id": "seg_00019", "startMs": 84200, "endMs": 89000, "text": "总结分两步：先按章节提取要点，再汇总成全片。", "recognizerConfidence": 0.93 },
+      { "id": "seg_00020", "startMs": 89000, "endMs": 93800, "text": "每个要点都要带真实的字幕片段编号。", "recognizerConfidence": 0.95 },
+      { "id": "seg_00021", "startMs": 93800, "endMs": 98600, "text": "编号校验不过的引用会被直接丢掉。", "recognizerConfidence": 0.93 },
+      { "id": "seg_00022", "startMs": 98600, "endMs": 103400, "text": "导出的时候支持Markdown和JSON两种格式。", "recognizerConfidence": 0.94 },
+      { "id": "seg_00023", "startMs": 103400, "endMs": 108200, "text": "Markdown里的时间戳可以点击，直接跳到B站对应进度。", "recognizerConfidence": 0.92 },
+      { "id": "seg_00024", "startMs": 108200, "endMs": 113000, "text": "这次验收覆盖了鉴权、幂等、分块上传和错误路径。", "recognizerConfidence": 0.95 },
+      { "id": "seg_00025", "startMs": 113000, "endMs": 117800, "text": "嗯，上传音频如果没有配置语音识别，会进入待输入状态。", "recognizerConfidence": 0.9 },
+      { "id": "seg_00026", "startMs": 117800, "endMs": 122600, "text": "状态码和错误码都在接口文档里写清楚了。", "recognizerConfidence": 0.94 },
+      { "id": "seg_00027", "startMs": 122600, "endMs": 127400, "text": "我们统计一下，全流程大约有三十个检查点。", "recognizerConfidence": 0.93 },
+      { "id": "seg_00028", "startMs": 127400, "endMs": 132200, "text": "其中百分之八十是自动化校验，剩下的需要人工抽查。", "recognizerConfidence": 0.92 },
+      { "id": "seg_00029", "startMs": 132200, "endMs": 137000, "text": "最后总结一下，本地优先、原始稿保留、引用可追溯。", "recognizerConfidence": 0.95 },
+      { "id": "seg_00030", "startMs": 137000, "endMs": 141800, "text": "好，这期就到这里，我们下期再见。", "recognizerConfidence": 0.94 }
+    ]
+  }
+}

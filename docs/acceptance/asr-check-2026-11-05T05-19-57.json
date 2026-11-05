@@ -1,0 +1,574 @@
+{
+  "startedAt": "2026-11-05T05:19:57.590Z",
+  "checks": [
+    {
+      "name": "test speech synthesized",
+      "status": "pass",
+      "details": {
+        "audioPath": "C:\\Users\\pc\\AppData\\Local\\Temp\\bta-asr-Aj7Y9J\\speech.wav",
+        "bytes": 437322
+      }
+    },
+    {
+      "name": "local ASR capability",
+      "status": "pass",
+      "details": {
+        "defaultProvider": "faster-whisper",
+        "model": "tiny",
+        "device": "cpu"
+      }
+    },
+    {
+      "name": "local faster-whisper: upload audio in chunks",
+      "status": "pass",
+      "details": {
+        "uploadId": "upl_cffb0e5208d44b0d",
+        "size": 437322,
+        "sha256": "32402a9050ee02355fa90e036c530e50f7c35d88e8f5355e307b3083ea00af41",
+        "chunks": 1
+      }
+    },
+    {
+      "name": "local faster-whisper transcribe job",
+      "status": "pass",
+      "details": {
+        "capabilities": {
+          "asr": {
+            "configured": true,
+            "defaultProvider": "faster-whisper",
+            "providers": [
+              {
+                "id": "faster-whisper",
+                "label": "本机 faster-whisper",
+                "available": true,
+                "detail": "tiny · cpu"
+              },
+              {
+                "id": "dashscope-filetrans",
+                "label": "阿里云百炼 Filetrans",
+                "available": false,
+                "detail": "未配置 DASHSCOPE_API_KEY"
+              },
+              {
+                "id": "openai-compatible",
+                "label": "云 ASR（OpenAI 兼容接口）",
+                "available": false,
+                "detail": "未配置 API Key"
+              }
+            ],
+            "maxDurationMinutes": 5
+          },
+          "llm": {
+            "configured": false,
+            "provider": "local-heuristic",
+            "model": "rule-based",
+            "jsonMode": false
+          }
+        },
+        "job": {
+          "id": "job_ac5750c995b445b1",
+          "status": "SUCCEEDED",
+          "asrProvider": "faster-whisper",
+          "asrModel": "tiny"
+        },
+        "documentId": "doc_de253fe7d8aa4563",
+        "source": {
+          "type": "asr_local",
+          "segmentCount": 2
+        },
+        "revisions": [
+          "original",
+          "cleaned"
+        ],
+        "blocks": 2,
+        "firstBlock": {
+          "id": "block_0001",
+          "sourceSegmentIds": [
+            "seg_00001"
+          ],
+          "text": "大家好,這里是文字稿助手的語音識別測試",
+          "startMs": 0,
+          "endMs": 4760
+        },
+        "lastBlock": {
+          "id": "block_0002",
+          "sourceSegmentIds": [
+            "seg_00002"
+          ],
+          "text": "我們今天驗證音頻上床和專寫的完整流程",
+          "startMs": 4760,
+          "endMs": 9440
+        },
+        "recognizedText": "大家好,這里是文字稿助手的語音識別測試 我們今天驗證音頻上床和專寫的完整流程",
+        "markdownBytes": 688,
+        "elapsedMs": 3256
+      }
+    },
+    {
+      "name": "mock cloud ASR: upload audio in chunks",
+      "status": "pass",
+      "details": {
+        "uploadId": "upl_d8b866170f674935",
+        "size": 437322,
+        "sha256": "32402a9050ee02355fa90e036c530e50f7c35d88e8f5355e307b3083ea00af41",
+        "chunks": 1
+      }
+    },
+    {
+      "name": "cloud ASR adapter transcribe job",
+      "status": "pass",
+      "details": {
+        "capabilities": {
+          "asr": {
+            "configured": true,
+            "defaultProvider": "openai-compatible",
+            "providers": [
+              {
+                "id": "faster-whisper",
+                "label": "本机 faster-whisper",
+                "available": true,
+                "detail": "small · auto"
+              },
+              {
+                "id": "dashscope-filetrans",
+                "label": "阿里云百炼 Filetrans",
+                "available": false,
+                "detail": "未配置 DASHSCOPE_API_KEY"
+              },
+              {
+                "id": "openai-compatible",
+                "label": "云 ASR（OpenAI 兼容接口）",
+                "available": true,
+                "detail": "mock-asr-model"
+              }
+            ],
+            "maxDurationMinutes": 5
+          },
+          "llm": {
+            "configured": false,
+            "provider": "local-heuristic",
+            "model": "rule-based",
+            "jsonMode": false
+          }
+        },
+        "job": {
+          "id": "job_c24b06ed22d14691",
+          "status": "SUCCEEDED",
+          "asrProvider": "openai-compatible",
+          "asrModel": "mock-asr-model"
+        },
+        "documentId": "doc_4823e58b311a40d6",
+        "source": {
+          "type": "asr_cloud",
+          "segmentCount": 1
+        },
+        "revisions": [
+          "original",
+          "cleaned"
+        ],
+        "blocks": 1,
+        "firstBlock": {
+          "id": "block_0001",
+          "sourceSegmentIds": [
+            "seg_00001"
+          ],
+          "text": "大家好，这里是云语音识别适配器的模拟返回。",
+          "startMs": 0,
+          "endMs": 3200
+        },
+        "lastBlock": {
+          "id": "block_0001",
+          "sourceSegmentIds": [
+            "seg_00001"
+          ],
+          "text": "大家好，这里是云语音识别适配器的模拟返回。",
+          "startMs": 0,
+          "endMs": 3200
+        },
+        "recognizedText": "大家好，这里是云语音识别适配器的模拟返回。",
+        "markdownBytes": 633,
+        "mockRequestBytes": 60968
+      }
+    },
+    {
+      "name": "Bailian filetrans capability",
+      "status": "pass",
+      "details": {
+        "defaultProvider": "dashscope-filetrans",
+        "model": "qwen-audio-3.1-asr-flash-filetrans"
+      }
+    },
+    {
+      "name": "Bailian filetrans: upload audio in chunks",
+      "status": "pass",
+      "details": {
+        "uploadId": "upl_8dad4e9c6d2f4de0",
+        "size": 437322,
+        "sha256": "32402a9050ee02355fa90e036c530e50f7c35d88e8f5355e307b3083ea00af41",
+        "chunks": 1
+      }
+    },
+    {
+      "name": "Bailian filetrans transcribe job (real API)",
+      "status": "pass",
+      "details": {
+        "capabilities": {
+          "asr": {
+            "configured": true,
+            "defaultProvider": "dashscope-filetrans",
+            "providers": [
+              {
+                "id": "faster-whisper",
+                "label": "本机 faster-whisper",
+                "available": true,
+                "detail": "small · auto"
+              },
+              {
+                "id": "dashscope-filetrans",
+                "label": "阿里云百炼 Filetrans",
+                "available": true,
+                "detail": "qwen-audio-3.1-asr-flash-filetrans · https://dashscope.aliyuncs.com"
+              },
+              {
+                "id": "openai-compatible",
+                "label": "云 ASR（OpenAI 兼容接口）",
+                "available": false,
+                "detail": "未配置 API Key"
+              }
+            ],
+            "maxDurationMinutes": 5
+          },
+          "llm": {
+            "configured": false,
+            "provider": "local-heuristic",
+            "model": "rule-based",
+            "jsonMode": false
+          }
+        },
+        "job": {
+          "id": "job_61cc215d4b05421d",
+          "status": "SUCCEEDED",
+          "asrProvider": "dashscope-filetrans",
+          "asrModel": "qwen-audio-3.1-asr-flash-filetrans"
+        },
+        "documentId": "doc_644f7831f9af4766",
+        "source": {
+          "type": "asr_cloud",
+          "segmentCount": 2
+        },
+        "revisions": [
+          "original",
+          "cleaned"
+        ],
+        "blocks": 2,
+        "firstBlock": {
+          "id": "block_0001",
+          "sourceSegmentIds": [
+            "seg_00001"
+          ],
+          "text": "大家好，这里是文字稿助手的语音识别测试。",
+          "startMs": 200,
+          "endMs": 4320
+        },
+        "lastBlock": {
+          "id": "block_0002",
+          "sourceSegmentIds": [
+            "seg_00002"
+          ],
+          "text": "我们今天验证音频上传和转写的完整流程。",
+          "startMs": 5200,
+          "endMs": 9320
+        },
+        "recognizedText": "大家好，这里是文字稿助手的语音识别测试。 我们今天验证音频上传和转写的完整流程。",
+        "markdownBytes": 687,
+        "elapsedMs": 5346
+      }
+    }
+  ],
+  "logs": [
+    "[api] [serve] 数据目录: C:\\Users\\pc\\AppData\\Local\\Temp\\bta-asr-local-y64cDM\r\n[serve] 数据库: C:\\Users\\pc\\AppData\\Local\\Temp\\bta-asr-local-y64cDM\\db\\taskapi.sqlite3\r\n[serve] 监听地址: http://127.0.0.1:8565\r\n[serve] 访问令牌: asr-local-1793855997902\r\n[serve] 令牌文件: C:\\Users\\pc\\AppData\\Local\\Temp\\bta-asr-local-y64cDM\\token.txt\r\n[serve] 将上面的 token 粘贴到扩展设置页的「任务服务 Token」后再重试\r\n[serve] LLM  未配置（未检测到 LLM_API_KEY，使用 HeuristicLLM 本地规则清洗/提取式总结；语义清洗与 LLM 章节总结不可用）\r\n[serve] ASR  faster-whisper   可用 · tiny · cpu\r\n[serve] ASR  dashscope-filetrans 不可用 · 未配置 DASHSCOPE_API_KEY\r\n[serve] ASR  openai-compatible 不可用 · 未配置 API Key\r\n[serve] FFmpeg: D:\\Program Files\\ffmpeg-2025-12-31-git-38e89fe502-essentials_build\\bin\\ffmpeg.EXE\r\n[serve] FFprobe: D:\\Program Files\\ffmpeg-2025-12-31-git-38e89fe502-essentials_build\\bin\\ffprobe.EXE\r\n",
+    "[worker] [worker] 数据目录: C:\\Users\\pc\\AppData\\Local\\Temp\\bta-asr-local-y64cDM\r\n[worker] 数据库: C:\\Users\\pc\\AppData\\Local\\Temp\\bta-asr-local-y64cDM\\db\\taskapi.sqlite3\r\n[worker] 访问令牌: asr-local-1793855997902\r\n[worker] 令牌文件: C:\\Users\\pc\\AppData\\Local\\Temp\\bta-asr-local-y64cDM\\token.txt\r\n[worker] 将上面的 token 粘贴到扩展设置页的「任务服务 Token」后再重试\r\n[worker] LLM  未配置（未检测到 LLM_API_KEY，使用 HeuristicLLM 本地规则清洗/提取式总结；语义清洗与 LLM 章节总结不可用）\r\n[worker] ASR  faster-whisper   可用 · tiny · cpu\r\n[worker] ASR  dashscope-filetrans 不可用 · 未配置 DASHSCOPE_API_KEY\r\n",
+    "[worker] [worker] ASR  openai-compatible 不可用 · 未配置 API Key\r\n[worker] FFmpeg: D:\\Program Files\\ffmpeg-2025-12-31-git-38e89fe502-essentials_build\\bin\\ffmpeg.EXE\r\n[worker] FFprobe: D:\\Program Files\\ffmpeg-2025-12-31-git-38e89fe502-essentials_build\\bin\\ffprobe.EXE\r\n",
+    "[worker] [worker] started as DESKTOP-IP7JQ38:46424:b3d5acbf\r\n",
+    "[api] INFO:     Started server process [34836]\r\n",
+    "[api] INFO:     Waiting for application startup.\r\n",
+    "[api] INFO:     Application startup complete.\r\n",
+    "[api] INFO:     Uvicorn running on http://127.0.0.1:8565 (Press CTRL+C to quit)\r\n",
+    "[api] INFO:     127.0.0.1:14251 - \"GET /health HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:14252 - \"GET /v1/capabilities HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:14251 - \"GET /v1/capabilities HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:14251 - \"POST /v1/uploads HTTP/1.1\" 201 Created\r\n",
+    "[api] INFO:     127.0.0.1:14252 - \"PUT /v1/uploads/upl_cffb0e5208d44b0d/chunks/0 HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:14251 - \"POST /v1/uploads/upl_cffb0e5208d44b0d/complete HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:14252 - \"POST /v1/jobs HTTP/1.1\" 201 Created\r\n",
+    "[api] INFO:     127.0.0.1:14251 - \"GET /v1/jobs/job_ac5750c995b445b1 HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:14251 - \"GET /v1/jobs/job_ac5750c995b445b1 HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:14251 - \"GET /v1/jobs/job_ac5750c995b445b1 HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:14251 - \"GET /v1/jobs/job_ac5750c995b445b1 HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:14252 - \"GET /v1/documents/doc_de253fe7d8aa4563 HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:14251 - \"GET /v1/documents/doc_de253fe7d8aa4563/revisions/rev_2c7488963927460e HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:14252 - \"GET /v1/documents/doc_de253fe7d8aa4563/export?includeSummary=false&includeTerms=false HTTP/1.1\" 200 OK\r\n",
+    "[api] [serve] 数据目录: C:\\Users\\pc\\AppData\\Local\\Temp\\bta-asr-cloud-6sB3My\r\n[serve] 数据库: C:\\Users\\pc\\AppData\\Local\\Temp\\bta-asr-cloud-6sB3My\\db\\taskapi.sqlite3\r\n[serve] 监听地址: http://127.0.0.1:8814\r\n[serve] 访问令牌: asr-cloud-1793856002311\r\n[serve] 令牌文件: C:\\Users\\pc\\AppData\\Local\\Temp\\bta-asr-cloud-6sB3My\\token.txt\r\n[serve] 将上面的 token 粘贴到扩展设置页的「任务服务 Token」后再重试\r\n[serve] LLM  未配置（未检测到 LLM_API_KEY，使用 HeuristicLLM 本地规则清洗/提取式总结；语义清洗与 LLM 章节总结不可用）\r\n[serve] ASR  faster-whisper   可用 · small · auto\r\n[serve] ASR  dashscope-filetrans 不可用 · 未配置 DASHSCOPE_API_KEY\r\n[serve] ASR  openai-compatible 可用 · mock-asr-model\r\n[serve] FFmpeg: D:\\Program Files\\ffmpeg-2025-12-31-git-38e89fe502-essentials_build\\bin\\ffmpeg.EXE\r\n[serve] FFprobe: D:\\Program Files\\ffmpeg-2025-12-31-git-38e89fe502-essentials_build\\bin\\ffprobe.EXE\r\n",
+    "[worker] [worker] 数据目录: C:\\Users\\pc\\AppData\\Local\\Temp\\bta-asr-cloud-6sB3My\r\n[worker] 数据库: C:\\Users\\pc\\AppData\\Local\\Temp\\bta-asr-cloud-6sB3My\\db\\taskapi.sqlite3\r\n[worker] 访问令牌: asr-cloud-1793856002311\r\n[worker] 令牌文件: C:\\Users\\pc\\AppData\\Local\\Temp\\bta-asr-cloud-6sB3My\\token.txt\r\n[worker] 将上面的 token 粘贴到扩展设置页的「任务服务 Token」后再重试\r\n[worker] LLM  未配置（未检测到 LLM_API_KEY，使用 HeuristicLLM 本地规则清洗/提取式总结；语义清洗与 LLM 章节总结不可用）\r\n[worker] ASR  faster-whisper   可用 · small · auto\r\n[worker] ASR  dashscope-filetrans 不可用 · 未配置 DASHSCOPE_API_KEY",
+    "[worker] \r\n[worker] ASR  openai-compatible 可用 · mock-asr-model\r\n[worker] FFmpeg: D:\\Program Files\\ffmpeg-2025-12-31-git-38e89fe502-essentials_build\\bin\\ffmpeg.EXE\r\n[worker] FFprobe: D:\\Program Files\\ffmpeg-2025-12-31-git-38e89fe502-essentials_build\\bin\\ffprobe.EXE\r\n",
+    "[worker] [worker] started as DESKTOP-IP7JQ38:27740:bf7053ca\r\n",
+    "[api] INFO:     Started server process [36048]\r\n",
+    "[api] INFO:     Waiting for application startup.\r\n",
+    "[api] INFO:     Application startup complete.\r\n",
+    "[api] INFO:     Uvicorn running on http://127.0.0.1:8814 (Press CTRL+C to quit)\r\n",
+    "[api] INFO:     127.0.0.1:6837 - \"GET /health HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:6838 - \"GET /v1/capabilities HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:6837 - \"POST /v1/uploads HTTP/1.1\" 201 Created\r\n",
+    "[api] INFO:     127.0.0.1:6838 - \"PUT /v1/uploads/upl_d8b866170f674935/chunks/0 HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:6837 - \"POST /v1/uploads/upl_d8b866170f674935/complete HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:6838 - \"POST /v1/jobs HTTP/1.1\" 201 Created\r\n",
+    "[api] INFO:     127.0.0.1:6837 - \"GET /v1/jobs/job_c24b06ed22d14691 HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:6837 - \"GET /v1/jobs/job_c24b06ed22d14691 HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:6837 - \"GET /v1/jobs/job_c24b06ed22d14691 HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:6838 - \"GET /v1/documents/doc_4823e58b311a40d6 HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:6837 - \"GET /v1/documents/doc_4823e58b311a40d6/revisions/rev_f4b0bb3e2e0c49ff HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:6838 - \"GET /v1/documents/doc_4823e58b311a40d6/export?includeSummary=false&includeTerms=false HTTP/1.1\" 200 OK\r\n",
+    "[api] [serve] 数据目录: C:\\Users\\pc\\AppData\\Local\\Temp\\bta-asr-dashscope-qjNcwV\r\n[serve] 数据库: C:\\Users\\pc\\AppData\\Local\\Temp\\bta-asr-dashscope-qjNcwV\\db\\taskapi.sqlite3\r\n[serve] 监听地址: http://127.0.0.1:8685\r\n[serve] 访问令牌: asr-dashscope-1793856005672\r\n[serve] 令牌文件: C:\\Users\\pc\\AppData\\Local\\Temp\\bta-asr-dashscope-qjNcwV\\token.txt\r\n[serve] 将上面的 token 粘贴到扩展设置页的「任务服务 Token」后再重试\r\n[serve] LLM  未配置（未检测到 LLM_API_KEY，使用 HeuristicLLM 本地规则清洗/提取式总结；语义清洗与 LLM 章节总结不可用）\r\n[serve] ASR  faster-whisper   可用 · small · auto\r\n[serve] ASR  dashscope-filetrans 可用 · qwen-audio-3.1-asr-flash-filetrans · https://dashscope.aliyuncs.com\r\n[serve] ASR  openai-compatible 不可用 · 未配置 API Key\r\n[serve] FFmpeg: D:\\Program Files\\ffmpeg-2025-12-31-git-38e89fe502-essentials_build\\bin\\ffmpeg.EXE\r\n[serve] FFprobe: D:\\Program Files\\ffmpeg-2025-12-31-git-38e89fe502-essentials_build\\bin\\ffprobe.EXE\r\n",
+    "[worker] [worker] 数据目录: C:\\Users\\pc\\AppData\\Local\\Temp\\bta-asr-dashscope-qjNcwV\r\n[worker] 数据库: C:\\Users\\pc\\AppData\\Local\\Temp\\bta-asr-dashscope-qjNcwV\\db\\taskapi.sqlite3\r\n[worker] 访问令牌: asr-dashscope-1793856005672\r\n[worker] 令牌文件: C:\\Users\\pc\\AppData\\Local\\Temp\\bta-asr-dashscope-qjNcwV\\token.txt\r\n[worker] 将上面的 token 粘贴到扩展设置页的「任务服务 Token」后再重试\r\n[worker] LLM  未配置（未检测到 LLM_API_KEY，使用 HeuristicLLM 本地规则清洗/提取式总结；语义清洗与 LLM 章节总结不可用）\r\n[worker] ASR  faster-whisper   可用 · small · auto\r\n[worker] ASR  dashscope-filetrans 可用 · qwen-audio-3.1-asr-flash-filetrans · https://dashscope.aliyuncs.com\r\n[worker] ASR  openai-compatible 不可用 · 未配置 API Key\r\n[worker] FFmpeg: D:\\Program Files\\ffmpeg-2025-12-31-git-38e89fe502-essentials_build\\bin\\ffmpeg.EXE\r\n[worker] FFprobe: D:\\Program Files\\ffmpeg-2025-12-31-git-38e89fe502-essentials_build\\bin\\ffprobe.EXE\r\n",
+    "[worker] [worker] started as DESKTOP-IP7JQ38:40932:3bbc8339\r\n",
+    "[api] INFO:     Started server process [18700]\r\n",
+    "[api] INFO:     Waiting for application startup.\r\n",
+    "[api] INFO:     Application startup complete.\r\n",
+    "[api] INFO:     Uvicorn running on http://127.0.0.1:8685 (Press CTRL+C to quit)\r\n",
+    "[api] INFO:     127.0.0.1:6844 - \"GET /health HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:6845 - \"GET /v1/capabilities HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:6844 - \"GET /v1/capabilities HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:6844 - \"POST /v1/uploads HTTP/1.1\" 201 Created\r\n",
+    "[api] INFO:     127.0.0.1:6845 - \"PUT /v1/uploads/upl_8dad4e9c6d2f4de0/chunks/0 HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:6844 - \"POST /v1/uploads/upl_8dad4e9c6d2f4de0/complete HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:6845 - \"POST /v1/jobs HTTP/1.1\" 201 Created\r\n",
+    "[api] INFO:     127.0.0.1:6844 - \"GET /v1/jobs/job_61cc215d4b05421d HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:6844 - \"GET /v1/jobs/job_61cc215d4b05421d HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:6844 - \"GET /v1/jobs/job_61cc215d4b05421d HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:6844 - \"GET /v1/jobs/job_61cc215d4b05421d HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:6844 - \"GET /v1/jobs/job_61cc215d4b05421d HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:6844 - \"GET /v1/jobs/job_61cc215d4b05421d HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:4819 - \"GET /v1/documents/doc_644f7831f9af4766 HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:6844 - \"GET /v1/documents/doc_644f7831f9af4766/revisions/rev_fad2badf467746e9 HTTP/1.1\" 200 OK\r\n",
+    "[api] INFO:     127.0.0.1:4819 - \"GET /v1/documents/doc_644f7831f9af4766/export?includeSummary=false&includeTerms=false HTTP/1.1\" 200 OK\r\n"
+  ],
+  "local": {
+    "capabilities": {
+      "asr": {
+        "configured": true,
+        "defaultProvider": "faster-whisper",
+        "providers": [
+          {
+            "id": "faster-whisper",
+            "label": "本机 faster-whisper",
+            "available": true,
+            "detail": "tiny · cpu"
+          },
+          {
+            "id": "dashscope-filetrans",
+            "label": "阿里云百炼 Filetrans",
+            "available": false,
+            "detail": "未配置 DASHSCOPE_API_KEY"
+          },
+          {
+            "id": "openai-compatible",
+            "label": "云 ASR（OpenAI 兼容接口）",
+            "available": false,
+            "detail": "未配置 API Key"
+          }
+        ],
+        "maxDurationMinutes": 5
+      },
+      "llm": {
+        "configured": false,
+        "provider": "local-heuristic",
+        "model": "rule-based",
+        "jsonMode": false
+      }
+    },
+    "job": {
+      "id": "job_ac5750c995b445b1",
+      "status": "SUCCEEDED",
+      "asrProvider": "faster-whisper",
+      "asrModel": "tiny"
+    },
+    "documentId": "doc_de253fe7d8aa4563",
+    "source": {
+      "type": "asr_local",
+      "segmentCount": 2
+    },
+    "revisions": [
+      "original",
+      "cleaned"
+    ],
+    "blocks": 2,
+    "firstBlock": {
+      "id": "block_0001",
+      "sourceSegmentIds": [
+        "seg_00001"
+      ],
+      "text": "大家好,這里是文字稿助手的語音識別測試",
+      "startMs": 0,
+      "endMs": 4760
+    },
+    "lastBlock": {
+      "id": "block_0002",
+      "sourceSegmentIds": [
+        "seg_00002"
+      ],
+      "text": "我們今天驗證音頻上床和專寫的完整流程",
+      "startMs": 4760,
+      "endMs": 9440
+    },
+    "recognizedText": "大家好,這里是文字稿助手的語音識別測試 我們今天驗證音頻上床和專寫的完整流程",
+    "markdownBytes": 688,
+    "elapsedMs": 3256
+  },
+  "mockCloudRequestBytes": 60968,
+  "cloud": {
+    "capabilities": {
+      "asr": {
+        "configured": true,
+        "defaultProvider": "openai-compatible",
+        "providers": [
+          {
+            "id": "faster-whisper",
+            "label": "本机 faster-whisper",
+            "available": true,
+            "detail": "small · auto"
+          },
+          {
+            "id": "dashscope-filetrans",
+            "label": "阿里云百炼 Filetrans",
+            "available": false,
+            "detail": "未配置 DASHSCOPE_API_KEY"
+          },
+          {
+            "id": "openai-compatible",
+            "label": "云 ASR（OpenAI 兼容接口）",
+            "available": true,
+            "detail": "mock-asr-model"
+          }
+        ],
+        "maxDurationMinutes": 5
+      },
+      "llm": {
+        "configured": false,
+        "provider": "local-heuristic",
+        "model": "rule-based",
+        "jsonMode": false
+      }
+    },
+    "job": {
+      "id": "job_c24b06ed22d14691",
+      "status": "SUCCEEDED",
+      "asrProvider": "openai-compatible",
+      "asrModel": "mock-asr-model"
+    },
+    "documentId": "doc_4823e58b311a40d6",
+    "source": {
+      "type": "asr_cloud",
+      "segmentCount": 1
+    },
+    "revisions": [
+      "original",
+      "cleaned"
+    ],
+    "blocks": 1,
+    "firstBlock": {
+      "id": "block_0001",
+      "sourceSegmentIds": [
+        "seg_00001"
+      ],
+      "text": "大家好，这里是云语音识别适配器的模拟返回。",
+      "startMs": 0,
+      "endMs": 3200
+    },
+    "lastBlock": {
+      "id": "block_0001",
+      "sourceSegmentIds": [
+        "seg_00001"
+      ],
+      "text": "大家好，这里是云语音识别适配器的模拟返回。",
+      "startMs": 0,
+      "endMs": 3200
+    },
+    "recognizedText": "大家好，这里是云语音识别适配器的模拟返回。",
+    "markdownBytes": 633
+  },
+  "dashscope": {
+    "capabilities": {
+      "asr": {
+        "configured": true,
+        "defaultProvider": "dashscope-filetrans",
+        "providers": [
+          {
+            "id": "faster-whisper",
+            "label": "本机 faster-whisper",
+            "available": true,
+            "detail": "small · auto"
+          },
+          {
+            "id": "dashscope-filetrans",
+            "label": "阿里云百炼 Filetrans",
+            "available": true,
+            "detail": "qwen-audio-3.1-asr-flash-filetrans · https://dashscope.aliyuncs.com"
+          },
+          {
+            "id": "openai-compatible",
+            "label": "云 ASR（OpenAI 兼容接口）",
+            "available": false,
+            "detail": "未配置 API Key"
+          }
+        ],
+        "maxDurationMinutes": 5
+      },
+      "llm": {
+        "configured": false,
+        "provider": "local-heuristic",
+        "model": "rule-based",
+        "jsonMode": false
+      }
+    },
+    "job": {
+      "id": "job_61cc215d4b05421d",
+      "status": "SUCCEEDED",
+      "asrProvider": "dashscope-filetrans",
+      "asrModel": "qwen-audio-3.1-asr-flash-filetrans"
+    },
+    "documentId": "doc_644f7831f9af4766",
+    "source": {
+      "type": "asr_cloud",
+      "segmentCount": 2
+    },
+    "revisions": [
+      "original",
+      "cleaned"
+    ],
+    "blocks": 2,
+    "firstBlock": {
+      "id": "block_0001",
+      "sourceSegmentIds": [
+        "seg_00001"
+      ],
+      "text": "大家好，这里是文字稿助手的语音识别测试。",
+      "startMs": 200,
+      "endMs": 4320
+    },
+    "lastBlock": {
+      "id": "block_0002",
+      "sourceSegmentIds": [
+        "seg_00002"
+      ],
+      "text": "我们今天验证音频上传和转写的完整流程。",
+      "startMs": 5200,
+      "endMs": 9320
+    },
+    "recognizedText": "大家好，这里是文字稿助手的语音识别测试。 我们今天验证音频上传和转写的完整流程。",
+    "markdownBytes": 687,
+    "elapsedMs": 5346
+  },
+  "finishedAt": "2026-11-05T05:20:12.146Z",
+  "durationMs": 14556,
+  "ok": true
+}

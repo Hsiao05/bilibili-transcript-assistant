@@ -1,0 +1,299 @@
+{
+  "startedAt": "2026-11-05T05:28:02.777Z",
+  "checks": [
+    {
+      "name": "real LLM configured",
+      "status": "pass",
+      "details": {
+        "provider": "openai-compatible",
+        "model": "deepseek-v4.1-flash"
+      }
+    },
+    {
+      "name": "document created from transcript",
+      "status": "pass",
+      "details": {
+        "documentId": "doc_d37b9a6ddc1b455e",
+        "segments": 400,
+        "chars": 4508
+      }
+    },
+    {
+      "name": "real LLM clean job succeeded",
+      "status": "pass",
+      "details": {
+        "jobId": "job_641aa7e52e8e42d4",
+        "status": "SUCCEEDED",
+        "elapsedMs": 481981,
+        "stats": {
+          "segments": 400,
+          "blocks": 21,
+          "charsIn": 4542,
+          "charsOut": 4921,
+          "appliedEdits": 0,
+          "pendingCorrections": 0,
+          "terms": 0,
+          "llm": "deepseek-v4.1-flash",
+          "notes": [
+            "术语发现第 1 块失败：模型输出被截断，请缩小处理块或调大输出上限",
+            "清洗第 1 块失败，已保留规则清洗结果：模型输出被截断，请缩小处理块或调大输出上限",
+            "清洗第 2 块失败，已保留规则清洗结果：模型输出被截断，请缩小处理块或调大输出上限",
+            "一致性检查第 1 块失败：模型输出被截断，请缩小处理块或调大输出上限"
+          ]
+        },
+        "blocks": 21,
+        "corrections": 0,
+        "pendingCorrections": 0,
+        "appliedEdits": 0,
+        "terms": 0,
+        "pipelineVersion": "clean-v1:standard",
+        "createdBy": "model"
+      }
+    },
+    {
+      "name": "every source segment covered by cleaned blocks",
+      "status": "pass",
+      "details": {
+        "sourceSegments": 400,
+        "coveredSegments": 400,
+        "missingSegments": 0,
+        "missingSample": []
+      }
+    },
+    {
+      "name": "cleaned blocks: non-empty + monotonic timestamps",
+      "status": "pass",
+      "details": {
+        "blocks": 21
+      }
+    },
+    {
+      "name": "applied edits still match parent revision text",
+      "status": "pass",
+      "details": {
+        "edits": 0,
+        "invalid": 0
+      }
+    },
+    {
+      "name": "numbers preserved (heuristic)",
+      "status": "pass",
+      "details": {
+        "source": 1,
+        "cleaned": 1,
+        "lost": []
+      }
+    },
+    {
+      "name": "negation markers preserved (heuristic)",
+      "status": "pass",
+      "details": {
+        "source": 40,
+        "cleaned": 40,
+        "ratio": 1
+      }
+    },
+    {
+      "name": "real LLM summarize job succeeded",
+      "status": "pass",
+      "details": {
+        "jobId": "job_938fa429bcb34932",
+        "status": "SUCCEEDED",
+        "elapsedMs": 33944,
+        "model": "deepseek-v4.1-flash",
+        "overviewChars": 214,
+        "chapters": 7,
+        "viewpoints": 8,
+        "keyNumbers": 5,
+        "conclusion": true,
+        "markdownBytes": 21356
+      }
+    },
+    {
+      "name": "summary citations all reference real segments",
+      "status": "pass",
+      "details": {
+        "cited": 63,
+        "invalid": 0,
+        "invalidSample": []
+      }
+    },
+    {
+      "name": "summary has overview, chapters and timestamp links",
+      "status": "pass",
+      "details": {
+        "overview": 214,
+        "chapters": 7
+      }
+    }
+  ],
+  "samples": {
+    "edits": [],
+    "summary": {
+      "overview": "本片为零基础入门教程，围绕 DeepSeek Harness 讲清它是什么、模型与 Harness 的分工，以及安装、登录、充值与 API 配置的完整起步流程。视频强调 Harness 是给大模型套上工具的工作环境，能力取决于模式、权限与指令的配合，而非单纯换更强模型。随后演示 Windows 与 macOS 安装、账号登录、在设置中配置模型密钥，并介绍三栏工作界面与插件入口，为后续讲解模式、权限、指令、插件四套内容做铺垫。",
+      "chapters": [
+        {
+          "title": "课程目标与 Harness 概念",
+          "startMs": 0,
+          "points": [
+            "视频目标是从零开始逐步讲解 DeepSeek Harness：从下载安装、完成第一个任务，到各种功能和插件，并结合实际操作演示。",
+            "名称拆解：DeepSeek 对应深度求索公司及大模型系列，Harness 原义为马具。"
+          ]
+        },
+        {
+          "title": "Harness 与网页版的区别",
+          "startMs": 108660,
+          "points": [
+            "网页版比作聊天窗口、Harness 比作干活现场。",
+            "Harness 可直接打开并修改文件、翻本地文件夹和上网搜索。"
+          ]
+        },
+        {
+          "title": "Harness 定义与四套核心内容",
+          "startMs": 155640,
+          "points": [
+            "Harness 是把大模型套上工具的装置，让模型能在电脑上读文件、写文件、跑命令、装插件、定时干活。",
+            "模式、指令、工作区和权限、插件四样内容都会讲解和演示。"
+          ]
+        },
+        {
+          "title": "常见误区与插件理念",
+          "startMs": 208820,
+          "points": [
+            "误区：模型越强，Harness 的能力不完全就越强；选对模式、给对权限、下对指令往往比换更贵的模型更管用。",
+            "特征是“一切皆插件”，从核心循环到界面很多部分都可做成可拓展插件。"
+          ]
+        },
+        {
+          "title": "安装与登录",
+          "startMs": 310120,
+          "points": [
+            "从官网下载对应安装包，覆盖 Windows 和 macOS。",
+            "Windows 一路下一步并建议安装到 D 盘；macOS 将图标拖入 Applications。"
+          ]
+        }
+      ],
+      "conclusion": "本片完成了从概念到可用环境的起步：理解模型与 Harness 的分工、装好并登录、配好 API 密钥，并认识三栏界面与插件入口，为后续深入模式、权限、指令、插件打下基础。",
+      "coverage": {
+        "sources": [
+          "B站字幕"
+        ],
+        "gaps": [
+          "字幕未覆盖具体安装包下载页面、设置界面、插件列表等画面细节",
+          "未包含视频中可能出现的演示操作与界面变化",
+          "未说明演示中的报错与排错过程"
+        ],
+        "uncertainties": [
+          "字幕中的产品名音译和拼写不一致，如“DPC honeys”“deep sick哈尼斯”“DEPSC哈尼斯”“STYOHHONEYS”等，疑为同一产品名称的识别误差，具体写法需以实际产品为准。",
+          "“鸡哥”在原材料中未说明具体指谁或何种角色，只出现在测试提示词中。",
+          "字幕多次出现“绘画”，结合上下文可能指“会话”或“历史会话”，但无法仅凭字幕确定。"
+        ]
+      }
+    },
+    "blocks": [
+      {
+        "source": "本期视频是一期超级详细的DPC honeys零基础完整版教程我相信很多人都知道AI非常厉害可真的自己上手的时候却总觉得用的不如别人所以本期视频呢我们就从零开始一步一步带大家把deep sick哈尼斯用起来从下载安装到完成第一个任务再到后面的各种功能和插件我都会结合实际操作带着大家一起做当然了这期视频制作真的非常不易希望各位观众老爷可以给个三连支持一下好了我们",
+        "cleaned": "本期视频是一期超级详细的DPC honeys 零基础完整版教程，我相信很多人都知道AI非常厉害，可真的自己上手的时候，却总觉得用的不如别人，所以本期视频呢我们就从零开始，一步一步带大家把deep sick哈尼斯用起来，从下载安装到完成第一个任务，再到后面的各种功能和插件，我都会结合实际操作带着大家一起做，当然了，这期视频制作真的非常不易，希望各位观众老爷可以"
+      },
+      {
+        "source": "deep sic hyy啊这个名字看着是很长的我们先把它拆开看deep sic呢大家都很熟唉中文名呢是深度求索是我们国家的一个人工智能公司以及开发大员模型系列的名称那honeys是什么呢这个词啊其实好多人不认识我第一次看的时候也愣了一下H义词翻译成中文呢叫做马具就是套在马身上的那一整套东西像什么缰绳啊绝子呀套包啊这些等等等等但是注意啊它既不是马本身也不是马后",
+        "cleaned": "deep sic hyy啊，这个名字看着是很长的，我们先把它拆开看 deep sic呢大家都很熟，唉中文名呢是深度求索，是我们国家的一个人工智能公司，以及开发大员模型系列的名称，那honeys是什么呢，这个词啊，其实好多人不认识，我第一次看的时候也愣了一下 H义词翻译成中文呢叫做马具，就是套在马身上的那一整套东西，像什么缰绳啊，绝子呀，套包啊这些等等等等，但"
+      },
+      {
+        "source": "模型负责理解我们的要求分析问题再决定下一步做什么就像一匹强健的马驹而哈尼斯呢则是围绕着模型搭建起来的一套工作环境模型要读哪个文件能调用哪些工具做完之后下一步该怎么样继续都需要这个哈里斯这套环境配合就像一间设施齐全的车马间那这个时候大家有可能会冒出一个问题就是我们已经有了DEPSC的网页版为什么还要装一个DEPSICK哈尼斯那一句话呀可以回答大家就是网页版其实",
+        "cleaned": "模型负责理解我们的要求，分析问题再决定下一步做什么，就像一匹强健的马驹，而哈尼斯呢则是围绕着模型搭建起来的，一套工作环境，模型要读哪个文件，能调用哪些工具，做完之后，下一步该怎么样继续，都需要这个哈里斯这套环境配合，就像一间设施齐全的车马间，那这个时候大家有可能会冒出一个问题，就是我们已经有了DEPSC的网页版，为什么还要装一个DEPSICK 哈尼斯那一句话"
+      },
+      {
+        "source": "你一定遇见过了那第一个呢就是我们改文件网页版里我们只能把文件上传给他或者需要把修改的内容复制给他改完之后呢我们再粘回去那DEVC和honeys里他就可以直接帮我们打开那个文件去修改第二个呢是查资料像网页版里啊我们一定得把资料一段一段的粘给他那DEPC和HANS里面呢它可以自己去翻我们本地的文件夹然后自己去上网搜那第三个呢就是批量像100个文件如果要改同一个地",
+        "cleaned": "你一定遇见过了，那第一个呢就是我们改文件，网页版里我们只能把文件上传给他，或者需要把修改的内容复制给他，改完之后呢，我们再粘回去，那DEVC和honeys里，他就可以直接帮我们打开那个文件去修改，第二个呢是查资料，像网页版里啊，我们一定得把资料一段一段的粘给他，那DEPC和HANS里面呢，它可以自己去翻我们本地的文件夹，然后自己去上网搜，那第三个呢就是批量，"
+      },
+      {
+        "source": "然后他一次性改了那给它做一个定义呢就是DEPSICK哈尼斯是一套把大模型套上工具的装置它让我们的模型不只是回答问题也能在我们的电脑上读文件写文件跑命令装插件定时干活啊我知道这句话还是有点抽象那我们上个比喻如果说模型是马的那H尼斯就是能让这匹马安全有效干活的整套系统那具体来说呢hex中的模式就可以决定这匹马怎么干活是让他一步一步慢慢的拉车还是让他一步跑完再回来",
+        "cleaned": "然后他一次性改了，那给它做一个定义呢，就是DEPSICK 哈尼斯是一套把大模型套上工具的装置，它让我们的模型不只是回答问题，也能在我们的电脑上读文件，写文件，跑命令，装插件，定时干活啊，我知道这句话还是有点抽象，那我们上个比喻，如果说模型是马的，那H尼斯就是能让这匹马安全有效，干活的整套系统，那具体来说呢 hex中的模式就可以决定这匹马怎么干活，是让他一步一"
+      }
+    ]
+  },
+  "metrics": {
+    "clean": {
+      "jobId": "job_641aa7e52e8e42d4",
+      "status": "SUCCEEDED",
+      "elapsedMs": 481981,
+      "stats": {
+        "segments": 400,
+        "blocks": 21,
+        "charsIn": 4542,
+        "charsOut": 4921,
+        "appliedEdits": 0,
+        "pendingCorrections": 0,
+        "terms": 0,
+        "llm": "deepseek-v4.1-flash",
+        "notes": [
+          "术语发现第 1 块失败：模型输出被截断，请缩小处理块或调大输出上限",
+          "清洗第 1 块失败，已保留规则清洗结果：模型输出被截断，请缩小处理块或调大输出上限",
+          "清洗第 2 块失败，已保留规则清洗结果：模型输出被截断，请缩小处理块或调大输出上限",
+          "一致性检查第 1 块失败：模型输出被截断，请缩小处理块或调大输出上限"
+        ]
+      },
+      "blocks": 21,
+      "corrections": 0,
+      "pendingCorrections": 0,
+      "appliedEdits": 0,
+      "terms": 0,
+      "pipelineVersion": "clean-v1:standard",
+      "createdBy": "model"
+    },
+    "coverage": {
+      "sourceSegments": 400,
+      "coveredSegments": 400,
+      "missingSegments": 0,
+      "missingSample": []
+    },
+    "text": {
+      "sourceChars": 4508,
+      "cleanedChars": 4863,
+      "charRatio": 1.079,
+      "numbers": {
+        "source": 1,
+        "cleaned": 1,
+        "lost": []
+      },
+      "negations": {
+        "source": 40,
+        "cleaned": 40,
+        "ratio": 1
+      }
+    },
+    "summary": {
+      "jobId": "job_938fa429bcb34932",
+      "status": "SUCCEEDED",
+      "elapsedMs": 33944,
+      "model": "deepseek-v4.1-flash",
+      "overviewChars": 214,
+      "chapters": 7,
+      "viewpoints": 8,
+      "keyNumbers": 5,
+      "conclusion": true,
+      "markdownBytes": 21356
+    },
+    "citations": {
+      "cited": 63,
+      "invalid": 0,
+      "invalidSample": []
+    }
+  },
+  "llm": {
+    "configured": true,
+    "provider": "openai-compatible",
+    "model": "deepseek-v4.1-flash",
+    "jsonMode": true
+  },
+  "transcript": {
+    "path": "C:\\Users\\pc\\AppData\\Local\\Temp\\bta-llm-transcript.json",
+    "video": "【全网最全】DeepSeek Harness超详细教程！50分钟吃透DSH，让SuperAgent给你干活！",
+    "segments": 400,
+    "chars": 4508
+  },
+  "finishedAt": "2026-11-05T05:36:39.311Z",
+  "durationMs": 515984,
+  "ok": true
+}

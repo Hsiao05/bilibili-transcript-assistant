@@ -1,0 +1,26 @@
+# 依赖与构建产物
+node_modules/
+apps/extension/dist/
+services/task-api/.venv/
+
+# Python 缓存
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# 本地运行数据与密钥
+services/task-api/data/
+services/task-api/.env
+*.sqlite3
+*token.txt
+
+# 编辑器/系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# release artifacts
+release/

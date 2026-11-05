@@ -1,0 +1,132 @@
+{
+  "startedAt": "2026-11-05T04:34:46.939Z",
+  "samples": {
+    "single": "BV1REx46NEc4",
+    "multi": {
+      "bvid": "BV1XwxU6xEnL",
+      "page": 2
+    }
+  },
+  "subtitleUrlProvided": true,
+  "checks": [
+    {
+      "name": "video metadata (view)",
+      "status": "pass",
+      "details": {
+        "title": "【2026全球总决赛】11月4日 TES vs IG",
+        "pages": 8
+      }
+    },
+    {
+      "name": "分P -> cid mapping (p2)",
+      "status": "pass",
+      "details": {
+        "cid": "43307110047",
+        "partTitle": "第二局",
+        "durationMs": 3822000
+      }
+    },
+    {
+      "name": "WBI signing",
+      "status": "pass",
+      "details": {
+        "wts": "1793853288"
+      }
+    },
+    {
+      "name": "player API anonymous: subtitle tracks are login-gated",
+      "status": "pass",
+      "details": {
+        "needLoginSubtitle": true,
+        "asrLanguage": "cmn",
+        "tracks": 0
+      }
+    },
+    {
+      "name": "normalizeTracks: logged-in payload (8 AI tracks)",
+      "status": "pass",
+      "details": {
+        "count": 8,
+        "order": [
+          "ai-zh",
+          "ai-ja",
+          "ai-id",
+          "ai-en",
+          "ai-es",
+          "ai-pt",
+          "ai-ar",
+          "ai-th"
+        ],
+        "first": "中文"
+      }
+    },
+    {
+      "name": "normalizeTracks: filtering / dedupe / type classification",
+      "status": "pass",
+      "details": [
+        {
+          "lan": "zh-CN",
+          "type": "human",
+          "url": "https://aisubtitle.hdslb.com/human.json"
+        },
+        {
+          "lan": "",
+          "type": "unknown",
+          "url": "https://aisubtitle.hdslb.com/unknown.json"
+        }
+      ]
+    },
+    {
+      "name": "independent audio track (playurl)",
+      "status": "pass",
+      "details": {
+        "id": "30216",
+        "bandwidth": 129675,
+        "mimeType": "audio/mp4",
+        "durationMs": 3822000,
+        "sizeMb": 59
+      }
+    },
+    {
+      "name": "audio CDN requires Referer (DNR is load-bearing)",
+      "status": "pass",
+      "details": {
+        "withoutReferer": 403,
+        "withReferer": {
+          "status": 206,
+          "contentRange": "bytes 0-1023/61945254",
+          "contentType": "application/octet-stream"
+        }
+      }
+    },
+    {
+      "name": "subtitle body -> normalized segments",
+      "status": "pass",
+      "details": {
+        "count": 1503,
+        "first": {
+          "from": 0,
+          "to": 2.88,
+          "content": "本期视频是一期超级详细的DPC honeys"
+        },
+        "last": {
+          "from": 3039.34,
+          "to": 3040.48,
+          "content": "我们下期见"
+        }
+      }
+    },
+    {
+      "name": "subtitle URL domain whitelist",
+      "status": "pass",
+      "details": {
+        "name": "BiliError",
+        "kind": "invalid_url",
+        "code": "invalid_url",
+        "message": "字幕地址不在允许的域名内"
+      }
+    }
+  ],
+  "finishedAt": "2026-11-05T04:34:48.688Z",
+  "ok": true
+}

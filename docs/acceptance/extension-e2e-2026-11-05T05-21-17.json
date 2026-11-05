@@ -1,0 +1,175 @@
+{
+  "startedAt": "2026-11-05T05:21:17.236Z",
+  "service": {
+    "port": 8882,
+    "dataDir": "C:\\Users\\pc\\AppData\\Local\\Temp\\bta-e2e-service-QVKHKa",
+    "token": "***",
+    "logsTail": [],
+    "capabilities": {
+      "apiVersion": "v1",
+      "llm": {
+        "configured": false,
+        "provider": "local-heuristic",
+        "model": "rule-based",
+        "jsonMode": false
+      },
+      "asr": {
+        "configured": true,
+        "defaultProvider": "faster-whisper"
+      }
+    },
+    "jobs": [
+      {
+        "type": "summarize",
+        "status": "SUCCEEDED"
+      },
+      {
+        "type": "clean",
+        "status": "SUCCEEDED"
+      }
+    ]
+  },
+  "extension": {
+    "id": "akodendgnfmjmijnhepplkmojdedlnfn"
+  },
+  "checks": [
+    {
+      "name": "task-api starts (health)",
+      "status": "pass",
+      "details": {
+        "status": "ok",
+        "version": "0.1.0",
+        "apiVersion": "v1"
+      }
+    },
+    {
+      "name": "capabilities + token auth",
+      "status": "pass",
+      "details": {
+        "apiVersion": "v1",
+        "llm": {
+          "configured": false,
+          "provider": "local-heuristic",
+          "model": "rule-based",
+          "jsonMode": false
+        },
+        "asr": {
+          "configured": true,
+          "defaultProvider": "faster-whisper"
+        }
+      }
+    },
+    {
+      "name": "document created from subtitle segments",
+      "status": "pass",
+      "details": {
+        "documentId": "doc_107a80b473a74e2d",
+        "originalRevisionId": "rev_744cbbafafda4a52",
+        "segments": 15
+      }
+    },
+    {
+      "name": "clean job (heuristic pipeline)",
+      "status": "pass",
+      "details": {
+        "jobId": "job_de2b3345a6fe4c1c",
+        "status": "SUCCEEDED",
+        "revisionId": "rev_5d564df6f64046bb",
+        "pending": 0
+      }
+    },
+    {
+      "name": "extension loads in real browser",
+      "status": "pass",
+      "details": {
+        "id": "akodendgnfmjmijnhepplkmojdedlnfn"
+      }
+    },
+    {
+      "name": "extension settings persisted",
+      "status": "pass",
+      "details": {
+        "serviceUrl": "http://127.0.0.1:8882"
+      }
+    },
+    {
+      "name": "side panel loads seeded document from task-api",
+      "status": "pass",
+      "details": {
+        "text": "文字稿助手\n服务已连接\n设置\n【2026全球总决赛】11月4日 TES vs IG\n哔哩哔哩英雄联盟赛事\n·\n第 2 P\n·\n第二局\n·\n1 小时 4 分\n原视频\n提取文字稿\n总结视频\n文字稿\n总结\n修订\n任务\nB站AI字幕\n· 15 段\n· 00:00–03:06\n整理稿\n更多\n\n00:00大家好，这一期我们做一个端到端验收样本，用来测试文字稿助手的完整流程。先说结论，这个工具的核心价值是把字幕或者音频变成可以校对、可以引用的文字稿。第一步是拿到原始材料，有字幕就优先用字幕，没有字幕才走音频转写。这里要特别强调，",
+        "hasTranscript": true,
+        "hasCleanedLabel": true
+      }
+    },
+    {
+      "name": "UI 总结视频 -> summarize job -> rendered summary",
+      "status": "pass",
+      "details": {
+        "summaryId": "sum_b928c0157a184425",
+        "chapters": 1,
+        "overview": "大家好，这一期我们做一个端到端验收样本，用来测试文字稿助手的完整流程。 先说结论，这个工具的核心价值是把字幕或者音频变成可以校对、可以引用的文字稿。",
+        "model": "extractive-v1"
+      }
+    },
+    {
+      "name": "settings page reports connected service",
+      "status": "pass",
+      "details": {
+        "text": "设置\n已连接\n任务服务\n服务地址\n\n音频和文字将在该地址处理。默认本机回环地址；远端服务必须使用 HTTPS。修改地址后需授权扩展访问。\n\n访问令牌\n\n服务首次启动会把令牌写入其数据目录的 token.txt。\n\n测试连接\n服务可用\n文本模型\n未配置 · 仅规则清洗\n语音识别\n本机 faster-whisper\n音频上限\n512 MB · 120 分钟\n原始音频保留\n24 小时\n处理方式\n字幕语言\n中文优先\n语音识别服务\n自动（服务端优"
+      }
+    },
+    {
+      "name": "export current revision as Markdown",
+      "status": "pass",
+      "details": {
+        "file": "【2026全球总决赛】11月4日 TES vs IG-P02-整理稿.md",
+        "bytes": 3325,
+        "head": "# 【2026全球总决赛】11月4日 TES vs IG\n\n作者　哔哩哔哩英雄联盟赛事\n分P　第 2 P · 第二局\n来源　https://www.bilibili.com/video/BV1XwxU6xEnL/?p=2\n文本来源　B站AI"
+      }
+    },
+    {
+      "name": "no console errors in real side panel",
+      "status": "pass",
+      "details": {
+        "errors": 0
+      }
+    },
+    {
+      "name": "job history consistent",
+      "status": "pass",
+      "details": [
+        {
+          "type": "summarize",
+          "status": "SUCCEEDED"
+        },
+        {
+          "type": "clean",
+          "status": "SUCCEEDED"
+        }
+      ]
+    }
+  ],
+  "consoleErrors": [],
+  "screenshots": [
+    "C:\\Users\\pc\\source\\repos\\bilibili-transcript-assistant\\docs\\screenshots\\sidepanel-e2e-transcript.png",
+    "C:\\Users\\pc\\source\\repos\\bilibili-transcript-assistant\\docs\\screenshots\\sidepanel-e2e-summary.png",
+    "C:\\Users\\pc\\source\\repos\\bilibili-transcript-assistant\\docs\\screenshots\\sidepanel-e2e-settings.png"
+  ],
+  "downloads": [
+    {
+      "path": "C:\\Users\\pc\\AppData\\Local\\Temp\\bta-e2e-download-fX9qXo\\【2026全球总决赛】11月4日 TES vs IG-P02-整理稿.md",
+      "bytes": 3325,
+      "filename": "【2026全球总决赛】11月4日 TES vs IG-P02-整理稿.md"
+    }
+  ],
+  "engine": {
+    "path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+    "version": "Edg/156.0.4314.58"
+  },
+  "ui": {
+    "bootText": "文字稿助手\n服务已连接\n设置\n【2026全球总决赛】11月4日 TES vs IG\n哔哩哔哩英雄联盟赛事\n·\n第 2 P\n·\n第二局\n·\n1 小时 4 分\n原视频\n提取文字稿\n总结视频\n文字稿\n总结\n修订\n任务\nB站AI字幕\n· 15 段\n· 00:00–03:06\n整理稿\n更多\n\n00:00大家好，这一期我们做一个端到端验收样本，用来测试文字稿助手的完整流程。先说结论，这个工具的核心价值是把字幕或者音频变成可以校对、可以引用的文字稿。第一步是拿到原始材料，有字幕就优先用字幕，没有字幕才走音频转写。这里要特别强调，模型整理的时候不能随便改数字和否定词。我们之前说过支持三个档位，哦不对，是四个档位：轻度、标准、精简和自定义。滴普西克这类音近词，需要结合上下文判断，不能只按发音替换。接着看清洗流程，先做确定性规则清理，再让模型做语义整理。如果模型发现前后矛盾，会把它标成待核对，而不是直接按多数"
+  },
+  "finishedAt": "2026-11-05T05:21:35.277Z",
+  "durationMs": 18041,
+  "ok": true
+}

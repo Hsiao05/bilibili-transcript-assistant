@@ -1,0 +1,399 @@
+{
+  "startedAt": "2026-11-05T04:34:48.740Z",
+  "engine": {
+    "path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+    "version": "Edg/156.0.4314.58"
+  },
+  "samples": {
+    "single": "BV1REx46NEc4",
+    "multi": {
+      "bvid": "BV1XwxU6xEnL",
+      "page": 2
+    },
+    "subtitleUrlProvided": true
+  },
+  "extension": {
+    "id": "akodendgnfmjmijnhepplkmojdedlnfn",
+    "workerUrl": "chrome-extension://akodendgnfmjmijnhepplkmojdedlnfn/background.js",
+    "manifest": {
+      "name": "B站文字稿助手",
+      "version": "0.1.0",
+      "manifestVersion": 3,
+      "permissions": [
+        "sidePanel",
+        "storage",
+        "activeTab",
+        "scripting",
+        "declarativeNetRequest"
+      ],
+      "hostPermissions": [
+        "https://api.bilibili.com/*",
+        "https://www.bilibili.com/*",
+        "https://*.hdslb.com/*",
+        "https://*.bilivideo.com/*",
+        "https://*.bilivideo.cn/*"
+      ],
+      "sidePanelPath": "index.html",
+      "serviceWorker": "background.js",
+      "contentScripts": [
+        [
+          "https://www.bilibili.com/video/*"
+        ]
+      ]
+    }
+  },
+  "checks": [
+    {
+      "name": "extension service worker registered",
+      "status": "pass",
+      "details": {
+        "id": "akodendgnfmjmijnhepplkmojdedlnfn"
+      }
+    },
+    {
+      "name": "manifest wiring",
+      "status": "pass",
+      "details": {
+        "name": "B站文字稿助手",
+        "version": "0.1.0",
+        "manifestVersion": 3,
+        "permissions": [
+          "sidePanel",
+          "storage",
+          "activeTab",
+          "scripting",
+          "declarativeNetRequest"
+        ],
+        "hostPermissions": [
+          "https://api.bilibili.com/*",
+          "https://www.bilibili.com/*",
+          "https://*.hdslb.com/*",
+          "https://*.bilivideo.com/*",
+          "https://*.bilivideo.cn/*"
+        ],
+        "sidePanelPath": "index.html",
+        "serviceWorker": "background.js",
+        "contentScripts": [
+          [
+            "https://www.bilibili.com/video/*"
+          ]
+        ]
+      }
+    },
+    {
+      "name": "sidePanel + DNR session rules",
+      "status": "pass",
+      "details": {
+        "hasSidePanel": true,
+        "setPanelBehavior": true,
+        "getOptions": true,
+        "hasDnr": true,
+        "sessionRules": [
+          {
+            "id": 9101,
+            "filter": "||bilivideo.com",
+            "excludedInitiatorDomains": [
+              "bilibili.com"
+            ],
+            "referer": "https://www.bilibili.com/"
+          },
+          {
+            "id": 9102,
+            "filter": "||bilivideo.cn",
+            "excludedInitiatorDomains": [
+              "bilibili.com"
+            ],
+            "referer": "https://www.bilibili.com/"
+          },
+          {
+            "id": 9103,
+            "filter": "||hdslb.com",
+            "excludedInitiatorDomains": [
+              "bilibili.com"
+            ],
+            "referer": "https://www.bilibili.com/"
+          }
+        ]
+      }
+    },
+    {
+      "name": "side panel UI renders (demo)",
+      "status": "pass",
+      "details": {
+        "title": "文字稿助手",
+        "text": "文字稿助手\n服务已连接\n设置\n如何用 DeepSeek 整理一场两小时的访谈\n演示\n文字实验室\n·\n第 2 P\n·\n第二章 · 术语与修订\n·\n2 分钟\n原视频\n提取文字稿\n总结视频\n文字稿\n总结\n修订\n2\n任务\nB站人工字幕\n· 12 段\n· 00:00–01:38\n2 处待核对\n整理稿 · 2 待核对\n更多\n\n00:00这期我们聊聊怎么用模型整理长访谈。\n\n00:06先说获取材料，字幕和音频是两条独立的路径。如果视频有字幕，优先用人",
+        "tabs": [
+          "文字稿",
+          "总结",
+          "修订2",
+          "任务"
+        ],
+        "theme": "",
+        "screenshot": "C:\\Users\\pc\\source\\repos\\bilibili-transcript-assistant\\docs\\screenshots\\sidepanel-demo.png",
+        "consoleErrors": 0
+      }
+    },
+    {
+      "name": "identity:current (p1, active B站 tab)",
+      "status": "pass",
+      "details": {
+        "bvid": "BV1XwxU6xEnL",
+        "page": 1,
+        "url": "https://www.bilibili.com/video/BV1XwxU6xEnL/",
+        "title": "【2026全球总决赛】11月4日 TES vs IG_游戏热门视频",
+        "supported": true,
+        "tabId": 1433707753
+      }
+    },
+    {
+      "name": "content script responds (content:getIdentity)",
+      "status": "pass",
+      "details": {
+        "bvid": "BV1XwxU6xEnL",
+        "page": 1,
+        "url": "https://www.bilibili.com/video/BV1XwxU6xEnL/",
+        "title": "【2026全球总决赛】11月4日 TES vs IG_游戏热门视频",
+        "supported": true
+      }
+    },
+    {
+      "name": "in-site navigation (p1 -> pN)",
+      "status": "pass",
+      "details": {
+        "identityPage": 2,
+        "contentScriptPage": 2,
+        "broadcasts": [
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "name": "B站 page playback requests unaffected by DNR",
+      "status": "pass",
+      "details": {
+        "requests": 150,
+        "byType": {
+          "Stylesheet": 8,
+          "Script": 44,
+          "Image": 51,
+          "XHR": 17,
+          "Document": 2,
+          "Fetch": 26,
+          "Font": 2
+        },
+        "sample": [
+          {
+            "type": "Stylesheet",
+            "status": 200,
+            "mimeType": "text/css",
+            "url": "https://s1.hdslb.com/bfs/static/jinkela/long/font/regular.css"
+          },
+          {
+            "type": "Stylesheet",
+            "status": 200,
+            "mimeType": "text/css",
+            "url": "https://s1.hdslb.com/bfs/static/jinkela/long/font/medium.css"
+          },
+          {
+            "type": "Script",
+            "status": 200,
+            "mimeType": "application/javascript",
+            "url": "https://s1.hdslb.com/bfs/static/player/main/core.1782590f.js"
+          }
+        ]
+      }
+    },
+    {
+      "name": "bili:view (metadata + 分P)",
+      "status": "pass",
+      "details": {
+        "title": "【2026全球总决赛】11月4日 TES vs IG",
+        "author": "哔哩哔哩英雄联盟赛事",
+        "pages": 8,
+        "currentCid": "43307110047",
+        "part": "第二局"
+      }
+    },
+    {
+      "name": "bili:player anonymous (subtitle tracks login-gated)",
+      "status": "pass",
+      "details": {
+        "rawTrackCount": 0,
+        "allowSubmit": false,
+        "note": "B站 returns need_login_subtitle=true and an empty track list for anonymous requests"
+      }
+    },
+    {
+      "name": "bili:player with replayed logged-in payload",
+      "status": "pass",
+      "details": {
+        "interceptedRequests": 1,
+        "fulfilledRequests": 1,
+        "tracks": [
+          {
+            "id": "2142267835404456448",
+            "lan": "ai-zh",
+            "lanDoc": "中文",
+            "type": "ai"
+          },
+          {
+            "id": "2143354935474320128",
+            "lan": "ai-ja",
+            "lanDoc": "日本語",
+            "type": "ai"
+          },
+          {
+            "id": "2143415351177055488",
+            "lan": "ai-id",
+            "lanDoc": "Bahasa Indonesia",
+            "type": "ai"
+          },
+          {
+            "id": "2143189358428390144",
+            "lan": "ai-en",
+            "lanDoc": "English",
+            "type": "ai"
+          },
+          {
+            "id": "2143412426882987520",
+            "lan": "ai-es",
+            "lanDoc": "Español",
+            "type": "ai"
+          },
+          {
+            "id": "2143412563273450496",
+            "lan": "ai-pt",
+            "lanDoc": "Português",
+            "type": "ai"
+          },
+          {
+            "id": "2143412534106311936",
+            "lan": "ai-ar",
+            "lanDoc": "العربية",
+            "type": "ai"
+          },
+          {
+            "id": "2143412423846258176",
+            "lan": "ai-th",
+            "lanDoc": "ภาษาไทย",
+            "type": "ai"
+          }
+        ]
+      }
+    },
+    {
+      "name": "bili:subtitle (real subtitle JSON)",
+      "status": "pass",
+      "details": {
+        "count": 1503,
+        "first": {
+          "id": "seg_00001",
+          "startMs": 0,
+          "endMs": 2880,
+          "text": "本期视频是一期超级详细的DPC honeys"
+        },
+        "last": {
+          "id": "seg_01503",
+          "startMs": 3039340,
+          "endMs": 3040480,
+          "text": "我们下期见"
+        }
+      }
+    },
+    {
+      "name": "bili:playurl (independent audio stream)",
+      "status": "pass",
+      "details": {
+        "id": "30216",
+        "bandwidth": 129675,
+        "mimeType": "audio/mp4",
+        "codecs": "mp4a.40.2",
+        "durationMs": 3822000,
+        "estimatedMb": 59
+      }
+    },
+    {
+      "name": "audio CDN reachable from background service worker",
+      "status": "pass",
+      "details": {
+        "status": 206,
+        "contentRange": "bytes 0-1023/61945254",
+        "contentType": "video/mp4",
+        "bytes": 1024
+      }
+    },
+    {
+      "name": "audio CDN reachable from extension page (side-panel path)",
+      "status": "pass",
+      "details": {
+        "status": 206,
+        "contentRange": "bytes 0-1023/61945254",
+        "contentType": "video/mp4",
+        "bytes": 1024
+      }
+    }
+  ],
+  "findings": [
+    {
+      "id": "subtitle-login-gated",
+      "severity": "info",
+      "summary": "Subtitle track discovery requires a logged-in bilibili.com session: anonymous /x/player/wbi/v2 responses carry need_login_subtitle=true and no tracks. The extension fetches with credentials:'include', so a logged-in browser works; the anonymous smoke run cannot enumerate live tracks, so the captured logged-in payload is replayed instead."
+    }
+  ],
+  "consoleErrors": [],
+  "screenshots": [
+    "C:\\Users\\pc\\source\\repos\\bilibili-transcript-assistant\\docs\\screenshots\\sidepanel-demo.png"
+  ],
+  "chromeLoadExtensionPolicy": null,
+  "dnr": {
+    "hasSidePanel": true,
+    "setPanelBehavior": true,
+    "getOptions": true,
+    "hasDnr": true,
+    "sessionRules": [
+      {
+        "id": 9101,
+        "filter": "||bilivideo.com",
+        "excludedInitiatorDomains": [
+          "bilibili.com"
+        ],
+        "referer": "https://www.bilibili.com/"
+      },
+      {
+        "id": 9102,
+        "filter": "||bilivideo.cn",
+        "excludedInitiatorDomains": [
+          "bilibili.com"
+        ],
+        "referer": "https://www.bilibili.com/"
+      },
+      {
+        "id": 9103,
+        "filter": "||hdslb.com",
+        "excludedInitiatorDomains": [
+          "bilibili.com"
+        ],
+        "referer": "https://www.bilibili.com/"
+      }
+    ]
+  },
+  "audioProbe": {
+    "page": {
+      "status": 206,
+      "contentRange": "bytes 0-1023/61945254",
+      "contentType": "video/mp4",
+      "bytes": 1024
+    },
+    "serviceWorker": {
+      "status": 206,
+      "contentRange": "bytes 0-1023/61945254",
+      "contentType": "video/mp4",
+      "bytes": 1024
+    },
+    "note": "The audio CDN answers 403 without a Referer and 206 with one (see scripts/bilibili-adapter-check.mjs), so a 206 here proves the DNR rule applied to both extension contexts."
+  },
+  "finishedAt": "2026-11-05T04:35:02.360Z",
+  "durationMs": 13620,
+  "ok": true
+}
